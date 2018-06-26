@@ -19,13 +19,13 @@
                           <items>
                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                                  <children>
-                                    <TableView layoutX="-2.0" prefHeight="370.0" prefWidth="410.0">
+                                    <TableView fx:id="table" layoutX="-2.0" prefHeight="370.0" prefWidth="410.0">
                                       <columns>
-                                        <TableColumn prefWidth="70.0" text="ID" />
-                                        <TableColumn prefWidth="70.0" text="Type" />
-                                          <TableColumn prefWidth="100.0" text="First Name" />
-                                          <TableColumn prefWidth="100.0" text="Last Name" />
-                                          <TableColumn prefWidth="75.0" text="Status" />
+                                        <TableColumn fx:id="columnID" prefWidth="70.0" text="ID" />
+                                        <TableColumn fx:id="columnType" prefWidth="70.0" text="Type" />
+                                          <TableColumn fx:id="columnName" prefWidth="100.0" text="First Name" />
+                                          <TableColumn fx:id="columnLastName" prefWidth="100.0" text="Last Name" />
+                                          <TableColumn fx:id="columnStatus" prefWidth="75.0" text="Status" />
                                       </columns>
                                     </TableView>
                                  </children>
@@ -40,12 +40,12 @@
                                     <TextField layoutX="10.0" layoutY="90.0" />
                                     <TextField layoutX="10.0" layoutY="144.0" />
                                     <TextField layoutX="10.0" layoutY="194.0" />
-                                    <TextField layoutX="10.0" layoutY="31.0" prefHeight="25.0" prefWidth="47.0" />
+                                    <TextField editable="false" layoutX="10.0" layoutY="31.0" prefHeight="25.0" prefWidth="47.0" />
                                     <TextField layoutX="80.0" layoutY="31.0" prefHeight="25.0" prefWidth="47.0" />
-                                    <Button layoutX="37.0" layoutY="243.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="111.0" text="Edit" />
-                                    <Button layoutX="37.0" layoutY="277.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="111.0" text="Delete" />
-                                    <Button layoutX="12.0" layoutY="316.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="72.0" text="Cancel" />
-                                    <Button layoutX="95.0" layoutY="316.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="72.0" text="Save" />
+                                    <Button fx:id="btnEdit" layoutX="37.0" layoutY="243.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="111.0" text="Edit" />
+                                    <Button fx:id="btnDelete" layoutX="37.0" layoutY="277.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="111.0" text="Delete" />
+                                    <Button fx:id="btnCancel" layoutX="12.0" layoutY="316.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="72.0" text="Cancel" />
+                                    <Button fx:id="btnSave" layoutX="95.0" layoutY="316.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="72.0" text="Save" />
                                  </children>
                               </AnchorPane>
                           </items>

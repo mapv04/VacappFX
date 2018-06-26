@@ -10,8 +10,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -67,7 +65,7 @@ public class LoginUIController implements Initializable {
                         case 0:
                             fxml =FXMLLoader.load(getClass().getResource("ManagerUI.fxml"));
                             scene= new Scene(fxml);
-                            Stage stage=(Stage) ((Node)event.getSource()).getScene().getWindow();
+                            stage=(Stage) ((Node)event.getSource()).getScene().getWindow();
                             stage.setScene(scene);
                             stage.show();
                             break;
