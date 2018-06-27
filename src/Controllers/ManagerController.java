@@ -41,4 +41,11 @@ public class ManagerController {
         }
         //return employeeList;
     }
+    
+    public void modifyEmployee(User employee){
+        /*
+        edit the employee in the database
+        
+        */
+    }
 }

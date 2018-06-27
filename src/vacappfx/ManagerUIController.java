@@ -9,15 +9,22 @@ import Controllers.ManagerController;
 import Models.User;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -32,10 +39,11 @@ import javafx.scene.control.cell.PropertyValueFactory;
 public class ManagerUIController implements Initializable {
 
     @FXML private TextField txtEmployeeID;
-    @FXML private TextField txtEmployeeType;
     @FXML private TextField txtEmployeeName;
     @FXML private TextField txtEmployeeLastName;
     @FXML private TextField txtEmployeeStatus;
+    
+    @FXML private ChoiceBox choiceType;
     
     @FXML private Button btnEdit;
     @FXML private Button btnDelete;
@@ -52,6 +60,7 @@ public class ManagerUIController implements Initializable {
     
     ObservableList<User> employeeList;
     ManagerController managerCon=  new ManagerController();
+    private int tablePosition;
     
     /**
      * Initializes the controller class.
@@ -67,6 +76,10 @@ public class ManagerUIController implements Initializable {
        btnDelete.setDisable(true);
        btnCancel.setDisable(true);
        btnSave.setDisable(true);
+       
+       //add the listeners
+       final ObservableList<User> tableEmployees= table.getSelectionModel().getSelectedItems();
+       tableEmployees.addListener(tableSelector);
     } 
     
     private void initializeTable()throws SQLException{
@@ -83,15 +96,86 @@ public class ManagerUIController implements Initializable {
         private final ListChangeListener<User> tableSelector= new ListChangeListener<User>() {
         @Override
         public void onChanged(ListChangeListener.Change<? extends User> c) {
-            getSelectedEmployee();
+            setSelectedEmployee();
         }
     };
         
-        private void getSelectedEmployee(){
-            /*
-            TODO
-            finish this method
-            */
+        private void setSelectedEmployee(){
+            final User employee= getSelectedEmployee();
+            tablePosition=employeeList.indexOf(employee);
+            if(employee!=null){
+                txtEmployeeID.setText(String.valueOf(employee.getId()));
+                txtEmployeeName.setText(employee.getName());
+                txtEmployeeLastName.setText(employee.getLastName());
+                txtEmployeeStatus.setText(String.valueOf(employee.getStatus()));
+                switch(employee.getType()){
+                    case 0:
+                        choiceType.setValue("Manager"); 
+                        break;
+                    case 1:
+                        choiceType.setValue("Supervisor"); 
+                        break;
+                    case 2:
+                        choiceType.setValue("Employee");
+                        break;
+                }
+              
+                btnEdit.setDisable(false);
+                btnDelete.setDisable(false);
+            
         }
-
+        }
+        
+        public User getSelectedEmployee(){
+            if(table!=null){
+                List<User> employeeList= table.getSelectionModel().getSelectedItems();
+                if(employeeList.size()==1){
+                    final User employeeSelected=employeeList.get(0);
+                    return employeeSelected;
+                }
+            }
+            return null;
+        }
+        
+        @FXML 
+        private void btnEditAction(ActionEvent event){
+            User modifiedEmployee= new User();
+            modifiedEmployee.setName(txtEmployeeName.getText());
+            modifiedEmployee.setLastName(txtEmployeeLastName.getText());
+            modifiedEmployee.setId(Integer.parseInt(txtEmployeeID.getText()));
+            modifiedEmployee.setStatus(Integer.parseInt(txtEmployeeStatus.getText()));
+            
+            switch(choiceType.getValue().toString()){
+                    case "Manager":
+                        modifiedEmployee.setType(0);
+                        break;
+                    case "Supervisor":
+                        modifiedEmployee.setType(1);
+                        break;
+                    case "Employee":
+                        modifiedEmployee.setType(2);
+                        break;
+                }
+            if(confirmChanges()){
+                managerCon.modifyEmployee(modifiedEmployee);
+            }
+                
+        }
+        
+        private boolean confirmChanges(){
+           Alert alert = new Alert(AlertType.CONFIRMATION);
+           alert.setTitle("Confirmation");
+           alert.setContentText("Are you sure you want to modify this employee?");
+           ButtonType buttonTypeYes = new ButtonType("Yes");
+           ButtonType buttonTypeNo = new ButtonType("No");
+           alert.getButtonTypes().setAll(buttonTypeYes, buttonTypeNo);
+           Optional<ButtonType> result = alert.showAndWait();
+           if (result.get() == buttonTypeYes){
+                return true;
+           } else if (result.get() == buttonTypeNo) {
+                return false;
+            
+           }
+           return false;
+        }
 }

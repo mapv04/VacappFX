@@ -6,6 +6,7 @@
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.collections.*?>
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vacappfx.ManagerUIController">
    <children>
@@ -37,13 +38,23 @@
                                     <Label layoutX="12.0" layoutY="14.0" text="ID:" />
                                     <Label layoutX="80.0" layoutY="14.0" text="Type:" />
                                     <Label layoutX="15.0" layoutY="177.0" text="Status:" />
-                                    <TextField layoutX="10.0" layoutY="90.0" />
-                                    <TextField layoutX="10.0" layoutY="144.0" />
-                                    <TextField layoutX="10.0" layoutY="194.0" />
-                                    <TextField editable="false" layoutX="10.0" layoutY="31.0" prefHeight="25.0" prefWidth="47.0" />
-                                    <TextField layoutX="80.0" layoutY="31.0" prefHeight="25.0" prefWidth="47.0" />
+                                    <TextField layoutX="10.0" layoutY="90.0" fx:id="txtEmployeeName" />
+                                    <TextField layoutX="10.0" layoutY="144.0" fx:id="txtEmployeeLastName" />
+                                    <TextField layoutX="10.0" layoutY="194.0" fx:id="txtEmployeeStatus"/>
+                                    <TextField editable="false" layoutX="10.0" layoutY="31.0" prefHeight="25.0" prefWidth="47.0" fx:id="txtEmployeeID"/>
+                                    <ChoiceBox fx:id="choiceType" layoutX="80.0" layoutY="31.0" prefHeight="25.0" prefWidth="85.0">
+                                        <items>
+                                            <FXCollections fx:factory="observableArrayList">
+                                                <String fx:value="Manager" />
+                                                <String fx:value="Supervisor" />
+                                                <String fx:value="Employee" />
+
+                                            </FXCollections>
+
+                                        </items>
+                                    </ChoiceBox>
                                     <Button fx:id="btnEdit" layoutX="37.0" layoutY="243.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="111.0" text="Edit" />
-                                    <Button fx:id="btnDelete" layoutX="37.0" layoutY="277.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="111.0" text="Delete" />
+                                    <Button fx:id="btnDelete" layoutX="37.0" layoutY="277.0" mnemonicParsing="false" onAction="#btnEditAction" prefHeight="25.0" prefWidth="111.0" text="Delete" />
                                     <Button fx:id="btnCancel" layoutX="12.0" layoutY="316.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="72.0" text="Cancel" />
                                     <Button fx:id="btnSave" layoutX="95.0" layoutY="316.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="72.0" text="Save" />
                                  </children>
