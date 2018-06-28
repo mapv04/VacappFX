@@ -53,8 +53,8 @@
 
                                         </items>
                                     </ChoiceBox>
-                                    <Button fx:id="btnEdit" layoutX="37.0" layoutY="243.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="111.0" text="Edit" />
-                                    <Button fx:id="btnDelete" layoutX="37.0" layoutY="277.0" mnemonicParsing="false" onAction="#btnEditAction" prefHeight="25.0" prefWidth="111.0" text="Delete" />
+                                    <Button fx:id="btnEdit" layoutX="37.0" layoutY="243.0" mnemonicParsing="false" onAction="#btnEditAction" prefHeight="25.0" prefWidth="111.0" text="Edit" />
+                                    <Button fx:id="btnDelete" layoutX="37.0" layoutY="277.0" mnemonicParsing="false"  prefHeight="25.0" prefWidth="111.0" text="Delete" />
                                     <Button fx:id="btnCancel" layoutX="12.0" layoutY="316.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="72.0" text="Cancel" />
                                     <Button fx:id="btnSave" layoutX="95.0" layoutY="316.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="72.0" text="Save" />
                                  </children>

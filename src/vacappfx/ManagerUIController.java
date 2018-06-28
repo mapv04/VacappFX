@@ -138,7 +138,7 @@ public class ManagerUIController implements Initializable {
         }
         
         @FXML 
-        private void btnEditAction(ActionEvent event){
+        private void btnEditAction(ActionEvent event) throws SQLException{
             User modifiedEmployee= new User();
             modifiedEmployee.setName(txtEmployeeName.getText());
             modifiedEmployee.setLastName(txtEmployeeLastName.getText());
@@ -158,6 +158,8 @@ public class ManagerUIController implements Initializable {
                 }
             if(confirmChanges()){
                 managerCon.modifyEmployee(modifiedEmployee);
+                employeeList.set(tablePosition, modifiedEmployee);
+                clearText();
             }
                 
         }
@@ -177,5 +179,16 @@ public class ManagerUIController implements Initializable {
             
            }
            return false;
+        }
+        
+        private void clearText(){
+            txtEmployeeID.clear();
+            txtEmployeeName.clear();
+            txtEmployeeLastName.clear();
+            txtEmployeeStatus.clear();
+            /*
+            TODO
+            clear the ChoiceBox
+            */
         }
 }
