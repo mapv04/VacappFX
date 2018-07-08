@@ -38,10 +38,10 @@
                                     <Label layoutX="12.0" layoutY="14.0" text="ID:" />
                                     <Label layoutX="80.0" layoutY="14.0" text="Type:" />
                                     <Label layoutX="15.0" layoutY="177.0" text="Status:" />
-                                    <TextField layoutX="10.0" layoutY="90.0" fx:id="txtEmployeeName" />
-                                    <TextField layoutX="10.0" layoutY="144.0" fx:id="txtEmployeeLastName" />
-                                    <TextField layoutX="10.0" layoutY="194.0" fx:id="txtEmployeeStatus"/>
-                                    <TextField editable="false" layoutX="10.0" layoutY="31.0" prefHeight="25.0" prefWidth="47.0" fx:id="txtEmployeeID"/>
+                                    <TextField fx:id="txtEmployeeName" layoutX="10.0" layoutY="90.0" />
+                                    <TextField fx:id="txtEmployeeLastName" layoutX="10.0" layoutY="144.0" />
+                                    <TextField fx:id="txtEmployeeStatus" layoutX="10.0" layoutY="194.0" />
+                                    <TextField fx:id="txtEmployeeID" editable="false" layoutX="10.0" layoutY="31.0" prefHeight="25.0" prefWidth="47.0" />
                                     <ChoiceBox fx:id="choiceType" layoutX="80.0" layoutY="31.0" prefHeight="25.0" prefWidth="85.0">
                                         <items>
                                             <FXCollections fx:factory="observableArrayList">
@@ -73,12 +73,12 @@
                           <items>
                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="370.0" prefWidth="408.0">
                                  <children>
-                                    <TableView prefHeight="370.0" prefWidth="409.0">
+                                    <TableView fx:id="tableWorkgroup" prefHeight="370.0" prefWidth="409.0">
                                       <columns>
-                                        <TableColumn text="ID Group" />
-                                        <TableColumn prefWidth="125.0" text="Name Group" />
-                                          <TableColumn prefWidth="125.0" text="Team Leader" />
-                                          <TableColumn text="Members" />
+                                        <TableColumn fx:id="columnWorkID" text="ID Group" />
+                                        <TableColumn fx:id="columnWorkName" prefWidth="125.0" text="Name Group" />
+                                          <TableColumn fx:id="columnLeaderName" prefWidth="125.0" text="Team Leader" />
+                                          <TableColumn fx:id="columnWorkStatus" text="Status" />
                                       </columns>
                                     </TableView>
                                  </children>
@@ -88,15 +88,14 @@
                                     <Label layoutX="14.0" layoutY="14.0" text="ID:" />
                                     <Label layoutX="93.0" layoutY="14.0" text="Members:" />
                                     <Label layoutX="15.0" layoutY="70.0" text="Name Group:" />
-                                    <Label layoutX="15.0" layoutY="120.0" text="Team Leader:" />
-                                    <TextField layoutX="12.0" layoutY="31.0" prefHeight="25.0" prefWidth="54.0" />
-                                    <TextField layoutX="93.0" layoutY="31.0" prefHeight="25.0" prefWidth="54.0" />
+                                    <TextField editable="false" layoutX="12.0" layoutY="31.0" prefHeight="25.0" prefWidth="54.0" />
+                                    <TextField editable="false" layoutX="93.0" layoutY="31.0" prefHeight="25.0" prefWidth="54.0" />
                                     <TextField layoutX="12.0" layoutY="87.0" />
-                                    <TextField layoutX="12.0" layoutY="137.0" />
-                                    <Button layoutX="21.0" layoutY="224.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="144.0" text="Delete" />
-                                    <Button layoutX="21.0" layoutY="261.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="145.0" text="Show members" />
-                                    <Button layoutX="21.0" layoutY="185.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="142.0" text="Edit" />
-                                    <Button layoutX="22.0" layoutY="300.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="143.0" text="Create new team" />
+                                    <Button layoutX="21.0" layoutY="181.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="145.0" text="Delete" />
+                                    <Button layoutX="21.0" layoutY="217.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="145.0" text="Show members" />
+                                    <Button layoutX="21.0" layoutY="145.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="145.0" text="Edit" />
+                                    <Button layoutX="21.0" layoutY="324.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="145.0" text="Create new team" />
+                                    <Button layoutX="22.0" layoutY="254.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="145.0" text="Add a new member" />
                                  </children>
                               </AnchorPane>
                           </items>

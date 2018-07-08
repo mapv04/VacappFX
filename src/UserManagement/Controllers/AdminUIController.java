@@ -1,7 +1,11 @@
 package UserManagement.Controllers;
 
-import UserManagement.Models.*;
-
+import UserManagement.Models.Employee;
+import UserManagement.Models.EmployeeDelete;
+import UserManagement.Models.EmployeeRead;
+import UserManagement.Models.EmployeeUpdate;
+import WorkGroupManagement.Controllers.WorkGroupRead;
+import WorkGroupManagement.Models.WorkGroup;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
@@ -46,7 +50,15 @@ public class AdminUIController implements Initializable {
     @FXML private TableColumn columnLastName;
     @FXML private TableColumn columnStatus;
 
+    @FXML private TableView<WorkGroup> tableWorkgroup;
+    @FXML private TableColumn columnWorkID;
+    @FXML private TableColumn columnWorkName;
+    @FXML private TableColumn columnLeaderName;
+    @FXML private TableColumn columnWorkStatus;
+
+    ObservableList<WorkGroup> workGroupList;
     ObservableList<Employee> employeeList;
+    WorkGroupRead groupRead= new WorkGroupRead();
     private int tablePosition;
     ButtonType buttonTypeYes = new ButtonType("Yes");
     ButtonType buttonTypeNo = new ButtonType("No");
@@ -59,6 +71,7 @@ public class AdminUIController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         try {
             initializeTable();
+            initializeWorkTable();
         } catch (SQLException ex) {
             Logger.getLogger(AdminUIController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -92,6 +105,17 @@ public class AdminUIController implements Initializable {
             setSelectedEmployee();
         }
     };
+
+    private void initializeWorkTable()throws SQLException{
+        columnWorkID.setCellValueFactory(new PropertyValueFactory<>("workGroupID"));
+        columnWorkName.setCellValueFactory(new PropertyValueFactory<>("workGroupName"));
+        columnLeaderName.setCellValueFactory(new PropertyValueFactory<>("leaderName"));
+        columnWorkStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
+        workGroupList=FXCollections.observableArrayList();
+        groupRead.getAllWorkgroups(workGroupList);
+        tableWorkgroup.setItems(workGroupList);
+
+    }
 
 
     private void setSelectedEmployee() {

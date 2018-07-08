@@ -1,5 +1,4 @@
 drop database vacapp;
-drop table usuario;
 create database vacapp;
 use vacapp;
 
@@ -19,7 +18,12 @@ INSERT INTO usuario (name_user, last_name, username, email, password_user, type_
 ('Oscar','Gonzalez','osc12','oscg@gmail.com','qwerty123', 1,1),
 ('Fernando','Garcia','garfer','owerg@gmail.com','qwedc', 1,1),
 ('Alfredo','Ibarra','alfib','alfi@gmail.com','qwertyasd', 2,1),
-('Gustavo','Segura','alfhsxb','asji@gmail.com','qwertyassdfd', 2,1);
+('Gustavo','Segura','alfhsxb','asji@gmail.com','qwertyassdfd', 2,1),
+('Eduardo','Ramirez','edu','edurai@gmail.com','qwertyasde', 2,1),
+('Ruben','Ochoa','rub123','ruben.och@gmail.com','qwertyasasd', 2,1),
+('Ivan','Martinez','ivvan','martinez.iv@gmail.com','qwesxasasd', 2,1),
+('Gerardo','Contreras','gera12','gerardo12@gmail.com','asdfcx', 2,1),
+('Erika','Preciado','erk13','preciado.erk@gmail.com','qwsxdc', 2,1);
 
 
 
@@ -64,3 +68,40 @@ CREATE TABLE vac_employee_data(
  (3,'Alfredo Ibarras', '2014-01-01', 6),
  (6,'Gustavo Segura', '2015-01-01', 4),
  (4,'Fernando Garcia', '2016-01-01', 6);
+ 
+ 
+ 
+ 
+ create table workgroup(
+pk_workgroup_id int not null auto_increment primary key,
+workgroup_name nvarchar(50) not null,
+fk_leader_id int not null,
+leader_name nvarchar(100) not null,
+created_date date not null,
+workgroup_status int not null,
+foreign key (fk_leader_id) references Usuario(pk_id_user));
+
+insert into workgroup(workgroup_name, fk_leader_id,leader_name,created_date, workgroup_status) values
+('WorkGroup 1',3,'Oscar Gonzalez','2016-02-02',1),
+('WorkGroup 2',4,'Fernando Garcia','2017-05-01',1);
+
+
+
+
+
+create table workgroup_data(
+fk_workgroup_id int not null,
+fk_usuario_id int not null,
+employee_name nvarchar(100) not null,
+added_date date not null,
+foreign key (fk_workgroup_id) references workgroup(pk_workgroup_id),
+foreign key (fk_usuario_id) references usuario(pk_id_user));
+
+insert into workgroup_data(fk_workgroup_id, fk_usuario_id,employee_name,added_date) values
+(1,5,'Alfredo Ibarra','2016-03-03'),
+(1,6,'Gustavo Segura','2016-03-03'),
+(1,7,'Eduardo Ramirez','2016-03-03'),
+(2,8,'Ruben Ochoa','2017-05-02'),
+(2,9,'Ivan Martinez','2017-05-02'),
+(2,10,'Gerardo Contreras','2017-05-02'),
+(2,11,'Erika Preciado','2017-05-02');

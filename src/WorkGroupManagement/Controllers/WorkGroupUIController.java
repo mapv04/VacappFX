@@ -1,4 +1,4 @@
-package UserManagement.Controllers;
+package WorkGroupManagement.Controllers;
 
 import javafx.fxml.Initializable;
 import java.net.URL;
@@ -9,7 +9,7 @@ import java.util.ResourceBundle;
  *
  * @author Julian
  */
-public class WorkGroupRegisterController implements Initializable {
+public class WorkGroupUIController implements Initializable {
 
     /**
      * Initializes the controller class.
