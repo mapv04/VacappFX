@@ -39,7 +39,7 @@ public class EmployeeValidation {
         rs = preparedStatement.executeQuery();
         while (rs.next()) {
             int type = rs.getInt("type_user");
-            return type;//return the type, Manager, Supervisor or EmployeeCRUD
+            return type;//return the type, Manager, Supervisor or Employee
         }
         return 5;//return other number just in case  
     }

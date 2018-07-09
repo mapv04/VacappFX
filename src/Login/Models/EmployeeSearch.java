@@ -28,7 +28,6 @@ public class EmployeeSearch {
     public static int searchEmployeeUserName(String user) {
         rs = null;
         String sqlQuery = "SELECT pk_id_user FROM usuario WHERE username = ?";
-
         try {
             preparedStatement = conn.prepareStatement(sqlQuery);
             preparedStatement.setString(1, user);
@@ -42,5 +41,33 @@ public class EmployeeSearch {
         return -1;
     }
 
+
+
+    public static Employee searchEmployeeID(int employeeID){
+        rs = null;
+        Employee employee = new Employee();
+        String sqlQuery = "SELECT * FROM usuario WHERE pk_id_user = ?";
+        try{
+            preparedStatement = conn.prepareStatement(sqlQuery);
+            preparedStatement.setInt(1,employeeID);
+            rs = preparedStatement.executeQuery();
+            if(rs.next()){
+                employee.setId(rs.getInt(1));
+                employee.setName(rs.getString(2));
+                employee.setLastName(rs.getString(3));
+                employee.setUsername(rs.getString(4));
+                employee.setEmail(rs.getString(5));
+                employee.setPassword(rs.getString(6));
+                employee.setType(rs.getInt(7));
+                employee.setStatus(rs.getInt(8));
+            }
+            else {
+                System.out.println("ERROR empty set method EmployeeSearch.searchEmployeeID");
+            }
+        }catch(SQLException e){
+            System.out.println("ERROR in sql statement method EmployeeSearch.searchEmployeeID error: " + e);
+        }
+        return employee;
+    }
 
 }

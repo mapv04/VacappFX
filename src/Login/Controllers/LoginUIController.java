@@ -1,7 +1,7 @@
 package Login.Controllers;
 
-import VacationManagement.Controllers.EmployeeUIController;
-import VacationManagement.Controllers.SupervisorUIController;
+import VacationManagementEmployee.Controllers.EmployeeUIController;
+import VacationManagementSupervisor.Controllers.SupervisorUIController;
 import Login.Models.*;
 
 import javafx.event.ActionEvent;
@@ -71,7 +71,7 @@ public class LoginUIController implements Initializable {
 
                     case 1:
                         SupervisorUIController.setSupervisorID(EmployeeSearch.searchEmployeeUserName(user));
-                        fxml = FXMLLoader.load(getClass().getResource("/VacationManagement/Views/SupervisorUI.fxml"));
+                        fxml = FXMLLoader.load(getClass().getResource("/VacationManagementSupervisor/Views/SupervisorUI.fxml"));
                         scene = new Scene(fxml);
                         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                         stage.setScene(scene);
@@ -80,7 +80,7 @@ public class LoginUIController implements Initializable {
 
                     case 2:
                         EmployeeUIController.setEmployeeID(EmployeeSearch.searchEmployeeUserName(user));
-                        fxml = FXMLLoader.load(getClass().getResource("/VacationManagement/Views/EmployeeUI.fxml"));
+                        fxml = FXMLLoader.load(getClass().getResource("/VacationManagementEmployee/Views/EmployeeUI.fxml"));
                         scene = new Scene(fxml);
                         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                         stage.setScene(scene);

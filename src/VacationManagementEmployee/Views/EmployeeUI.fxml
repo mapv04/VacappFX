@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="VacationManagementEmployee.Controllers.EmployeeUIController">
+   <children>
+      <TabPane prefHeight="439.0" prefWidth="640.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab closable="false" text=" Vacation User Info ">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="370.0" prefWidth="600.0">
+                     <children>
+                        <Text layoutX="409.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Last vacation request">
+                           <font>
+                              <Font size="14.0" />
+                           </font></Text>
+                        <GridPane layoutX="57.0" layoutY="34.0" prefHeight="344.0" prefWidth="268.0">
+                          <columnConstraints>
+                            <ColumnConstraints halignment="LEFT" maxWidth="178.0" minWidth="10.0" prefWidth="96.0" />
+                            <ColumnConstraints halignment="LEFT" maxWidth="274.0" minWidth="10.0" prefWidth="172.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints maxHeight="100.0" minHeight="10.0" prefHeight="52.0" vgrow="SOMETIMES" />
+                            <RowConstraints maxHeight="100.0" minHeight="10.0" prefHeight="52.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="100.0" minHeight="10.0" prefHeight="52.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="100.0" minHeight="10.0" prefHeight="54.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="100.0" minHeight="10.0" prefHeight="58.0" vgrow="SOMETIMES" />
+                            <RowConstraints maxHeight="100.0" minHeight="10.0" prefHeight="77.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="ID">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font></Text>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Name" GridPane.rowIndex="2">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font></Text>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Username" GridPane.rowIndex="1">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font></Text>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Email" GridPane.rowIndex="3">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font></Text>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Hired Date" GridPane.rowIndex="4">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font></Text>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Vacation Days Available " wrappingWidth="80.7421875" GridPane.rowIndex="5">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font></Text>
+                              <Label fx:id="labelID" text="Label1" GridPane.columnIndex="1">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="labelUsername" text="Label2" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="labelName" text="Label3" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="labelEmail" text="Label4" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="labelHiredDate" text="Label5" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="labelVacDays" text="Label6" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </GridPane>
+                        <GridPane layoutX="374.0" layoutY="92.0" prefHeight="73.0" prefWidth="200.0">
+                          <columnConstraints>
+                            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="105.0" minWidth="10.0" prefWidth="105.0" />
+                            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="95.0" minWidth="10.0" prefWidth="95.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints maxHeight="36.0" minHeight="10.0" prefHeight="26.0" vgrow="SOMETIMES" />
+                            <RowConstraints maxHeight="42.0" minHeight="10.0" prefHeight="42.0" valignment="CENTER" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Request ID">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Text>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Status" wrappingWidth="51.49609375" GridPane.columnIndex="1">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Text>
+                              <Label fx:id="labelReqID" text="LabelReqID" GridPane.rowIndex="1">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="labelReqStatus" text="LabelStatus" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </GridPane>
+                     </children></AnchorPane>
+            </content>
+          </Tab>
+          <Tab closable="false" text=" Vacation Historical">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView fx:id="tableHistoricalRequest" layoutX="32.0" layoutY="26.0" prefHeight="355.0" prefWidth="572.0">
+                          <columns>
+                            <TableColumn fx:id="columnRequestID" prefWidth="101.0" text="Request ID" />
+                              <TableColumn fx:id="columnStartDate" prefWidth="143.0" text="Start Date" />
+                              <TableColumn fx:id="columnEndtDate" prefWidth="137.0" text="End date" />
+                              <TableColumn fx:id="columnDays" prefWidth="100.0" text="Days" />
+                              <TableColumn fx:id="columnStatus" prefWidth="89.0" text="Status" />
+                          </columns>
+                        </TableView>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+            <Tab closable="false" text=" Request Vacation ">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Text layoutX="133.0" layoutY="165.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Start Date">
+                           <font>
+                              <Font size="13.0" />
+                           </font>
+                        </Text>
+                        <Text layoutX="420.0" layoutY="164.0" strokeType="OUTSIDE" strokeWidth="0.0" text="End Date">
+                           <font>
+                              <Font size="13.0" />
+                           </font>
+                        </Text>
+                        <DatePicker fx:id="datePStartDate" layoutX="75.0" layoutY="180.0" />
+                        <DatePicker fx:id="datePEndDate" layoutX="359.0" layoutY="180.0" />
+                        <Button fx:id="buttonRequestVac" layoutX="249.0" layoutY="321.0" prefHeight="39.0" prefWidth="131.0" text="Request Vacation" />
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+   </children>
+</AnchorPane>

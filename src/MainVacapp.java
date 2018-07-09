@@ -1,4 +1,3 @@
-
 import Database.DatabaseConnection;
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -39,6 +38,12 @@ public class MainVacapp extends Application {
 
 
     public static void main(String[] args) {
+//        LocalDate date = LocalDate.parse("2017-02-03");
+//        System.out.println(date);
+//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/YYYY");
+//        date = formatter.format(date);
+//        System.out.println(formatter.format(date));
+
         launch(args);
     }
 
