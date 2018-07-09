@@ -11,11 +11,17 @@ import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.List;
@@ -41,7 +47,6 @@ public class AdminUIController implements Initializable {
     @FXML private Button btnEdit;
     @FXML private Button btnDelete;
     @FXML private Button btnCancel;
-    @FXML private Button btnSave;
 
     @FXML private TableView<Employee> table;
     @FXML private TableColumn columnID;
@@ -50,11 +55,24 @@ public class AdminUIController implements Initializable {
     @FXML private TableColumn columnLastName;
     @FXML private TableColumn columnStatus;
 
+    @FXML private TextField txtGroupID;
+    @FXML private TextField txtGroupMembers;
+    @FXML private TextField txtGroupName;
+
+
     @FXML private TableView<WorkGroup> tableWorkgroup;
     @FXML private TableColumn columnWorkID;
     @FXML private TableColumn columnWorkName;
     @FXML private TableColumn columnLeaderName;
+    @FXML private TableColumn columnCreatedDate;
     @FXML private TableColumn columnWorkStatus;
+
+
+    @FXML private Button btnEditGroup;
+    @FXML private Button btnDeleteGroup;
+    @FXML private Button btnShowGroup;
+    @FXML private Button btnAddMember;
+
 
     ObservableList<WorkGroup> workGroupList;
     ObservableList<Employee> employeeList;
@@ -62,6 +80,9 @@ public class AdminUIController implements Initializable {
     private int tablePosition;
     ButtonType buttonTypeYes = new ButtonType("Yes");
     ButtonType buttonTypeNo = new ButtonType("No");
+    Scene scene;
+    Parent fxml;
+    Stage stage;
 
     /**
      * Initializes the controller class.
@@ -78,9 +99,15 @@ public class AdminUIController implements Initializable {
         btnEdit.setDisable(true);
         btnDelete.setDisable(true);
         btnCancel.setDisable(true);
-        btnSave.setDisable(true);
+
+        btnDeleteGroup.setDisable(true);
+        btnEditGroup.setDisable(true);
+        btnAddMember.setDisable(true);
+        btnShowGroup.setDisable(true);
         //add the listeners
+        final ObservableList<WorkGroup> tableGroup= tableWorkgroup.getSelectionModel().getSelectedItems();
         final ObservableList<Employee> tableEmployees = table.getSelectionModel().getSelectedItems();
+        tableGroup.addListener(tableGroupSelector);
         tableEmployees.addListener(tableSelector);
     }
 
@@ -96,27 +123,6 @@ public class AdminUIController implements Initializable {
         EmployeeRead.getAllEmployees(employeeList);
         table.setItems(employeeList);
     }
-
-
-
-    private final ListChangeListener<Employee> tableSelector = new ListChangeListener<Employee>() {
-        @Override
-        public void onChanged(ListChangeListener.Change<? extends Employee> c) {
-            setSelectedEmployee();
-        }
-    };
-
-    private void initializeWorkTable()throws SQLException{
-        columnWorkID.setCellValueFactory(new PropertyValueFactory<>("workGroupID"));
-        columnWorkName.setCellValueFactory(new PropertyValueFactory<>("workGroupName"));
-        columnLeaderName.setCellValueFactory(new PropertyValueFactory<>("leaderName"));
-        columnWorkStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
-        workGroupList=FXCollections.observableArrayList();
-        groupRead.getAllWorkgroups(workGroupList);
-        tableWorkgroup.setItems(workGroupList);
-
-    }
-
 
     private void setSelectedEmployee() {
         final Employee employee = getSelectedEmployee();
@@ -139,11 +145,12 @@ public class AdminUIController implements Initializable {
             }
             btnEdit.setDisable(false);
             btnDelete.setDisable(false);
+            btnCancel.setDisable(false);
         }
     }
 
 
-    public Employee getSelectedEmployee() {
+    private Employee getSelectedEmployee() {
         if (table != null) {
             List<Employee> employeeList = table.getSelectionModel().getSelectedItems();
             if (employeeList.size() == 1) {
@@ -153,6 +160,66 @@ public class AdminUIController implements Initializable {
         }
         return null;
     }
+
+
+
+    private final ListChangeListener<Employee> tableSelector = new ListChangeListener<Employee>() {
+        @Override
+        public void onChanged(ListChangeListener.Change<? extends Employee> c) {
+            setSelectedEmployee();
+        }
+    };
+
+
+
+
+    private void initializeWorkTable()throws SQLException{
+        columnWorkID.setCellValueFactory(new PropertyValueFactory<>("workGroupID"));
+        columnWorkName.setCellValueFactory(new PropertyValueFactory<>("workGroupName"));
+        columnLeaderName.setCellValueFactory(new PropertyValueFactory<>("leaderName"));
+        columnCreatedDate.setCellValueFactory(new PropertyValueFactory<>("createdDate"));
+        columnWorkStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
+        workGroupList=FXCollections.observableArrayList();
+        groupRead.getAllWorkgroups(workGroupList);
+        tableWorkgroup.setItems(workGroupList);
+
+    }
+
+    private final ListChangeListener<WorkGroup> tableGroupSelector= new ListChangeListener<WorkGroup>() {
+        @Override
+        public void onChanged(Change<? extends WorkGroup> c) {
+            setSelectedWorkGroup();
+        }
+    };
+
+    private void setSelectedWorkGroup(){
+        final WorkGroup group = getSelectedWorkGroup();
+        tablePosition = workGroupList.indexOf(group);
+        if (group != null) {
+            txtGroupID.setText(String.valueOf(group.getWorkGroupID()));
+            txtGroupName.setText(group.getLeaderName());
+            txtGroupMembers.setText(String.valueOf(groupRead.getMembersCount(group.getWorkGroupID())));
+            txtEmployeeStatus.setText(String.valueOf(group.getStatus()));
+            btnEditGroup.setDisable(false);
+            btnDeleteGroup.setDisable(false);
+            btnShowGroup.setDisable(false);
+            btnAddMember.setDisable(false);
+        }
+    }
+
+    private WorkGroup getSelectedWorkGroup(){
+        if (tableWorkgroup != null) {
+            List<WorkGroup> workGroupList = tableWorkgroup.getSelectionModel().getSelectedItems();
+            if (workGroupList.size() == 1) {
+                final WorkGroup groupSelected = workGroupList.get(0);
+                return groupSelected;
+            }
+        }
+        return null;
+    }
+
+
+
 
 
     @FXML
@@ -197,6 +264,24 @@ public class AdminUIController implements Initializable {
         }
     }
 
+    @FXML
+    private void btnCancelAction(){
+        clearText();
+    }
+
+    @FXML
+    private void btnNewGroupAction(ActionEvent event){
+        try {
+            fxml = FXMLLoader.load(getClass().getResource("/WorkGroupManagement/Views/WorkGroupRegister.fxml"));
+            scene = new Scene(fxml);
+            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+        }catch(IOException e){
+            System.out.println("ERROR in method AdminUIController.newGroupAction error: "+e);
+        }
+    }
+
 
     private boolean confirmChanges() {
         Alert alert = new Alert(AlertType.CONFIRMATION);
@@ -220,10 +305,7 @@ public class AdminUIController implements Initializable {
         txtEmployeeName.clear();
         txtEmployeeLastName.clear();
         txtEmployeeStatus.clear();
-            /*
-            TODO
-            clear the ChoiceBox
-            */
+
     }
 
 

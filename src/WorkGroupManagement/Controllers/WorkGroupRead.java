@@ -34,4 +34,19 @@ public class WorkGroupRead {
         }
     }
 
+    public int getMembersCount(int workGorupID){
+        String sql="select count(*) as count from workgroup_data where fk_workgroup_id='"+workGorupID + "';";
+        int count=0;
+        try {
+            preparedStatement = conn.prepareStatement(sql);
+            rs = preparedStatement.executeQuery();
+            while(rs.next()){
+                count=rs.getInt(1);
+            }
+        }catch(SQLException e){
+            System.out.println("ERROR in sql statement method WorkGroupRead.getMembersCount error: "+e);
+        }
+        return count;
+    }
+
 }
