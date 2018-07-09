@@ -3,6 +3,7 @@ package UserManagement.Controllers;
 import UserManagement.Confirmations;
 import UserManagement.Models.*;
 import WorkGroupManagement.Models.WorkGroup;
+import WorkGroupManagement.Models.WorkGroupDelete;
 import WorkGroupManagement.Models.WorkGroupRead;
 import WorkGroupManagement.Models.WorkGroupUpdate;
 import javafx.collections.FXCollections;
@@ -74,6 +75,8 @@ public class AdminUIController implements Initializable, Confirmations {
     @FXML private Button btnDeleteGroup;
     @FXML private Button btnShowGroup;
     @FXML private Button btnAddMember;
+    @FXML private Button btnActivateGroup;
+    @FXML private Button btnDesactivateGroup;
 
 
     ObservableList<WorkGroup> workGroupList;
@@ -99,10 +102,7 @@ public class AdminUIController implements Initializable, Confirmations {
         }
         disableAllUsersBTN();
 
-        btnDeleteGroup.setDisable(true);
-        btnEditGroup.setDisable(true);
-        btnAddMember.setDisable(true);
-        btnShowGroup.setDisable(true);
+        disableAllGroupBTN();
 
         //add the listeners
         final ObservableList<WorkGroup> tableGroup= tableWorkgroup.getSelectionModel().getSelectedItems();
@@ -170,71 +170,13 @@ public class AdminUIController implements Initializable, Confirmations {
         }
     };
 
-
-
-
-    private void initializeWorkTable()throws SQLException{
-        columnWorkID.setCellValueFactory(new PropertyValueFactory<>("workGroupID"));
-        columnWorkName.setCellValueFactory(new PropertyValueFactory<>("workGroupName"));
-        columnLeaderName.setCellValueFactory(new PropertyValueFactory<>("leaderName"));
-        columnCreatedDate.setCellValueFactory(new PropertyValueFactory<>("createdDate"));
-        columnWorkStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
-        workGroupList=FXCollections.observableArrayList();
-        WorkGroupRead.getAllWorkgroups(workGroupList);
-        tableWorkgroup.setItems(workGroupList);
-
-    }
-
-    private final ListChangeListener<WorkGroup> tableGroupSelector= new ListChangeListener<WorkGroup>() {
-        @Override
-        public void onChanged(Change<? extends WorkGroup> c) {
-            setSelectedWorkGroup();
-        }
-    };
-
-    private void setSelectedWorkGroup(){
-        final WorkGroup group = getSelectedWorkGroup();
-        tablePosition = workGroupList.indexOf(group);
-        if (group != null) {
-            txtGroupID.setText(String.valueOf(group.getWorkGroupID()));
-            txtGroupName.setText(group.getWorkGroupName());
-            txtGroupMembers.setText(String.valueOf(WorkGroupRead.getMembersCount(group.getWorkGroupID())));
-            txtEmployeeStatus.setText(String.valueOf(group.getStatus()));
-            btnEditGroup.setDisable(false);
-            btnDeleteGroup.setDisable(false);
-            btnShowGroup.setDisable(false);
-            btnAddMember.setDisable(false);
-        }
-    }
-
-    private WorkGroup getSelectedWorkGroup(){
-        if (tableWorkgroup != null) {
-            List<WorkGroup> workGroupList = tableWorkgroup.getSelectionModel().getSelectedItems();
-            if (workGroupList.size() == 1) {
-                final WorkGroup groupSelected = workGroupList.get(0);
-                return groupSelected;
-            }
-        }
-        return null;
-    }
-
-
-
-
-
     @FXML
     private void btnDeleteAction(ActionEvent event) throws SQLException {
-        Alert alert = new Alert(AlertType.CONFIRMATION);
-        alert.setTitle("Confirmation");
-        alert.setContentText("Are you sure you want to delete this employee?");
-        alert.getButtonTypes().setAll(buttonTypeYes, buttonTypeNo);
-        Optional<ButtonType> result = alert.showAndWait();
-        if (result.get() == buttonTypeYes) {
+        if(confirmChanges(deleteEmployee)){
             int employeeID = Integer.parseInt(txtEmployeeID.getText());
             EmployeeDelete.deleteEmployee(employeeID);
             employeeList.remove(tablePosition);
             clearText();
-
         }
     }
 
@@ -290,35 +232,6 @@ public class AdminUIController implements Initializable, Confirmations {
         clearText();
     }
 
-    @FXML
-    private void btnNewGroupAction(ActionEvent event){
-        try {
-            fxml = FXMLLoader.load(getClass().getResource("/WorkGroupManagement/Views/WorkGroupRegister.fxml"));
-            scene = new Scene(fxml);
-            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(scene);
-            stage.show();
-        }catch(IOException e){
-            System.out.println("ERROR in method AdminUIController.newGroupAction error: "+e);
-        }
-    }
-
-    @FXML
-    private void btnEditGroupAction(ActionEvent event){
-        WorkGroup groupModified= new WorkGroup();
-        groupModified.setWorkGroupID(Integer.parseInt(txtGroupID.getText()));
-        groupModified.setWorkGroupName(txtGroupName.getText());
-        groupModified.setLeaderName((String) columnLeaderName.getCellObservableValue(tablePosition).getValue());
-        groupModified.setCreatedDate((LocalDate) columnCreatedDate.getCellObservableValue(tablePosition).getValue());
-        groupModified.setStatus((Integer) columnStatus.getCellObservableValue(tablePosition).getValue());
-        if (confirmChanges(editWorkGroup)) {
-            WorkGroupUpdate.editGroup(groupModified);
-            workGroupList.set(tablePosition, groupModified);
-            clearText();
-        }
-        WorkGroupUpdate.editGroup(groupModified);
-    }
-
     private int getStatus(){
         switch (choiceType.getValue().toString()) {
             case "Admin":
@@ -365,6 +278,112 @@ public class AdminUIController implements Initializable, Confirmations {
         btnActivateUser.setDisable(true);
         btnDesactivateUser.setDisable(true);
     }
+
+
+
+
+    private void initializeWorkTable()throws SQLException{
+        columnWorkID.setCellValueFactory(new PropertyValueFactory<>("workGroupID"));
+        columnWorkName.setCellValueFactory(new PropertyValueFactory<>("workGroupName"));
+        columnLeaderName.setCellValueFactory(new PropertyValueFactory<>("leaderName"));
+        columnCreatedDate.setCellValueFactory(new PropertyValueFactory<>("createdDate"));
+        columnWorkStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
+        workGroupList=FXCollections.observableArrayList();
+        WorkGroupRead.getAllWorkgroups(workGroupList);
+        tableWorkgroup.setItems(workGroupList);
+
+    }
+
+    private final ListChangeListener<WorkGroup> tableGroupSelector= new ListChangeListener<WorkGroup>() {
+        @Override
+        public void onChanged(Change<? extends WorkGroup> c) {
+            setSelectedWorkGroup();
+        }
+    };
+
+    private void setSelectedWorkGroup(){
+        final WorkGroup group = getSelectedWorkGroup();
+        tablePosition = workGroupList.indexOf(group);
+        if (group != null) {
+            txtGroupID.setText(String.valueOf(group.getWorkGroupID()));
+            txtGroupName.setText(group.getWorkGroupName());
+            txtGroupMembers.setText(String.valueOf(WorkGroupRead.getMembersCount(group.getWorkGroupID())));
+            txtEmployeeStatus.setText(String.valueOf(group.getStatus()));
+            btnEditGroup.setDisable(false);
+            btnDeleteGroup.setDisable(false);
+            btnShowGroup.setDisable(false);
+            btnAddMember.setDisable(false);
+        }
+    }
+
+    private WorkGroup getSelectedWorkGroup(){
+        if (tableWorkgroup != null) {
+            List<WorkGroup> workGroupList = tableWorkgroup.getSelectionModel().getSelectedItems();
+            if (workGroupList.size() == 1) {
+                final WorkGroup groupSelected = workGroupList.get(0);
+                return groupSelected;
+            }
+        }
+        return null;
+    }
+
+
+
+    @FXML
+    private void btnNewGroupAction(ActionEvent event){
+        try {
+            fxml = FXMLLoader.load(getClass().getResource("/WorkGroupManagement/Views/WorkGroupRegister.fxml"));
+            scene = new Scene(fxml);
+            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+        }catch(IOException e){
+            System.out.println("ERROR in method AdminUIController.newGroupAction error: "+e);
+        }
+    }
+
+    @FXML
+    private void btnEditGroupAction(ActionEvent event){
+        WorkGroup groupModified= new WorkGroup();
+        groupModified.setWorkGroupID(Integer.parseInt(txtGroupID.getText()));
+        groupModified.setWorkGroupName(txtGroupName.getText());
+        groupModified.setLeaderName((String) columnLeaderName.getCellObservableValue(tablePosition).getValue());
+        groupModified.setCreatedDate((LocalDate) columnCreatedDate.getCellObservableValue(tablePosition).getValue());
+        groupModified.setStatus((Integer) columnStatus.getCellObservableValue(tablePosition).getValue());
+        if (confirmChanges(editWorkGroup)) {
+            WorkGroupUpdate.editGroup(groupModified);
+            workGroupList.set(tablePosition, groupModified);
+            clearGroupText();
+        }
+        WorkGroupUpdate.editGroup(groupModified);
+    }
+
+    @FXML
+    private void btnDeleteGroupAction(ActionEvent event){
+        if(confirmChanges(deleteWorkGroup)){
+            int id=Integer.parseInt(txtGroupID.getText());
+            WorkGroupDelete.deleteGroup(id);
+            workGroupList.remove(tablePosition);
+            clearGroupText();
+        }
+    }
+
+    private void disableAllGroupBTN(){
+        btnDeleteGroup.setDisable(true);
+        btnEditGroup.setDisable(true);
+        btnAddMember.setDisable(true);
+        btnShowGroup.setDisable(true);
+        btnActivateGroup.setDisable(true);
+        btnDesactivateGroup.setDisable(true);
+    }
+
+    private void clearGroupText(){
+        txtGroupName.clear();
+        txtGroupID.clear();
+        txtGroupMembers.clear();
+        disableAllGroupBTN();
+    }
+
 
 
     @Override
