@@ -1,7 +1,6 @@
-package WorkGroupManagement.Controllers;
+package WorkGroupManagement.Models;
 
 import Database.DatabaseConnection;
-import WorkGroupManagement.Models.WorkGroup;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -14,7 +13,7 @@ public class WorkGroupRead {
     private static Connection conn= DatabaseConnection.getInstance().getConnection();
     private static PreparedStatement preparedStatement;
 
-    public void getAllWorkgroups(List<WorkGroup> workGroupsList) {
+    public static void getAllWorkgroups(List<WorkGroup> workGroupsList) {
         String sql="select * from workgroup;";
         try {
             preparedStatement = conn.prepareStatement(sql);
@@ -34,8 +33,8 @@ public class WorkGroupRead {
         }
     }
 
-    public int getMembersCount(int workGorupID){
-        String sql="select count(*) as count from workgroup_data where fk_workgroup_id='"+workGorupID + "';";
+    public static int getMembersCount(int workGroupID){
+        String sql="select count(*) as count from workgroup_data where fk_workgroup_id='"+workGroupID + "';";
         int count=0;
         try {
             preparedStatement = conn.prepareStatement(sql);

@@ -40,7 +40,7 @@
                                     <Label layoutX="55.0" layoutY="177.0" text="Status:" />
                                     <TextField fx:id="txtEmployeeName" layoutX="50.0" layoutY="90.0" />
                                     <TextField fx:id="txtEmployeeLastName" layoutX="50.0" layoutY="144.0" />
-                                    <TextField fx:id="txtEmployeeStatus" layoutX="50.0" layoutY="194.0" />
+                                    <TextField fx:id="txtEmployeeStatus" editable="false" layoutX="50.0" layoutY="194.0" />
                                     <TextField fx:id="txtEmployeeID" editable="false" layoutX="50.0" layoutY="31.0" prefHeight="25.0" prefWidth="47.0" />
                                     <ChoiceBox fx:id="choiceType" layoutX="120.0" layoutY="31.0" prefHeight="25.0" prefWidth="85.0">
                                         <items>
@@ -53,9 +53,11 @@
 
                                         </items>
                                     </ChoiceBox>
-                                    <Button fx:id="btnEdit" layoutX="77.0" layoutY="243.0" mnemonicParsing="false" onAction="#btnEditAction" prefHeight="25.0" prefWidth="111.0" text="Edit" />
-                                    <Button fx:id="btnDelete" layoutX="77.0" layoutY="277.0" mnemonicParsing="false" onAction="#btnDeleteAction" prefHeight="25.0" prefWidth="111.0" text="Delete" />
-                                    <Button fx:id="btnCancel" layoutX="99.0" layoutY="327.0" mnemonicParsing="false" onAction="#btnCancelAction" prefHeight="25.0" prefWidth="72.0" text="Cancel" />
+                                    <Button fx:id="btnEdit" layoutX="12.0" layoutY="243.0" mnemonicParsing="false" onAction="#btnEditAction" prefHeight="25.0" prefWidth="111.0" text="Edit" />
+                                    <Button fx:id="btnDelete" layoutX="12.0" layoutY="277.0" mnemonicParsing="false" onAction="#btnDeleteAction" prefHeight="25.0" prefWidth="111.0" text="Delete" />
+                                    <Button fx:id="btnCancel" layoutX="97.0" layoutY="327.0" mnemonicParsing="false" onAction="#btnCancelAction" prefHeight="25.0" prefWidth="72.0" text="Cancel" />
+                                    <Button fx:id="btnActivateUser" layoutX="135.0" layoutY="243.0" mnemonicParsing="false" onAction="#btnActivateEmployeeAction" prefHeight="25.0" prefWidth="104.0" text="Activate User" />
+                                    <Button fx:id="btnDesactivateUser" layoutX="135.0" layoutY="277.0" mnemonicParsing="false" onAction="#btnDesactivateEmployeeAction" text="Desactivate User" />
                                  </children>
                               </AnchorPane>
                           </items>
@@ -88,14 +90,16 @@
                                     <Label layoutX="53.0" layoutY="14.0" text="ID:" />
                                     <Label layoutX="132.0" layoutY="14.0" text="Members:" />
                                     <Label layoutX="54.0" layoutY="70.0" text="Name Group:" />
-                                    <TextField editable="false" layoutX="51.0" layoutY="31.0" prefHeight="25.0" prefWidth="54.0" />
-                                    <TextField editable="false" layoutX="132.0" layoutY="31.0" prefHeight="25.0" prefWidth="54.0" />
-                                    <TextField layoutX="51.0" layoutY="87.0" />
+                                    <TextField fx:id="txtGroupID" editable="false" layoutX="51.0" layoutY="31.0" prefHeight="25.0" prefWidth="54.0" />
+                                    <TextField fx:id="txtGroupMembers" editable="false" layoutX="132.0" layoutY="31.0" prefHeight="25.0" prefWidth="54.0" />
+                                    <TextField fx:id="txtGroupName" layoutX="51.0" layoutY="87.0" />
                                     <Button fx:id="btnDeleteGroup" layoutX="52.0" layoutY="181.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="145.0" text="Delete" />
                                     <Button fx:id="btnShowGroup" layoutX="52.0" layoutY="217.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="145.0" text="Show members" />
-                                    <Button fx:id="btnEditGroup" layoutX="52.0" layoutY="145.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="145.0" text="Edit" />
-                                    <Button layoutX="52.0" layoutY="324.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="145.0" text="Create new team" />
+                                    <Button fx:id="btnEditGroup" layoutX="52.0" layoutY="145.0" mnemonicParsing="false" onAction="#btnEditGroupAction" prefHeight="25.0" prefWidth="145.0" text="Edit" />
+                                    <Button layoutX="52.0" layoutY="380.0" mnemonicParsing="false" onAction="#btnNewGroupAction" prefHeight="25.0" prefWidth="145.0" text="Create new team" />
                                     <Button fx:id="btnAddMember" layoutX="53.0" layoutY="254.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="145.0" text="Add a new member" />
+                                    <Button layoutX="5.0" layoutY="306.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="116.0" text="Activate Group" />
+                                    <Button layoutX="138.0" layoutY="306.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="116.0" text="Desactivate Group" />
                                  </children>
                               </AnchorPane>
                           </items>
