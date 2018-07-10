@@ -1,11 +1,10 @@
 package UserManagement.Controllers;
 
-import UserManagement.Confirmations;
+import Interfaces.Tables;
+import Interfaces.Confirmations;
 import UserManagement.Models.*;
-import WorkGroupManagement.Models.WorkGroup;
-import WorkGroupManagement.Models.WorkGroupDelete;
-import WorkGroupManagement.Models.WorkGroupRead;
-import WorkGroupManagement.Models.WorkGroupUpdate;
+import WorkGroupManagement.Controllers.ShowMembersController;
+import WorkGroupManagement.Models.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
@@ -37,7 +36,7 @@ import java.util.logging.Logger;
  *
  * @author migue
  */
-public class AdminUIController implements Initializable, Confirmations {
+public class AdminUIController implements Initializable, Confirmations, Tables {
 
     @FXML private TextField txtEmployeeID;
     @FXML private TextField txtEmployeeName;
@@ -112,8 +111,8 @@ public class AdminUIController implements Initializable, Confirmations {
     }
 
 
-
-    private void initializeTable() throws SQLException {
+    @Override
+    public void initializeTable() throws SQLException {
         columnID.setCellValueFactory(new PropertyValueFactory<>("id"));
         columnType.setCellValueFactory(new PropertyValueFactory<>("type"));
         columnName.setCellValueFactory(new PropertyValueFactory<>("name"));
@@ -124,8 +123,9 @@ public class AdminUIController implements Initializable, Confirmations {
         table.setItems(employeeList);
     }
 
-    private void setSelectedEmployee() {
-        final Employee employee = getSelectedEmployee();
+    //@Override
+    public void setSelected() {
+        final Employee employee = getSelected();
         tablePosition = employeeList.indexOf(employee);
         if (employee != null) {
             txtEmployeeID.setText(String.valueOf(employee.getId()));
@@ -149,8 +149,8 @@ public class AdminUIController implements Initializable, Confirmations {
         }
     }
 
-
-    private Employee getSelectedEmployee() {
+    @Override
+    public Employee getSelected() {
         if (table != null) {
             List<Employee> employeeList = table.getSelectionModel().getSelectedItems();
             if (employeeList.size() == 1) {
@@ -166,7 +166,7 @@ public class AdminUIController implements Initializable, Confirmations {
     private final ListChangeListener<Employee> tableSelector = new ListChangeListener<Employee>() {
         @Override
         public void onChanged(ListChangeListener.Change<? extends Employee> c) {
-            setSelectedEmployee();
+            setSelected();
         }
     };
 
@@ -187,7 +187,11 @@ public class AdminUIController implements Initializable, Confirmations {
         modifiedEmployee.setName(txtEmployeeName.getText());
         modifiedEmployee.setLastName(txtEmployeeLastName.getText());
         modifiedEmployee.setId(Integer.parseInt(txtEmployeeID.getText()));
-        modifiedEmployee.setStatus(Integer.parseInt(txtEmployeeStatus.getText()));
+        if(txtEmployeeStatus.getText().equals("ACTIVE"))
+            modifiedEmployee.setStatus(1);
+        else{
+            modifiedEmployee.setStatus(0);
+        }
 
         modifiedEmployee.setType(getStatus());
         if (confirmChanges(editEmployee)) {
@@ -200,12 +204,8 @@ public class AdminUIController implements Initializable, Confirmations {
     @FXML
     private void btnActivateEmployeeAction(ActionEvent event){
         if(confirmChanges(activateUser)){
-            Employee employee = new Employee();
-            employee.setId(Integer.parseInt(txtEmployeeID.getText()));
+            Employee employee = getSelected();
             employee.setStatus(1);
-            employee.setType(getStatus());
-            employee.setName(txtEmployeeName.getText());
-            employee.setLastName(txtEmployeeLastName.getText());
             EmployeeHandleStatus.activateUser(Integer.parseInt(txtEmployeeID.getText()));
             employeeList.set(tablePosition,employee);
             clearText();
@@ -215,12 +215,8 @@ public class AdminUIController implements Initializable, Confirmations {
     @FXML
     private void btnDesactivateEmployeeAction(ActionEvent event){
         if(confirmChanges(desactivateUser)){
-            Employee employee = new Employee();
-            employee.setId(Integer.parseInt(txtEmployeeID.getText()));
+            Employee employee = getSelected();
             employee.setStatus(0);
-            employee.setType(getStatus());
-            employee.setName(txtEmployeeName.getText());
-            employee.setLastName(txtEmployeeLastName.getText());
             EmployeeHandleStatus.activateUser(Integer.parseInt(txtEmployeeID.getText()));
             employeeList.set(tablePosition,employee);
             clearText();
@@ -282,7 +278,7 @@ public class AdminUIController implements Initializable, Confirmations {
 
 
 
-    private void initializeWorkTable()throws SQLException{
+    private void initializeWorkTable(){
         columnWorkID.setCellValueFactory(new PropertyValueFactory<>("workGroupID"));
         columnWorkName.setCellValueFactory(new PropertyValueFactory<>("workGroupName"));
         columnLeaderName.setCellValueFactory(new PropertyValueFactory<>("leaderName"));
@@ -313,6 +309,15 @@ public class AdminUIController implements Initializable, Confirmations {
             btnDeleteGroup.setDisable(false);
             btnShowGroup.setDisable(false);
             btnAddMember.setDisable(false);
+            if(group.getStatus()==1) {
+                btnDesactivateGroup.setDisable(false);
+                btnActivateGroup.setDisable(true);
+            }
+            else{
+                btnDesactivateGroup.setDisable(true);
+                btnActivateGroup.setDisable(false);
+            }
+
         }
     }
 
@@ -368,6 +373,42 @@ public class AdminUIController implements Initializable, Confirmations {
         }
     }
 
+    @FXML
+    private void btnActivateGroupAction(ActionEvent event){
+        if(confirmChanges(activateWorkGroup)){
+            WorkGroup group= getSelectedWorkGroup();
+            group.setStatus(1);
+            WorkGroupHandleStatus.activateWorkGroup(group.getWorkGroupID());
+            workGroupList.set(tablePosition,group);
+            clearGroupText();
+        }
+    }
+
+    @FXML
+    private void btnDesactivateGroupAction(ActionEvent event){
+        if(confirmChanges(desactivateGroup)){
+            WorkGroup group= getSelectedWorkGroup();
+            group.setStatus(0);
+            WorkGroupHandleStatus.desactivateWorkGroup(group.getWorkGroupID());
+            workGroupList.set(tablePosition,group);
+            clearGroupText();
+        }
+    }
+
+    @FXML
+    private void btnShowMembersAction(ActionEvent event) {
+        ShowMembersController.getStageID(Integer.parseInt(txtGroupID.getText()));
+        try {
+            fxml = FXMLLoader.load(getClass().getResource("/WorkGroupManagement/Views/ShowMembers.fxml"));
+            scene = new Scene(fxml);
+            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+        }catch(IOException e){
+            System.out.println("ERROR in method AdminUIController.btnShowMembersAction error: "+e);
+        }
+    }
+
     private void disableAllGroupBTN(){
         btnDeleteGroup.setDisable(true);
         btnEditGroup.setDisable(true);
@@ -385,23 +426,17 @@ public class AdminUIController implements Initializable, Confirmations {
     }
 
 
-
     @Override
     public boolean confirmChanges(String message) {
         Alert alert = new Alert(AlertType.CONFIRMATION);
         alert.setTitle("Confirmation");
         alert.setContentText(message);
-
         alert.getButtonTypes().setAll(buttonTypeYes, buttonTypeNo);
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == buttonTypeYes) {
             return true;
-        } else if (result.get() == buttonTypeNo) {
-            return false;
-
         }
         return false;
     }
-
 
 }

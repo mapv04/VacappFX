@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="WorkGroupManagement.Controllers.ShowMembersController">
+   <children>
+      <Label fx:id="labelName" layoutX="218.0" layoutY="14.0" text="Work Group Name">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <SplitPane dividerPositions="0.7123745819397993" layoutX="-1.0" layoutY="53.0" prefHeight="349.0" prefWidth="600.0">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+               <children>
+                  <TableView fx:id="table" prefHeight="347.0" prefWidth="423.0">
+                    <columns>
+                      <TableColumn fx:id="columnID" prefWidth="60.0" text="ID" />
+                      <TableColumn fx:id="columnName" prefWidth="167.0" text="Name" />
+                        <TableColumn fx:id="columnStatus" prefWidth="64.0" text="Status" />
+                        <TableColumn fx:id="columnDateAdded" prefWidth="98.0" text="Added Date" />
+                    </columns>
+                  </TableView>
+               </children>
+            </AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="347.0" prefWidth="179.0">
+               <children>
+                  <Button fx:id="btnDelete" layoutX="26.0" layoutY="218.0" mnemonicParsing="false" onAction="#btnDeleteFromGroupAction" prefHeight="25.0" prefWidth="118.0" text="Delete of the team" />
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
+   </children>
+</AnchorPane>

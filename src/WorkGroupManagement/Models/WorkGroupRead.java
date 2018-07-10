@@ -1,6 +1,7 @@
 package WorkGroupManagement.Models;
 
 import Database.DatabaseConnection;
+import UserManagement.Models.EmployeeRead;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -47,5 +48,41 @@ public class WorkGroupRead {
         }
         return count;
     }
+
+    public static void getWorkgroupData(List<WorkGroupData> groupDataList, int groupID){
+        String sql="select * from workgroup_data where fk_workgroup_id="+groupID+";";;
+        try {
+            preparedStatement = conn.prepareStatement(sql);
+            rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                WorkGroupData group = new WorkGroupData();
+                group.setGroupID(rs.getInt(1));
+                group.setEmployeeID(rs.getInt(2));
+                group.setEmployeeName(rs.getString(3));
+                group.setAddedDate(rs.getDate(4).toLocalDate());
+                group.setEmployeeStatus(EmployeeRead.getStatus(group.getEmployeeID()));
+                groupDataList.add(group);
+            }
+        }catch(SQLException e){
+            System.out.println("ERROR in sql statement on method WorkGroupRead. getWorkgroupData error: "+e);
+        }
+    }
+
+    public static String getGroupName(int groupID){
+        String sql="select workgroup_name from workgroup where pk_workgroup_id=?;";
+        try {
+            preparedStatement = conn.prepareStatement(sql);
+            preparedStatement.setInt(1,groupID);
+            rs = preparedStatement.executeQuery();
+            while (rs.first()) {
+                String name = rs.getString(1);
+                return name;
+            }
+        }catch(SQLException e){
+            System.out.println("ERROR in sql statement on method WorkGroupRead.getGroupName error: "+e);
+        }
+        return null;
+    }
+
 
 }
