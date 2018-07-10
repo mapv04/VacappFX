@@ -16,7 +16,7 @@ public class EmployeeRead {
     public  static void getAllEmployees(List<Employee> employeeList)throws SQLException {
         //List<Employee> employeeList= new ArrayList<>();
         rs = null;
-        String sql="select * from usuario";
+        String sql="select * from usuario where pk_id_user<>1";
         preparedStatement=conn.prepareStatement(sql);
         rs= preparedStatement.executeQuery();
         while(rs.next()){

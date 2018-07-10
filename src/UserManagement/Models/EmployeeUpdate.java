@@ -1,8 +1,10 @@
 package UserManagement.Models;
 
 import Database.DatabaseConnection;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class EmployeeUpdate {
@@ -16,6 +18,18 @@ public class EmployeeUpdate {
                 +"' where pk_id_user='"+employee.getId()+"';";
         preparedStatement=conn.prepareStatement(sql);
         preparedStatement.executeUpdate();
+
+        // this is to modify employee from the other table
+        String sqlQuery3 = "SELECT fk_id_user FROM vac_request WHERE supervisor_id = ?;";
+        String sqlQuery4 = "UPDATE vac_request SET  supervisor_id = 1 WHERE supervisor_id = ?;";
+        preparedStatement=conn.prepareStatement(sqlQuery3);
+        preparedStatement.setInt(1,employee.getId());
+        ResultSet rs = preparedStatement.executeQuery();
+        if(rs.next()){
+            preparedStatement=conn.prepareStatement(sqlQuery4);
+            preparedStatement.setInt(1,employee.getId());
+            preparedStatement.executeUpdate();
+        }
     }
 
 

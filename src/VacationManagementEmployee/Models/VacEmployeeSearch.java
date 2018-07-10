@@ -15,7 +15,6 @@ public class VacEmployeeSearch {
     public static VacEmployee searchVacEmployeeData(int employeeID){
         VacEmployee vacEmployee = new VacEmployee();
         String sqlQuery = "SELECT * FROM vac_employee_data WHERE fk_id_user = ?";
-
         try{
             pStatement = conn.prepareStatement(sqlQuery);
             pStatement.setInt(1,employeeID);

@@ -87,14 +87,14 @@
                                  <children>
                                     <Label layoutX="53.0" layoutY="14.0" text="ID:" />
                                     <Label layoutX="132.0" layoutY="14.0" text="Members:" />
-                                    <Label layoutX="54.0" layoutY="70.0" text="Name Group:" />
-                                    <TextField editable="false" layoutX="51.0" layoutY="31.0" prefHeight="25.0" prefWidth="54.0" />
-                                    <TextField editable="false" layoutX="132.0" layoutY="31.0" prefHeight="25.0" prefWidth="54.0" />
-                                    <TextField layoutX="51.0" layoutY="87.0" />
+                                    <Label  layoutX="54.0" layoutY="70.0" text="Name Group:" />
+                                    <TextField fx:id = "txtGroupMembers" editable="false" layoutX="51.0" layoutY="31.0" prefHeight="25.0" prefWidth="54.0" />
+                                    <TextField fx:id = "txtGroupID" editable="false" layoutX="132.0" layoutY="31.0" prefHeight="25.0" prefWidth="54.0" />
+                                    <TextField fx:id = "txtGroupName" layoutX="51.0" layoutY="87.0" />
                                     <Button fx:id="btnDeleteGroup" layoutX="52.0" layoutY="181.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="145.0" text="Delete" />
                                     <Button fx:id="btnShowGroup" layoutX="52.0" layoutY="217.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="145.0" text="Show members" />
                                     <Button fx:id="btnEditGroup" layoutX="52.0" layoutY="145.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="145.0" text="Edit" />
-                                    <Button layoutX="52.0" layoutY="324.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="145.0" text="Create new team" />
+                                    <Button layoutX="52.0" layoutY="324.0" mnemonicParsing="false" onAction="#btnNewGroupAction" prefHeight="25.0" prefWidth="145.0" text="Create new team" />
                                     <Button fx:id="btnAddMember" layoutX="53.0" layoutY="254.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="145.0" text="Add a new member" />
                                  </children>
                               </AnchorPane>

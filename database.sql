@@ -30,7 +30,6 @@ INSERT INTO usuario (name_user, last_name, username, email, password_user, type_
  CREATE TABLE vac_request(
  pk_id_request int NOT NULL AUTO_INCREMENT, 
  fk_id_user int NOT NULL, 
- name varchar(255), 
  start_date date NOT NULL, 
  end_date date NOT NULL, 
  status varchar(255) NOT NULL,
@@ -39,21 +38,20 @@ INSERT INTO usuario (name_user, last_name, username, email, password_user, type_
  FOREIGN KEY (fk_id_user) REFERENCES usuario(pk_id_user));
  
   
-  INSERT INTO vac_request
- (fk_id_user, name, start_date, end_date, status, supervisor_id)
+ INSERT INTO vac_request
+ (fk_id_user, start_date, end_date, status, supervisor_id)
  VALUES
- (1,'Miguel Partida', '2018-11-01' , '2018-11-07', 'Pending', 3),
- (1,'Miguel Partida','2017-10-01' ,'2017-10-08' , 'Denied', 4),
- (5,'Alfredo Ibarras','2016-09-01' , '2016-09-09', 'Approved', 3),
- (6,'Gustavo Segura', '2017-08-01', '2017-08-10', 'Denied', 4),
- (4,'Fernando Garcia','2017-12-01' ,'2017-12-11' , 'Pending', 4);
+ (1, '2018-11-01' , '2018-11-07', 'Pending', 3),
+ (1,'2017-10-01' ,'2017-10-08' , 'Denied', 4),
+ (5,'2016-09-01' , '2016-09-09', 'Approved', 3),
+ (6, '2017-08-01', '2017-08-10', 'Denied', 4),
+ (4,'2017-12-01' ,'2017-12-11' , 'Pending', 4);
  
  
  
 CREATE TABLE vac_employee_data(
  pk_id int NOT NULL AUTO_INCREMENT, 
  fk_id_user int NOT NULL, 
- name varchar(255), 
  hired_date date NOT NULL,
  vac_days_available int NOT NULL,
  PRIMARY KEY(pk_id),
@@ -61,16 +59,20 @@ CREATE TABLE vac_employee_data(
  
  
  INSERT INTO vac_employee_data
- (fk_id_user, name, hired_date, vac_days_available)
+ (fk_id_user, hired_date, vac_days_available)
  VALUES
- (1,'Miguel Partida', '2012-01-01', 10),
- (2,'Angel Velasco', '2013-01-01', 12),
- (3,'Alfredo Ibarras', '2014-01-01', 6),
- (6,'Gustavo Segura', '2015-01-01', 4),
- (4,'Fernando Garcia', '2016-01-01', 6);
- 
- 
- 
+ (1, '2012-01-01', 10),
+ (2, '2013-01-01', 12),
+ (3, '2014-01-01', 10),
+ (4, '2016-01-01', 6),
+ (5, '2015-01-01', 6),
+ (6, '2017-06-06', 10),
+ (7, '2013-05-05', 12),
+ (8, '2018-01-01', 10),
+ (9, '2012-02-02', 6),
+ (10, '2014-03-03', 6),
+ (11, '2015-08-08', 6);
+
  
  create table workgroup(
 pk_workgroup_id int not null auto_increment primary key,
@@ -81,12 +83,10 @@ created_date date not null,
 workgroup_status int not null,
 foreign key (fk_leader_id) references Usuario(pk_id_user));
 
+
 insert into workgroup(workgroup_name, fk_leader_id,leader_name,created_date, workgroup_status) values
 ('WorkGroup 1',3,'Oscar Gonzalez','2016-02-02',1),
 ('WorkGroup 2',4,'Fernando Garcia','2017-05-01',1);
-
-
-
 
 
 create table workgroup_data(

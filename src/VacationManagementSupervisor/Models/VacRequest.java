@@ -48,7 +48,7 @@ public class VacRequest {
             this.daysRequested = (int)ChronoUnit.DAYS.between(startDate, endDate)+1;
         }
         else{
-            this.daysRequested = (int)ChronoUnit.DAYS.between(startDate, endDate);
+            this.daysRequested = 1;
         }
     }
 

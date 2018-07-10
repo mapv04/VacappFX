@@ -20,13 +20,12 @@ public class EmployeeCreate {
         preparedStatement = conn.prepareStatement(sql);
         preparedStatement.executeUpdate();
 
-
         //this is to create new entry on table vac_employee data
+        ResultSet rs = null;
         String sqlQuery2 = "SELECT pk_id_user FROM usuario WHERE username = ?;";
         String sqlQuery3 =  "INSERT INTO vac_employee_data" +
                             "(fk_id_user, hired_date, vac_days_available)" +
                             "VALUES(?,?,?);";
-        ResultSet rs = null;
         preparedStatement = conn.prepareStatement(sqlQuery2);
         preparedStatement.setString(1, employee.getUsername());
         rs = preparedStatement.executeQuery();
@@ -41,8 +40,6 @@ public class EmployeeCreate {
         } else {
             System.out.println("Error empty set on EmployeeCreate.addNewEmployee");
         }
-
-
     }
 
 
