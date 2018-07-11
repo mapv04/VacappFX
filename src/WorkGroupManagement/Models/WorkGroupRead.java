@@ -84,5 +84,18 @@ public class WorkGroupRead {
         return null;
     }
 
+    public static boolean ifGroupExist(String name){
+        String sql="select * from workgroup where workgroup_name='"+name+"';";
+        try {
+            preparedStatement = conn.prepareStatement(sql);
+            rs = preparedStatement.executeQuery();
+            return rs.first();
+        }catch(SQLException e){
+            System.out.println("ERROR in sql statement  on methos WorkGroupRead.ifGroupExist error: "+e);
+        }
+        return false;
+
+    }
+
 
 }

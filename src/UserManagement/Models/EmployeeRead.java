@@ -50,4 +50,23 @@ public class EmployeeRead {
         return -1;
     }
 
+    public static void getAllSupervisors(List<Employee> supervisors){
+        String sql="select * from usuario where type_user=1;";
+        try{
+            preparedStatement=conn.prepareStatement(sql);
+            rs=preparedStatement.executeQuery();
+            while(rs.next()){
+                Employee supervisor=new Employee();
+                supervisor.setId(rs.getInt("pk_id_user"));
+                String fullName=rs.getString("name_user")+" "+rs.getString("last_name");
+                supervisor.setName(fullName);
+                supervisor.setStatus(rs.getInt("status_user"));
+                supervisors.add(supervisor);
+            }
+        }catch (SQLException e){
+            System.out.println("ERROR in sql statement on method EmployeeRead.getAllSupervisors error: "+e);
+        }
+
+    }
+
 }

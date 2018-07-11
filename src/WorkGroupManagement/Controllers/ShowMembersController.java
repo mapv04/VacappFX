@@ -1,6 +1,6 @@
 package WorkGroupManagement.Controllers;
 
-import Interfaces.Confirmations;
+import Values.MessagesStrings;
 import Interfaces.Tables;
 import WorkGroupManagement.Models.WorkGroupData;
 import WorkGroupManagement.Models.WorkGroupDelete;
@@ -9,10 +9,17 @@ import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 
+import javafx.event.ActionEvent;
+import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.Optional;
@@ -23,7 +30,7 @@ import java.util.ResourceBundle;
  *
  * @author migue
  */
-public class ShowMembersController implements Initializable,Tables, Confirmations {
+public class ShowMembersController implements Initializable,Tables {
 
     @FXML private Label labelName;
     @FXML private TableView<WorkGroupData> table;
@@ -32,12 +39,16 @@ public class ShowMembersController implements Initializable,Tables, Confirmation
     @FXML private TableColumn columnStatus;
     @FXML private TableColumn columnDateAdded;
     @FXML private Button btnDelete;
+    @FXML private Button btnBack;
 
     private ObservableList<WorkGroupData> groupDataList;
     private int tablePosition;
     public static int groupID;
     ButtonType buttonTypeYes = new ButtonType("Yes");
     ButtonType buttonTypeNo = new ButtonType("No");
+    Scene scene;
+    Parent fxml;
+    Stage stage;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -84,7 +95,7 @@ public class ShowMembersController implements Initializable,Tables, Confirmation
 
     @FXML
     private void btnDeleteFromGroupAction(){
-        if(confirmChanges(deleteEmployeeFromGroup)) {
+        if(confirmChanges(MessagesStrings.deleteEmployeeFromGroup)) {
             WorkGroupData group = getSelected();
             tablePosition=groupDataList.indexOf(group);
             WorkGroupDelete.deleteFromGroup(group.getEmployeeID());
@@ -93,12 +104,24 @@ public class ShowMembersController implements Initializable,Tables, Confirmation
         }
     }
 
+    @FXML
+    private void btnBackAction(ActionEvent event){
+        try {
+            fxml = FXMLLoader.load(getClass().getResource("/UserManagement/Views/AdminUI.fxml"));
+            scene = new Scene(fxml);
+            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+        }catch(IOException e){
+            System.out.println("ERROR in method ShowMembersController.btnBackAction error: "+e);
+        }
+    }
+
 
     public static void getStageID(int id){
         groupID=id;
     }
 
-    @Override
     public boolean confirmChanges(String message) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirmation");
