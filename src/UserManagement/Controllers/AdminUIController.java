@@ -31,7 +31,6 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-// CHECK LABELS  txtGroupID txtGroupMembers txtGroupName DON'T HAVE ANNOTATION JAVAFXML
 
 /**
  * FXML Controller class
@@ -302,21 +301,13 @@ public class AdminUIController implements Initializable, Confirmations {
         }
     };
 
-
     private void setSelectedWorkGroup(){
         final WorkGroup group = getSelectedWorkGroup();
         tablePosition = workGroupList.indexOf(group);
-
         if (group != null) {
             txtGroupID.setText(String.valueOf(group.getWorkGroupID()));
-<<<<<<< HEAD
-            //getWorkGroupName()
-            txtGroupName.setText(group.getWorkGroupName());
-            txtGroupMembers.setText(String.valueOf(groupRead.getMembersCount(group.getWorkGroupID())));
-=======
             txtGroupName.setText(group.getWorkGroupName());
             txtGroupMembers.setText(String.valueOf(WorkGroupRead.getMembersCount(group.getWorkGroupID())));
->>>>>>> e30ff248c969de37f13de7df6d49b66464574411
             txtEmployeeStatus.setText(String.valueOf(group.getStatus()));
             btnEditGroup.setDisable(false);
             btnDeleteGroup.setDisable(false);
