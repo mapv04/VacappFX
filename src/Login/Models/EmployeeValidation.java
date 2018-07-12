@@ -5,7 +5,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 /**
  * @author migue
@@ -15,7 +14,6 @@ public class EmployeeValidation {
     private static ResultSet rs;
     private static Connection conn = DatabaseConnection.getInstance().getConnection();
     private static PreparedStatement preparedStatement;
-    private static Statement st;
 
     public static boolean validateStatus(String user) throws SQLException {//this method validate the status, if its 0 then the user is desactivate
         rs = null;
@@ -46,6 +44,7 @@ public class EmployeeValidation {
         return 5;//return other number just in case  
     }
 
+
     public static boolean validateEmployeeExists(String user, String password) throws SQLException {
         rs = null;
         String sql = "SELECT * FROM usuario where username='" + user + "' and password_user='" + password + "'";
@@ -59,13 +58,5 @@ public class EmployeeValidation {
         }
     }
 
-    public static void blockUser(String user) throws SQLException {
-        rs = null;
-        String sql = "UPDATE `usuario` SET `status_user` = '0' WHERE `usuario`.`username` = '"
-                + user + "';";
-        st = conn.createStatement();
-        st.executeUpdate(sql);
-    }
 
-    
 }

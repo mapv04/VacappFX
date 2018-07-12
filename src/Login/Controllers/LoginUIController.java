@@ -30,20 +30,13 @@ import java.util.ResourceBundle;
  */
 public class LoginUIController implements Initializable {
 
-    @FXML
-    private AnchorPane panel;
-    @FXML
-    private Pane content_area;
-    @FXML
-    private TextField txtUser;
-    @FXML
-    private PasswordField txtPassword;
-    @FXML
-    private Button btnLogin;
-    @FXML
-    private Button btnRegister;
+    @FXML private AnchorPane panel;
+    @FXML private Pane content_area;
+    @FXML private TextField txtUser;
+    @FXML private PasswordField txtPassword;
+    @FXML private Button btnLogin;
+    @FXML private Button btnRegister;
     Alert alert = new Alert(AlertType.ERROR);
-    int counterFalses = 0;
     Scene scene;
     Parent fxml;
     Stage stage;
@@ -54,64 +47,54 @@ public class LoginUIController implements Initializable {
         String password = txtPassword.getText();
 
         if (user.length() == 0 || password.length() == 0) {
-            counterFalses = 0;
-            sampleMessage(Values.MessagesStrings.errorLogin,Values.MessagesStrings.errorLoginEmployee);
-        }
-        else if (!EmployeeValidation.validateEmployeeExists(user, password)) {
-            sampleMessage(Values.MessagesStrings.errorLogin,Values.MessagesStrings.errorLoginEmployeeExist);
-            counterFalses = 0;
-        }
-        else {
+            alert.setTitle("Error Login");
+            alert.setHeaderText("Employee or password incorrect");
+            alert.show();
+        } else if (!EmployeeValidation.validateEmployeeExists(user, password)) {
+            alert.setTitle("Error Login");
+            alert.setHeaderText("Employee or password incorrect");
+            alert.show();
+        } else {
             if (!EmployeeValidation.validateStatus(user)) {
-                sampleMessage(Values.MessagesStrings.errorLogin,Values.MessagesStrings.errorLoginEmployeeDesactivated);
-            } else {
-                counterFalses++;
-                System.out.println(counterFalses);
                 alert.setTitle("Error Login");
-                alert.setHeaderText("Incorrect password \n failed attempts" + counterFalses
-                        + "\n after the 3rd attempt the user blocks");
+                alert.setHeaderText("This user has been desactivated");
                 alert.show();
+            } else {
+                switch (EmployeeValidation.validateType(user)) {//this send the user to the screen that he belongs
+                    case 0:
+                        fxml = FXMLLoader.load(getClass().getResource("/UserManagement/Views/AdminUI.fxml"));
+                        scene = new Scene(fxml);
+                        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                        stage.setScene(scene);
+                        stage.show();
+                        break;
 
-                if (counterFalses == 3) {
-                    EmployeeValidation.blockUser(user);
-                    alert.setTitle("Error Login");
-                    alert.setHeaderText("Please contact an administrator to unlock the user");
-                    alert.show();
-                } else {
-                    switch (EmployeeValidation.validateType(user)) {//this send the user to the screen that he belongs
-                        case 0:
-                            fxml = FXMLLoader.load(getClass().getResource("/UserManagement/Views/AdminUI.fxml"));
-                            scene = new Scene(fxml);
-                            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                            stage.setScene(scene);
-                            stage.show();
-                            break;
+                    case 1:
+                        SupervisorUIController.setSupervisorID(EmployeeSearch.searchEmployeeUserName(user));
+                        fxml = FXMLLoader.load(getClass().getResource("/VacationManagement/Views/SupervisorUI.fxml"));
+                        scene = new Scene(fxml);
+                        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                        stage.setScene(scene);
+                        stage.show();
+                        break;
 
-                        case 1:
-                            SupervisorUIController.setSupervisorID(EmployeeSearch.searchEmployeeUserName(user));
-                            fxml = FXMLLoader.load(getClass().getResource("/VacationManagement/Views/SupervisorUI.fxml"));
-                            scene = new Scene(fxml);
-                            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                            stage.setScene(scene);
-                            stage.show();
-                            break;
+                    case 2:
+                        EmployeeUIController.setEmployeeID(EmployeeSearch.searchEmployeeUserName(user));
+                        fxml = FXMLLoader.load(getClass().getResource("/VacationManagement/Views/EmployeeUI.fxml"));
+                        scene = new Scene(fxml);
+                        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                        stage.setScene(scene);
+                        stage.show();
 
-                        case 2:
-                            EmployeeUIController.setEmployeeID(EmployeeSearch.searchEmployeeUserName(user));
-                            fxml = FXMLLoader.load(getClass().getResource("/VacationManagement/Views/EmployeeUI.fxml"));
-                            scene = new Scene(fxml);
-                            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                            stage.setScene(scene);
-                            stage.show();
+                        break;
 
-                            break;
-
-                        default:
-                            break;
-                    }
+                    default:
+                        break;
                 }
             }
+
         }
+
     }
 
     @FXML
@@ -124,12 +107,6 @@ public class LoginUIController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }
-
-    private void sampleMessage(String title, String message) {
-        alert.setTitle(title);
-            alert.setHeaderText(message);
-            alert.show();
     }
 
 }

@@ -17,13 +17,15 @@
          <TextField fx:id="username" layoutX="112.0" layoutY="201.0" promptText="Username" />
          <TextField fx:id="email" layoutX="112.0" layoutY="237.0" promptText="Email" />
          <PasswordField fx:id="password" layoutX="112.0" layoutY="285.0" promptText="Password" />
-         <ChoiceBox fx:id="comboType" layoutX="112.0" layoutY="330.0" prefWidth="150.0" >
+         <ChoiceBox fx:id="comboType" layoutX="112.0" layoutY="330.0" prefWidth="150.0">
              <items>
                  <FXCollections fx:factory="observableArrayList">
-                     <String fx:value="Admin" />
+                     <String fx:value="Manager" />
                      <String fx:value="Supervisor" />
                      <String fx:value="Employee" />
+    
                  </FXCollections>
+   
              </items>
          </ChoiceBox>
          <Button layoutX="112.0" layoutY="385.0" mnemonicParsing="false" onAction="#btnRegisterUser" prefHeight="32.0" prefWidth="149.0" text="Register">

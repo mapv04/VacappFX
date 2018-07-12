@@ -18,7 +18,6 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import javafx.event.ActionEvent;
 
 /**
  * FXML Controller class
@@ -138,13 +137,7 @@ public class RegistrationUIController implements Initializable {
 
     }
 
-    @FXML
-    private void btnBackLogin(ActionEvent event) throws IOException{
-        Parent fxml = FXMLLoader.load(getClass().getResource("/Login/Views/LoginUI.fxml"));
-        content_area.getChildren().removeAll();
-        content_area.getChildren().setAll(fxml);
-    }
-    
+
     public boolean isEmailCorrect(String email) {
         // Patrón para validar el email
         Pattern pattern = Pattern

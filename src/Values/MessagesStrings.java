@@ -14,9 +14,5 @@ public class MessagesStrings {
     public static final String fieldEmpty="You cannot left empty  fields";
     public static final String createGroupSucced="The group has been created";
     public static final String groupExist="There is a work group with the same name, please change it";
-    public static final String errorLoginEmployee="Employee or password incorrect";
-    public static final String errorLoginEmployeeExist="Employee does not exist";
-    public static final String errorLoginEmployeeDesactivated="This user has been desactivated";
-    public static final String errorLogin="Error Login";
 
 }
