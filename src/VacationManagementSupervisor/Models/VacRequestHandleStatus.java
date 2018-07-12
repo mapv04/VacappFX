@@ -43,7 +43,6 @@ public class VacRequestHandleStatus {
     public static void denyVacation(int requestID){
         rs= null;
         String sqlQuery1 = "UPDATE vac_request SET status='Denied' WHERE pk_id_request = ?;";
-
         try{
             pStatement = conn.prepareStatement(sqlQuery1);
             pStatement.setInt(1,requestID);

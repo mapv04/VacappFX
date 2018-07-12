@@ -89,16 +89,6 @@
                                  <children>
                                     <Label layoutX="53.0" layoutY="14.0" text="ID:" />
                                     <Label layoutX="132.0" layoutY="14.0" text="Members:" />
-<<<<<<< HEAD
-                                    <Label  layoutX="54.0" layoutY="70.0" text="Name Group:" />
-                                    <TextField fx:id = "txtGroupMembers" editable="false" layoutX="51.0" layoutY="31.0" prefHeight="25.0" prefWidth="54.0" />
-                                    <TextField fx:id = "txtGroupID" editable="false" layoutX="132.0" layoutY="31.0" prefHeight="25.0" prefWidth="54.0" />
-                                    <TextField fx:id = "txtGroupName" layoutX="51.0" layoutY="87.0" />
-                                    <Button fx:id="btnDeleteGroup" layoutX="52.0" layoutY="181.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="145.0" text="Delete" />
-                                    <Button fx:id="btnShowGroup" layoutX="52.0" layoutY="217.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="145.0" text="Show members" />
-                                    <Button fx:id="btnEditGroup" layoutX="52.0" layoutY="145.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="145.0" text="Edit" />
-                                    <Button layoutX="52.0" layoutY="324.0" mnemonicParsing="false" onAction="#btnNewGroupAction" prefHeight="25.0" prefWidth="145.0" text="Create new team" />
-=======
                                     <Label layoutX="54.0" layoutY="70.0" text="Name Group:" />
                                     <TextField fx:id="txtGroupID" editable="false" layoutX="51.0" layoutY="31.0" prefHeight="25.0" prefWidth="54.0" />
                                     <TextField fx:id="txtGroupMembers" editable="false" layoutX="132.0" layoutY="31.0" prefHeight="25.0" prefWidth="54.0" />
@@ -107,7 +97,6 @@
                                     <Button fx:id="btnShowGroup" layoutX="52.0" layoutY="217.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="145.0" text="Show members" />
                                     <Button fx:id="btnEditGroup" layoutX="52.0" layoutY="145.0" mnemonicParsing="false" onAction="#btnEditGroupAction" prefHeight="25.0" prefWidth="145.0" text="Edit" />
                                     <Button layoutX="52.0" layoutY="380.0" mnemonicParsing="false" onAction="#btnNewGroupAction" prefHeight="25.0" prefWidth="145.0" text="Create new team" />
->>>>>>> e30ff248c969de37f13de7df6d49b66464574411
                                     <Button fx:id="btnAddMember" layoutX="53.0" layoutY="254.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="145.0" text="Add a new member" />
                                     <Button fx:id="btnActivateGroup" layoutX="5.0" layoutY="306.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="116.0" text="Activate Group" />
                                     <Button fx:id="btnDesactivateGroup" layoutX="138.0" layoutY="306.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="116.0" text="Desactivate Group" />

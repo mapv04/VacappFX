@@ -8,7 +8,8 @@ import VacationManagementEmployee.Models.VacEmployeeCancel;
 import VacationManagementEmployee.Models.VacEmployeeGenerateReq;
 import VacationManagementEmployee.Models.VacEmployeeSearch;
 import VacationManagementSupervisor.Models.VacRequest;
-import VacationManagementSupervisor.Models.VacRequestRead;
+import VacationManagementSupervisor.Models.VacRequestReadHistory;
+import VacationManagementSupervisor.Models.VacRequestReadPending;
 import VacationManagementSupervisor.Models.VacRequestSearch;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -164,7 +165,7 @@ public class EmployeeUIController   {
 
     private void loadTableHistorical(){
         ObservableList<VacRequest> vacRequests;
-        vacRequests=FXCollections.observableArrayList(VacRequestRead.getHistoryEmployee(employeeID));
+        vacRequests=FXCollections.observableArrayList(VacRequestReadHistory.getHistoryEmployee(employeeID));
         columnRequestID.setCellValueFactory(new PropertyValueFactory<>("pkIDRequest"));
         columnStartDate.setCellValueFactory(new PropertyValueFactory<>("startDate"));
         columnEndDate.setCellValueFactory(new PropertyValueFactory<>("endDate"));
@@ -176,7 +177,7 @@ public class EmployeeUIController   {
 
     private void loadTableCancelRequest(){
         ObservableList<VacRequest> vacRequests;
-        vacRequests=FXCollections.observableArrayList(VacRequestRead.getPendingRequestEmployee(employeeID));
+        vacRequests=FXCollections.observableArrayList(VacRequestReadPending.getPendingRequestEmployee(employeeID));
         vacCancelColumnID.setCellValueFactory(new PropertyValueFactory<>("pkIDRequest"));
         vacCancelColumnStartD.setCellValueFactory(new PropertyValueFactory<>("startDate"));
         vacCancelColumnEndD.setCellValueFactory(new PropertyValueFactory<>("endDate"));
