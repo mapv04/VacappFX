@@ -17,7 +17,7 @@
          <TextField fx:id="username" layoutX="112.0" layoutY="201.0" promptText="Username" />
          <TextField fx:id="email" layoutX="112.0" layoutY="237.0" promptText="Email" />
          <PasswordField fx:id="password" layoutX="112.0" layoutY="285.0" promptText="Password" />
-         <ChoiceBox fx:id="comboType" layoutX="112.0" layoutY="330.0" prefWidth="150.0" >
+         <ChoiceBox fx:id="comboType" layoutX="112.0" layoutY="330.0" prefWidth="150.0">
              <items>
                  <FXCollections fx:factory="observableArrayList">
                      <String fx:value="Admin" />
@@ -30,6 +30,11 @@
             <font>
                <Font size="15.0" />
             </font>
+            </Button>
+            <Button layoutX="112.0" layoutY="425.0" mnemonicParsing="false" onAction="#btnBackLogin" prefHeight="25.0" prefWidth="150.0" text="Back">
+               <font>
+                  <Font size="15.0" />
+               </font>
             </Button>
           </children>
        </Pane>
