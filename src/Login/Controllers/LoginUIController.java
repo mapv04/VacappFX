@@ -54,33 +54,18 @@ public class LoginUIController implements Initializable {
         String password = txtPassword.getText();
 
         if (user.length() == 0 || password.length() == 0) {
-            alert.setTitle("Error Login");
-            alert.setHeaderText("Employee or password incorrect");
-            alert.show();
-        } else if (!EmployeeValidation.validateEmployeeExists(user, password)) {
-            alert.setTitle("Error Login");
-            alert.setHeaderText("Employee or password incorrect");
-            alert.show();
             counterFalses = 0;
-            counterFalses++;
-             System.out.println(counterFalses);
-                alert.setTitle("Error Login");
-                alert.setHeaderText("Incorrect password \n failed attempts" + counterFalses
-                        + "\n after the 3rd attempt the user blocks");
-                alert.show();
-                
-        } else {
-            
-            
+            sampleMessage(Values.MessagesStrings.errorLogin,Values.MessagesStrings.errorLoginEmployee);
+        }
+        else if (!EmployeeValidation.validateEmployeeExists(user, password)) {
+            sampleMessage(Values.MessagesStrings.errorLogin,Values.MessagesStrings.errorLoginEmployeeExist);
+            counterFalses = 0;
+        }
+        else {
             if (!EmployeeValidation.validateStatus(user)) {
-               
-                alert.setTitle("Error Login");
-                alert.setHeaderText("This user has been desactivated");
-                alert.show();
+                sampleMessage(Values.MessagesStrings.errorLogin,Values.MessagesStrings.errorLoginEmployeeDesactivated);
             } else {
-                
                 counterFalses++;
-                
                 System.out.println(counterFalses);
                 alert.setTitle("Error Login");
                 alert.setHeaderText("Incorrect password \n failed attempts" + counterFalses
@@ -139,6 +124,12 @@ public class LoginUIController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+    }
+
+    private void sampleMessage(String title, String message) {
+        alert.setTitle(title);
+            alert.setHeaderText(message);
+            alert.show();
     }
 
 }
