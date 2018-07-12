@@ -15,7 +15,7 @@ public  class EmployeeDelete {
 
     public  static void deleteEmployee(int employeeID){
         String sql="delete from usuario where pk_id_user='"+employeeID+"';";
-        String sql2 = "update workgroup set fk_leader_id='', leader_name='' where fk_leader_id='"+employeeID+"';";
+        String sql2 = "update workgroup set fk_leader_id=-1, leader_name='' where fk_leader_id='"+employeeID+"';";
         String sql3 = "delete from workgroup_data where fk_usuario_id='"+employeeID+"';";
         try {
             preparedStatement = conn.prepareStatement(sql3);
@@ -31,6 +31,7 @@ public  class EmployeeDelete {
                 }
             }catch(SQLException ex){
                 System.out.println("ERROR in sql statement 2 on method EmployeeDelete.deleteEmployee error: "+ex);
+
             }
         }catch(SQLException e){
             System.out.println("ERROR in sql statement 3 on method EmployeeDelete.deleteEmployee error: "+e);

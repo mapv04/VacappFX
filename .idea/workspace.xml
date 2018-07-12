@@ -14,22 +14,7 @@
     <option name="optimizeImportsOnTheFly" value="true" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="MainVacapp.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/MainVacapp.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="338">
-              <caret line="30" column="5" lean-forward="true" selection-start-line="30" selection-start-column="5" selection-end-line="30" selection-end-column="5" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#944#945#0" expanded="true" />
-                <element signature="e#972#973#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="375" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -108,7 +93,6 @@
         <option value="$PROJECT_DIR$/src/VacationManagementEmployee/Models/VacEmployeeGenerateReq.java" />
         <option value="$PROJECT_DIR$/src/VacationManagementEmployee/Models/VacEmployeeCancel.java" />
         <option value="$PROJECT_DIR$/src/VacationManagementEmployee/Views/EmployeeUI.fxml" />
-        <option value="$PROJECT_DIR$/src/UserManagement/Controllers/AdminUIController.java" />
         <option value="$PROJECT_DIR$/src/UserManagement/Models/EmployeeDelete.java" />
         <option value="$PROJECT_DIR$/src/VacationManagementSupervisor/Models/VacRequestRead.java" />
         <option value="$PROJECT_DIR$/src/VacationManagementSupervisor/Models/VacRequestReadHistory.java" />
@@ -119,6 +103,7 @@
         <option value="$PROJECT_DIR$/src/VacationManagementSupervisor/Controllers/SupervisorUIController.java" />
         <option value="$PROJECT_DIR$/src/VacationManagementSupervisor/Models/VacRequestReport.java" />
         <option value="$PROJECT_DIR$/src/MainVacapp.java" />
+        <option value="$PROJECT_DIR$/src/UserManagement/Controllers/AdminUIController.java" />
       </list>
     </option>
   </component>
@@ -133,9 +118,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="Scope" />
-      <pane id="AndroidView" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -148,10 +132,17 @@
               <item name="VACAPP" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="VACAPP" type="b2602c69:ProjectViewProjectNode" />
+              <item name="VACAPP" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="UserManagement" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -259,7 +250,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -292,14 +282,14 @@
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Capture Analysis" order="4" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.2546246" />
+      <window_info anchor="bottom" id="Version Control" order="9" show_stripe_button="false" />
       <window_info anchor="right" id="Theme Preview" order="5" />
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.17395833" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Version Control" order="9" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.2546246" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
       <window_info id="UI Designer" order="4" />
@@ -434,13 +424,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/UserManagement/Controllers/AdminUIController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="24">
-          <caret line="32" selection-start-line="32" selection-end-line="32" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/WorkGroupManagement/Models/WorkGroup.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="209">
@@ -529,9 +512,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="374">
           <caret line="89" column="4" selection-start-line="89" selection-start-column="4" selection-end-line="89" selection-end-column="4" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -619,34 +599,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://$PROJECT_DIR$/../../../itext/iText7-7.0.0/itext7-layout-7.0.0-sources.jar!/com/itextpdf/layout/renderer/TableRenderer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="247" selection-start-line="247" selection-end-line="247" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/../../../itext/iText7-7.0.0/itext7-layout-7.0.0-sources.jar!/com/itextpdf/layout/renderer/RootRenderer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="79" selection-start-line="79" selection-end-line="79" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/../../../itext/iText7-7.0.0/itext7-layout-7.0.0-sources.jar!/com/itextpdf/layout/RootElement.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="186">
-          <caret line="101" selection-start-line="101" selection-end-line="101" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/../../../itext/iText7-7.0.0/itext7-layout-7.0.0-sources.jar!/com/itextpdf/layout/Document.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1800">
-          <caret line="132" selection-start-line="132" selection-end-line="132" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="jar://$PROJECT_DIR$/../../../itext/iText7-7.0.0/itext7-layout-7.0.0-sources.jar!/com/itextpdf/layout/renderer/TableRenderer.java" />
+    <entry file="jar://$PROJECT_DIR$/../../../itext/iText7-7.0.0/itext7-layout-7.0.0-sources.jar!/com/itextpdf/layout/renderer/RootRenderer.java" />
+    <entry file="jar://$PROJECT_DIR$/../../../itext/iText7-7.0.0/itext7-layout-7.0.0-sources.jar!/com/itextpdf/layout/RootElement.java" />
+    <entry file="jar://$PROJECT_DIR$/../../../itext/iText7-7.0.0/itext7-layout-7.0.0-sources.jar!/com/itextpdf/layout/Document.java" />
     <entry file="file://$PROJECT_DIR$/src/VacationManagementSupervisor/Models/VacRequestReport.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="192">
@@ -657,10 +613,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/UserManagement/Controllers/AdminUIController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1098">
+          <caret line="196" column="60" selection-start-line="196" selection-start-column="60" selection-end-line="196" selection-end-column="60" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/MainVacapp.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="338">
-          <caret line="30" column="5" lean-forward="true" selection-start-line="30" selection-start-column="5" selection-end-line="30" selection-end-column="5" />
+        <state relative-caret-position="648">
+          <caret line="27" column="30" selection-start-line="27" selection-start-column="30" selection-end-line="27" selection-end-column="30" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#944#945#0" expanded="true" />
