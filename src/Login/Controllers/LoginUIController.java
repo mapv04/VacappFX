@@ -30,13 +30,20 @@ import java.util.ResourceBundle;
  */
 public class LoginUIController implements Initializable {
 
-    @FXML private AnchorPane panel;
-    @FXML private Pane content_area;
-    @FXML private TextField txtUser;
-    @FXML private PasswordField txtPassword;
-    @FXML private Button btnLogin;
-    @FXML private Button btnRegister;
+    @FXML
+    private AnchorPane panel;
+    @FXML
+    private Pane content_area;
+    @FXML
+    private TextField txtUser;
+    @FXML
+    private PasswordField txtPassword;
+    @FXML
+    private Button btnLogin;
+    @FXML
+    private Button btnRegister;
     Alert alert = new Alert(AlertType.ERROR);
+    int counterFalses = 0;
     Scene scene;
     Parent fxml;
     Stage stage;
@@ -50,58 +57,86 @@ public class LoginUIController implements Initializable {
             alert.setTitle("Error Login");
             alert.setHeaderText("Employee or password incorrect");
             alert.show();
-        } else if (!EmployeeValidation.validateEmployeeExists(user, password)) {
-            alert.setTitle("Error Login");
-            alert.setHeaderText("Employee or password incorrect");
-            alert.show();
-        } else {
-            if (!EmployeeValidation.validateStatus(user)) {
+        } else{
+            Employee userData = EmployeeValidation.employeeExist(user);
+            if(userData==null){
                 alert.setTitle("Error Login");
-                alert.setHeaderText("This user has been desactivated");
+                alert.setHeaderText("The user doesn't exist");
+
                 alert.show();
-            } else {
-                switch (EmployeeValidation.validateType(user)) {//this send the user to the screen that he belongs
-                    case 0:
-                        fxml = FXMLLoader.load(getClass().getResource("/UserManagement/Views/AdminUI.fxml"));
-                        scene = new Scene(fxml);
-                        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                        stage.setScene(scene);
-                        stage.show();
-                        break;
-
-                    case 1:
-                        SupervisorUIController.setSupervisorID(EmployeeSearch.searchEmployeeUserName(user));
-                        fxml = FXMLLoader.load(getClass().getResource("/VacationManagement/Views/SupervisorUI.fxml"));
-                        scene = new Scene(fxml);
-                        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                        stage.setScene(scene);
-                        stage.show();
-                        break;
-
-                    case 2:
-                        EmployeeUIController.setEmployeeID(EmployeeSearch.searchEmployeeUserName(user));
-                        fxml = FXMLLoader.load(getClass().getResource("/VacationManagement/Views/EmployeeUI.fxml"));
-                        scene = new Scene(fxml);
-                        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                        stage.setScene(scene);
-                        stage.show();
-
-                        break;
-
-                    default:
-                        break;
-                }
             }
+            else {
+                if (userData.getStatus() != 1) {
+                    alert.setTitle("Error Login");
+                    alert.setHeaderText("This user has been desactivated");
+                    alert.setContentText("");
+                    alert.show();
+                }
+                else {
 
+                    if (!password.equals(userData.getPassword())) {
+                        counterFalses++;
+                        alert.setTitle("Error Login");
+                        alert.setHeaderText("Employee or password incorrect");
+                        alert.setContentText("Incorrect password \n failed attempts " + counterFalses
+                                + "\n after the 3rd attempt the user blocks");
+                        alert.show();
+                        if (counterFalses == 3) {
+                            EmployeeValidation.blockUser(user);
+                            alert.setTitle("Error Login");
+                            alert.setHeaderText("The user has been blocked ,please contact an administrator to unlock the user");
+                            alert.setContentText("");
+                            alert.show();
+                        }
+                    } else {
+                        switch (userData.getType()) {//this send the user to the screen that he belongs
+                            case 0:
+                                fxml = FXMLLoader.load(getClass().getResource("/UserManagement/Views/AdminUI.fxml"));
+                                scene = new Scene(fxml);
+                                stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                                stage.setScene(scene);
+                                stage.show();
+                                break;
+
+                            case 1:
+                                SupervisorUIController.setSupervisorID(EmployeeSearch.searchEmployeeUserName(user));
+                                fxml = FXMLLoader.load(getClass().getResource("/VacationManagement/Views/SupervisorUI.fxml"));
+                                scene = new Scene(fxml);
+                                stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                                stage.setScene(scene);
+                                stage.show();
+                                break;
+
+                            case 2:
+                                EmployeeUIController.setEmployeeID(EmployeeSearch.searchEmployeeUserName(user));
+                                fxml = FXMLLoader.load(getClass().getResource("/VacationManagement/Views/EmployeeUI.fxml"));
+                                scene = new Scene(fxml);
+                                stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                                stage.setScene(scene);
+                                stage.show();
+
+                                break;
+
+                            default:
+                                break;
+                        }
+                    }
+                }
+                }
+
+
+            }
         }
 
-    }
+
 
     @FXML
     private void btnRegisterAction(ActionEvent event) throws IOException {
-        Parent fxml = FXMLLoader.load(getClass().getResource("/Login/Views/RegistrationUI.fxml"));
-        content_area.getChildren().removeAll();
-        content_area.getChildren().setAll(fxml);
+        fxml = FXMLLoader.load(getClass().getResource("/Login/Views/RegistrationUI.fxml"));
+        scene = new Scene(fxml);
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
     }
 
     @Override

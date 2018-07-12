@@ -1,16 +1,21 @@
 package Login.Controllers;
 
-import Login.Models.*;
-
+import Login.Models.Employee;
+import Login.Models.EmployeeCreate;
+import Login.Models.EmployeeSearch;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
@@ -34,6 +39,9 @@ public class RegistrationUIController implements Initializable {
     @FXML private ChoiceBox comboType;
     @FXML private Pane content_area;
     Alert alert = new Alert(Alert.AlertType.ERROR);
+    Parent fxml;
+    Stage stage;
+    Scene scene;
 
     /**
      * Initializes the controller class.
@@ -46,7 +54,7 @@ public class RegistrationUIController implements Initializable {
 
 
     @FXML
-    private void btnRegisterUser() throws SQLException, IOException {//this method add the new employee
+    private void btnRegisterUser(ActionEvent event) throws SQLException, IOException {//this method add the new employee
         Employee employee = new Employee();
 
         int pass = 0;
@@ -124,10 +132,12 @@ public class RegistrationUIController implements Initializable {
 
         if (pass == 6) {
             if (!EmployeeSearch.searchEmployeeExists(employee)) {
-                EmployeeCreate.addNewEmployee(employee);//add the new employee
-                Parent fxml = FXMLLoader.load(getClass().getResource("/Login/Views/LoginUI.fxml"));
-                content_area.getChildren().removeAll();
-                content_area.getChildren().setAll(fxml);
+                EmployeeCreate.addNewEmployee(employee);
+                fxml = FXMLLoader.load(getClass().getResource("/Login/Views/LoginUI.fxml"));
+                scene = new Scene(fxml);
+                stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                stage.setScene(scene);
+                stage.show();
             } else {
                 alert.setTitle("Error Login");
                 alert.setHeaderText("This employee already exist");
@@ -137,6 +147,14 @@ public class RegistrationUIController implements Initializable {
 
     }
 
+    @FXML
+    private void btnBackLogin(ActionEvent event) throws IOException{
+        fxml = FXMLLoader.load(getClass().getResource("/Login/Views/LoginUI.fxml"));
+        scene = new Scene(fxml);
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+    }
 
     public boolean isEmailCorrect(String email) {
         // Patrón para validar el email

@@ -1,10 +1,8 @@
 package Login.Models;
 
 import Database.DatabaseConnection;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+
+import java.sql.*;
 
 /**
  * @author migue
@@ -14,48 +12,37 @@ public class EmployeeValidation {
     private static ResultSet rs;
     private static Connection conn = DatabaseConnection.getInstance().getConnection();
     private static PreparedStatement preparedStatement;
+    private static Statement st;
 
-    public static boolean validateStatus(String user) throws SQLException {//this method validate the status, if its 0 then the user is desactivate
-        rs = null;
-        String sql = "select status_user from usuario where username='" + user + "';";
-        preparedStatement = conn.prepareStatement(sql);
-        rs = preparedStatement.executeQuery();
-        boolean isCorrect;
-        while (rs.next()) {
-            int status;
-            if (rs.getInt("status_user") == 1) {
-                return true;//the user is activated
-            } else {
-                return false;//the user is desactivated
+    public static Employee employeeExist(String user){
+        String sql="select * from usuario where username =?;";
+        try {
+            preparedStatement = conn.prepareStatement(sql);
+            preparedStatement.setString(1, user);
+            rs = preparedStatement.executeQuery();
+            while(rs.first()){
+                Employee employee= new Employee();
+                employee.setId(rs.getInt(1));
+                employee.setName(rs.getString(2));
+                employee.setLastName(rs.getString(3));
+                employee.setUsername(rs.getString(4));
+                employee.setPassword(rs.getString(6));
+                employee.setType(rs.getInt(7));
+                employee.setStatus(rs.getInt(8));
+                return employee;
             }
+        }catch (SQLException e){
+            System.out.println("ERROR in sql statement in method EmployeeValidation.employeeExist error: "+e);
         }
-        return false;//user desactivated
+        return null;
     }
 
-    public static int validateType(String user) throws SQLException {
+    public static void blockUser(String user) throws SQLException {
         rs = null;
-        String sql = "select type_user from usuario where username='" + user + "';";
-        preparedStatement = conn.prepareStatement(sql);
-        rs = preparedStatement.executeQuery();
-        while (rs.next()) {
-            int type = rs.getInt("type_user");
-            return type;//return the type, Manager, Supervisor or EmployeeCRUD
-        }
-        return 5;//return other number just in case  
-    }
-
-
-    public static boolean validateEmployeeExists(String user, String password) throws SQLException {
-        rs = null;
-        String sql = "SELECT * FROM usuario where username='" + user + "' and password_user='" + password + "'";
-        preparedStatement = conn.prepareStatement(sql);
-        rs = preparedStatement.executeQuery();
-        if (rs.first()) {
-            rs.close();
-            return true;
-        } else {
-            return false;
-        }
+        String sql = "UPDATE `usuario` SET `status_user` = '0' WHERE `usuario`.`username` = '"
+                + user + "';";
+        st = conn.createStatement();
+        st.executeUpdate(sql);
     }
 
 
