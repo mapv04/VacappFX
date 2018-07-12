@@ -1,8 +1,8 @@
 package UserManagement.Controllers;
 
-import Interfaces.Tables;
+import UserManagement.Interfaces.Tables;
 import UserManagement.Models.*;
-import Values.MessagesStrings;
+import UserManagement.Values.Strings;
 import WorkGroupManagement.Controllers.ShowMembersController;
 import WorkGroupManagement.Models.*;
 import javafx.collections.FXCollections;
@@ -168,7 +168,7 @@ public class AdminUIController implements Initializable, Tables {
     private void btnDeleteAction() {
         Employee employee=getSelected();
         if(employee.getType()!=0) {
-            if (confirmChanges(MessagesStrings.deleteEmployee)) {
+            if (confirmChanges(Strings.deleteEmployee)) {
                 int employeeID = Integer.parseInt(txtEmployeeID.getText());
                 EmployeeDelete.deleteEmployee(employeeID);
                 employeeList.remove(tablePosition);
@@ -193,7 +193,7 @@ public class AdminUIController implements Initializable, Tables {
             }
 
             modifiedEmployee.setType(getStatus());
-            if (confirmChanges(MessagesStrings.editEmployee)) {
+            if (confirmChanges(Strings.editEmployee)) {
                 EmployeeUpdate.modifyEmployee(modifiedEmployee);
                 employeeList.set(tablePosition, modifiedEmployee);
                 clearText();
@@ -207,7 +207,7 @@ public class AdminUIController implements Initializable, Tables {
     private void btnActivateEmployeeAction(ActionEvent event){
         Employee employee= getSelected();
         if(employee.getType()!=0) {
-            if (confirmChanges(MessagesStrings.activateUser)) {
+            if (confirmChanges(Strings.activateUser)) {
                 employee.setStatus(1);
                 EmployeeHandleStatus.activateUser(Integer.parseInt(txtEmployeeID.getText()));
                 employeeList.set(tablePosition, employee);
@@ -222,7 +222,7 @@ public class AdminUIController implements Initializable, Tables {
     private void btnDesactivateEmployeeAction(ActionEvent event){
         Employee employee= getSelected();
         if(employee.getType()!=0) {
-            if (confirmChanges(MessagesStrings.desactivateUser)) {
+            if (confirmChanges(Strings.desactivateUser)) {
                 employee.setStatus(0);
                 EmployeeHandleStatus.activateUser(Integer.parseInt(txtEmployeeID.getText()));
                 employeeList.set(tablePosition, employee);
@@ -362,7 +362,7 @@ public class AdminUIController implements Initializable, Tables {
         groupModified.setLeaderName((String) columnLeaderName.getCellObservableValue(tablePosition).getValue());
         groupModified.setCreatedDate((LocalDate) columnCreatedDate.getCellObservableValue(tablePosition).getValue());
         groupModified.setStatus((Integer) columnStatus.getCellObservableValue(tablePosition).getValue());
-        if (confirmChanges(MessagesStrings.editWorkGroup)) {
+        if (confirmChanges(Strings.editWorkGroup)) {
             WorkGroupUpdate.editGroup(groupModified);
             workGroupList.set(tablePosition, groupModified);
             clearGroupText();
@@ -372,7 +372,7 @@ public class AdminUIController implements Initializable, Tables {
 
     @FXML
     private void btnDeleteGroupAction(ActionEvent event){
-        if(confirmChanges(MessagesStrings.deleteWorkGroup)){
+        if(confirmChanges(Strings.deleteWorkGroup)){
             int id=Integer.parseInt(txtGroupID.getText());
             WorkGroupDelete.deleteGroup(id);
             workGroupList.remove(tablePosition);
@@ -381,7 +381,7 @@ public class AdminUIController implements Initializable, Tables {
 
     @FXML
     private void btnActivateGroupAction(){
-        if(confirmChanges(MessagesStrings.activateWorkGroup)){
+        if(confirmChanges(Strings.activateWorkGroup)){
             WorkGroup group= getSelectedWorkGroup();
             group.setStatus(1);
             WorkGroupHandleStatus.activateWorkGroup(group.getWorkGroupID());
@@ -392,7 +392,7 @@ public class AdminUIController implements Initializable, Tables {
 
     @FXML
     private void btnDesactivateGroupAction(){
-        if(confirmChanges(MessagesStrings.desactivateGroup)){
+        if(confirmChanges(Strings.desactivateGroup)){
             WorkGroup group= getSelectedWorkGroup();
             group.setStatus(0);
             WorkGroupHandleStatus.desactivateWorkGroup(group.getWorkGroupID());
@@ -449,7 +449,7 @@ public class AdminUIController implements Initializable, Tables {
     private void restritionAdmin(){
         Alert alert = new Alert(AlertType.ERROR);
         alert.setTitle("Restriction");
-        alert.setHeaderText(MessagesStrings.modifyAdmin);
+        alert.setHeaderText(Strings.modifyAdmin);
 
         Optional<ButtonType> result = alert.showAndWait();
         if(result.get()==ButtonType.OK ){

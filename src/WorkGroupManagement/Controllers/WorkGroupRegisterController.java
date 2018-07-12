@@ -1,9 +1,9 @@
 package WorkGroupManagement.Controllers;
 
-import Interfaces.Tables;
+import WorkGroupManagement.Interfaces.Tables;
 import UserManagement.Models.Employee;
 import UserManagement.Models.EmployeeRead;
-import Values.MessagesStrings;
+import WorkGroupManagement.Values.Strings;
 import WorkGroupManagement.Models.WorkGroup;
 import WorkGroupManagement.Models.WorkGroupRead;
 import WorkGroupManagement.Models.WorkGroupUpdate;
@@ -151,13 +151,13 @@ public class WorkGroupRegisterController implements Initializable, Tables {
     private void alertEmpty(){
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Error");
-        alert.setHeaderText(MessagesStrings.fieldEmpty);
+        alert.setHeaderText(Strings.fieldEmpty);
         alert.showAndWait();
     }
 
     private void groupCreated(){
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setHeaderText(MessagesStrings.createGroupSucced);
+        alert.setHeaderText(Strings.createGroupSucced);
         Optional<ButtonType> result = alert.showAndWait();
         if(result.get()==ButtonType.OK){
             alert.close();
@@ -171,7 +171,7 @@ public class WorkGroupRegisterController implements Initializable, Tables {
     private void groupExist(){
         try {
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setHeaderText(MessagesStrings.groupExist);
+            alert.setHeaderText(Strings.groupExist);
             Optional<ButtonType> result = alert.showAndWait();
             if (result.get() == ButtonType.OK) {
                 alert.close();

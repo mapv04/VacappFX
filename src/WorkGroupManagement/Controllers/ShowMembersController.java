@@ -1,7 +1,7 @@
 package WorkGroupManagement.Controllers;
 
-import Values.MessagesStrings;
-import Interfaces.Tables;
+import WorkGroupManagement.Values.Strings;
+import WorkGroupManagement.Interfaces.Tables;
 import WorkGroupManagement.Models.WorkGroupData;
 import WorkGroupManagement.Models.WorkGroupDelete;
 import WorkGroupManagement.Models.WorkGroupRead;
@@ -95,7 +95,7 @@ public class ShowMembersController implements Initializable,Tables {
 
     @FXML
     private void btnDeleteFromGroupAction(){
-        if(confirmChanges(MessagesStrings.deleteEmployeeFromGroup)) {
+        if(confirmChanges(Strings.deleteEmployeeFromGroup)) {
             WorkGroupData group = getSelected();
             tablePosition=groupDataList.indexOf(group);
             WorkGroupDelete.deleteFromGroup(group.getEmployeeID());
