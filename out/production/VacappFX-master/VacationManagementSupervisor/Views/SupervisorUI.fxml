@@ -14,7 +14,7 @@
    <children>
       <TabPane prefHeight="484.0" prefWidth="722.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
-            <Tab text="  Requests Pending  " onSelectionChanged="#requestsTabChange" >
+            <Tab onSelectionChanged="#requestsTabChange" text="  Requests Pending  ">
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="448.0" prefWidth="722.0">
                      <children>
@@ -34,7 +34,7 @@
                   </AnchorPane>
               </content>
             </Tab>
-          <Tab text="  Requests Report  " onSelectionChanged="#historyTabChange" >
+          <Tab onSelectionChanged="#historyTabChange" text="  Requests Report  ">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="413.0" prefWidth="709.0">
                      <children>
@@ -49,21 +49,20 @@
                               <TableColumn fx:id="hColumnDays" prefWidth="75.0" text="Days" />
                           </columns>
                         </TableView>
-                        <Text layoutX="34.0" layoutY="413.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Employee ID:  ">
+                        <Text layoutX="34.0" layoutY="419.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Employee ID:  ">
                            <font>
                               <Font size="13.0" />
                            </font></Text>
-                        <TextField fx:id="historyTextField" layoutX="118.0" layoutY="394.0" onKeyTyped="#searchHistoryByID">
+                        <TextField fx:id="historyTextField" layoutX="118.0" layoutY="400.0" onKeyTyped="#searchHistoryByID">
                            <font>
                               <Font size="13.0" />
                            </font></TextField>
-                        <Button fx:id = "buttonGenerateReport" layoutX="527.0" layoutY="393.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="131.0" text="Generate Report"
-                        onAction="#generateReport"/>
+                        <Button  layoutX="527.0" layoutY="392.0" mnemonicParsing="false" onAction="#generateReport" prefHeight="39.0" prefWidth="131.0" text="Generate PDF" />
                      </children>
                   </AnchorPane>
             </content>
           </Tab>
-            <Tab  text="  Request Generate  " onSelectionChanged="#changeSceneTab">
+            <Tab onSelectionChanged="#changeSceneTab" text="    Vacation    ">
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>

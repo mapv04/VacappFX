@@ -1,6 +1,8 @@
-package VacationManagementSupervisor.Models;
+package VacationManagementSupervisor.Models.Implementations;
 
 import Database.DatabaseConnection;
+import VacationManagementSupervisor.Models.Abstracts.AVacRequest;
+import VacationManagementSupervisor.Models.Abstracts.IVacRequestReadPending;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -10,15 +12,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class VacRequestReadPending {
+public class VacRequestReadPending implements IVacRequestReadPending {
 
     private static ResultSet rs;
     private static Connection conn= DatabaseConnection.getInstance().getConnection();
     private static PreparedStatement pStatement;
 
 
-    public static List<VacRequest> getPendingRequestSupervisor(int supervisorID){
-        List<VacRequest> listVacReq = new ArrayList<>();
+    @Override
+    public  List<AVacRequest> getPendingRequestSupervisor(int supervisorID){
+        List<AVacRequest> listVacReq = new ArrayList<>();
         rs = null;
         String sqlQuery = "SELECT * FROM vac_request vr" +
                           " INNER JOIN usuario u ON vr.fk_id_user = u.pk_id_user"+
@@ -30,7 +33,7 @@ public class VacRequestReadPending {
             pStatement.setInt(1,supervisorID);
              rs= pStatement.executeQuery();
             while(rs.next()){
-                VacRequest vacReq = new VacRequest();
+                AVacRequest vacReq = new VacRequest();
                 vacReq.setPkIDRequest(rs.getInt(1));
                 vacReq.setFkIDUser(rs.getInt(2));
                 vacReq.setStartDate(rs.getDate(3).toLocalDate());
@@ -49,18 +52,19 @@ public class VacRequestReadPending {
     }
 
 
-    public static List<VacRequest> getPendingRequestEmployee(int emloyeeID){
-        List<VacRequest> listVacReq = new ArrayList<>();
+    @Override
+    public  List<AVacRequest> getPendingRequestEmployee(int employeeID){
+        List<AVacRequest> listVacReq = new ArrayList<>();
         rs = null;
         String sqlQuery = "SELECT * FROM vac_request " +
                 " WHERE  fk_id_user  = ?  AND status = 'Pending'  " +
                 " ORDER BY pk_id_request DESC;";
         try{
             pStatement = conn.prepareStatement(sqlQuery);
-            pStatement.setInt(1,emloyeeID);
+            pStatement.setInt(1,employeeID);
             rs= pStatement.executeQuery();
             while(rs.next()){
-                VacRequest vacReq = new VacRequest();
+                AVacRequest vacReq = new VacRequest();
                 vacReq.setPkIDRequest(rs.getInt(1));
                 vacReq.setFkIDUser(rs.getInt(2));
                 vacReq.setStartDate(rs.getDate(3).toLocalDate());

@@ -3,14 +3,18 @@ package VacationManagementEmployee.Controllers;
 
 import Login.Models.Employee;
 import Login.Models.EmployeeSearch;
-import VacationManagementEmployee.Models.VacEmployee;
-import VacationManagementEmployee.Models.VacEmployeeCancel;
-import VacationManagementEmployee.Models.VacEmployeeGenerateReq;
-import VacationManagementEmployee.Models.VacEmployeeSearch;
-import VacationManagementSupervisor.Models.VacRequest;
-import VacationManagementSupervisor.Models.VacRequestReadHistory;
-import VacationManagementSupervisor.Models.VacRequestReadPending;
-import VacationManagementSupervisor.Models.VacRequestSearch;
+import VacationManagementEmployee.Models.Abstracts.*;
+import VacationManagementEmployee.Models.Implemetations.VacEmployeeCancel;
+import VacationManagementEmployee.Models.Implemetations.VacEmployeeGenerateReq;
+import VacationManagementEmployee.Models.Implemetations.VacEmployeeReport;
+import VacationManagementEmployee.Models.Implemetations.VacEmployeeSearch;
+import VacationManagementSupervisor.Models.Implementations.VacRequestReadHistory;
+import VacationManagementSupervisor.Models.Implementations.VacRequestReadPending;
+import VacationManagementSupervisor.Models.Implementations.VacRequestSearch;
+import VacationManagementSupervisor.Models.Abstracts.AVacRequest;
+import VacationManagementSupervisor.Models.Abstracts.IVacRequestReadHistory;
+import VacationManagementSupervisor.Models.Abstracts.IVacRequestReadPending;
+import VacationManagementSupervisor.Models.Abstracts.IVacRequestSearch;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -24,14 +28,14 @@ import java.util.Optional;
 
 
 public class EmployeeUIController   {
-    @FXML private TableView<VacRequest> tableHistoricalRequest;
+    @FXML private TableView<AVacRequest> tableHistoricalRequest;
     @FXML private TableColumn columnRequestID;
     @FXML private TableColumn columnStartDate;
     @FXML private TableColumn columnEndDate;
     @FXML private TableColumn columnDays;
     @FXML private TableColumn columnStatus;
 
-    @FXML private TableView<VacRequest> tableCancelRequest;
+    @FXML private TableView<AVacRequest> tableCancelRequest;
     @FXML private TableColumn vacCancelColumnID;
     @FXML private TableColumn vacCancelColumnStartD;
     @FXML private TableColumn vacCancelColumnEndD;
@@ -68,11 +72,12 @@ public class EmployeeUIController   {
 
     @FXML
     private void generateVacRequest(){
+        IVacEmployeeGenerateReq vacEmployeeGenerateReq = new VacEmployeeGenerateReq();
         LocalDate startDate = datePStartDate.getValue();
         LocalDate endDate = datePEndDate.getValue();
             if(startDate.isBefore(endDate)||startDate.isEqual(endDate)){
                 if(startDate.isEqual(LocalDate.now())||startDate.isAfter(LocalDate.now())){
-                    if(VacEmployeeGenerateReq.vacGenerateRequest(employeeID,startDate,endDate)){
+                    if(vacEmployeeGenerateReq.vacGenerateRequest(employeeID,startDate,endDate)){
                         Alert alert = new Alert(Alert.AlertType.INFORMATION);
                         alert.setTitle("Vacation Request");
                         alert.setHeaderText("Your vacation request was submitted for approval");
@@ -124,12 +129,20 @@ public class EmployeeUIController   {
         Optional<ButtonType> result = alert.showAndWait();
 
         if(result.get()== buttonTypeYes){
-            List<VacRequest> vacRequestList = tableCancelRequest.getSelectionModel().getSelectedItems();
-            VacRequest vacRequest = vacRequestList.get(0);
-            VacEmployeeCancel.cancelRequest(vacRequest.getPkIDRequest());
+            IVacEmployeeCancel vacEmployeeCancel = new VacEmployeeCancel();
+            List<AVacRequest> vacRequestList = tableCancelRequest.getSelectionModel().getSelectedItems();
+            AVacRequest vacRequest = vacRequestList.get(0);
+            vacEmployeeCancel.cancelRequest(vacRequest.getPkIDRequest());
             loadTableCancelRequest();
         }
         buttonCancelVacation.setDisable(true);
+    }
+
+    @FXML
+    private void generateReport() {
+        IVacEmployeeReport vacEmployeeReport = new VacEmployeeReport();
+        List<AVacRequest> vacRequestList = tableHistoricalRequest.getItems();
+        vacEmployeeReport.createReportTable(vacRequestList);
     }
 
     @FXML
@@ -142,11 +155,21 @@ public class EmployeeUIController   {
         } catch (Exception e){
 
         }
-
     }
 
     @FXML
     private void onTabChangeVacationReport(){
+        try{
+            loadTableHistorical();
+            loadTableCancelRequest();
+            loadEmployeeInfo();
+            buttonCancelVacation.setDisable(true);
+        } catch (Exception e){
+        }
+    }
+
+    @FXML
+    private void onTabChangeVacationCancel(){
         try{
             loadTableHistorical();
             loadTableCancelRequest();
@@ -164,8 +187,9 @@ public class EmployeeUIController   {
 
 
     private void loadTableHistorical(){
-        ObservableList<VacRequest> vacRequests;
-        vacRequests=FXCollections.observableArrayList(VacRequestReadHistory.getHistoryEmployee(employeeID));
+        IVacRequestReadHistory vacRequestReadHistory = new VacRequestReadHistory();
+        ObservableList<AVacRequest> vacRequests;
+        vacRequests=FXCollections.observableArrayList(vacRequestReadHistory.getHistoryEmployee(employeeID));
         columnRequestID.setCellValueFactory(new PropertyValueFactory<>("pkIDRequest"));
         columnStartDate.setCellValueFactory(new PropertyValueFactory<>("startDate"));
         columnEndDate.setCellValueFactory(new PropertyValueFactory<>("endDate"));
@@ -176,8 +200,9 @@ public class EmployeeUIController   {
 
 
     private void loadTableCancelRequest(){
-        ObservableList<VacRequest> vacRequests;
-        vacRequests=FXCollections.observableArrayList(VacRequestReadPending.getPendingRequestEmployee(employeeID));
+        IVacRequestReadPending vacRequestReadPending = new VacRequestReadPending();
+        ObservableList<AVacRequest> vacRequests;
+        vacRequests=FXCollections.observableArrayList(vacRequestReadPending.getPendingRequestEmployee(employeeID));
         vacCancelColumnID.setCellValueFactory(new PropertyValueFactory<>("pkIDRequest"));
         vacCancelColumnStartD.setCellValueFactory(new PropertyValueFactory<>("startDate"));
         vacCancelColumnEndD.setCellValueFactory(new PropertyValueFactory<>("endDate"));
@@ -187,9 +212,11 @@ public class EmployeeUIController   {
 
 
     private void loadEmployeeInfo(){
+        IVacRequestSearch vacRequestSearch = new VacRequestSearch();
+        IVacEmployeeSearch vacEmployeeSearch = new VacEmployeeSearch();
         Employee employee = EmployeeSearch.searchEmployeeID(employeeID);
-        VacEmployee vacEmployee = VacEmployeeSearch.searchVacEmployeeData(employeeID);
-        VacRequest vacRequest = VacRequestSearch.searchLatestRequest(employeeID);
+        AVacEmployee vacEmployee = vacEmployeeSearch.searchVacEmployeeData(employeeID);
+        AVacRequest vacRequest = vacRequestSearch.searchLatestRequest(employeeID);
 
         labelID.setText(String.valueOf(employee.getId()));
         labelUsername.setText(employee.getUsername());

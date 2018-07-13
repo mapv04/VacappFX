@@ -16,20 +16,7 @@ public class EmployeeRead {
     public  static void getAllEmployees(List<Employee> employeeList){
         //List<Employee> employeeList= new ArrayList<>();
         rs = null;
-<<<<<<< HEAD
-        String sql="select * from usuario where pk_id_user<>1";
-        preparedStatement=conn.prepareStatement(sql);
-        rs= preparedStatement.executeQuery();
-        while(rs.next()){
-            Employee employee= new Employee();
-            employee.setId(rs.getInt("pk_id_user"));
-            employee.setName(rs.getString("name_user"));
-            employee.setLastName(rs.getString("last_name"));
-            employee.setStatus(rs.getInt("status_user"));
-            employee.setType(rs.getInt("type_user"));
-            employeeList.add(employee);
-=======
-        String sql="select * from usuario";
+        String sql="select * from usuario where pk_id_user <> 1;";
         try {
             preparedStatement = conn.prepareStatement(sql);
             rs = preparedStatement.executeQuery();
@@ -44,10 +31,10 @@ public class EmployeeRead {
             }
         }catch (SQLException e){
             System.out.println("ERROR in sql statement on method EmployeeRead.getAllEmployees error: "+e);
->>>>>>> c5c0fdfb1d13405ace91db48ccab5d30aa02efc0
         }
         //return employeeList;
     }
+
 
     public static int getStatus(int employeeID){
         String sql="select status_user from usuario where pk_id_user="+employeeID+";";

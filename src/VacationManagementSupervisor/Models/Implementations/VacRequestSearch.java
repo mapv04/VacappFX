@@ -1,6 +1,8 @@
-package VacationManagementSupervisor.Models;
+package VacationManagementSupervisor.Models.Implementations;
 
 import Database.DatabaseConnection;
+import VacationManagementSupervisor.Models.Abstracts.AVacRequest;
+import VacationManagementSupervisor.Models.Abstracts.IVacRequestSearch;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,15 +11,15 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class VacRequestSearch {
+public class VacRequestSearch implements IVacRequestSearch {
 
     private static ResultSet rs;
     private static Connection conn= DatabaseConnection.getInstance().getConnection();
     private static PreparedStatement pStatement;
 
-
-    public static List<VacRequest> searchAllRequests(int employeeID, int supervisorID){
-        List<VacRequest> listVacReq = new ArrayList<>();
+    @Override
+    public  List<AVacRequest> searchAllRequests(int employeeID, int supervisorID){
+        List<AVacRequest> listVacReq = new ArrayList<>();
         String sqlQuery = "SELECT * FROM vac_request vr" +
                           " INNER JOIN usuario u ON vr.fk_id_user = u.pk_id_user"+
                           " WHERE fk_id_user = ?" +
@@ -29,7 +31,7 @@ public class VacRequestSearch {
             pStatement.setInt(2,supervisorID);
             rs= pStatement.executeQuery();
             while(rs.next()){
-                VacRequest vacReq = new VacRequest();
+                AVacRequest vacReq = new VacRequest();
                 vacReq.setPkIDRequest(rs.getInt(1));
                 vacReq.setFkIDUser(rs.getInt(2));
                 vacReq.setStartDate(rs.getDate(3).toLocalDate());
@@ -47,9 +49,9 @@ public class VacRequestSearch {
     }
 
 
-
-    public static VacRequest searchLatestRequest(int employeeID){
-        VacRequest vacRequest =new VacRequest();
+    @Override
+    public  AVacRequest searchLatestRequest(int employeeID){
+        AVacRequest vacRequest =new VacRequest();
         String sqlQuery = "SELECT * FROM vac_request " +
                           "WHERE fk_id_user = ? " +
                           "ORDER BY pk_id_request DESC LIMIT 1";

@@ -18,7 +18,7 @@
    <children>
       <TabPane prefHeight="443.0" prefWidth="640.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
-          <Tab onSelectionChanged="#onTabChangeEmployeeInfo" closable="false" text="   Employee Info  ">
+          <Tab closable="false" onSelectionChanged="#onTabChangeEmployeeInfo" text="   Employee Info  ">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="457.0" prefWidth="640.0">
                      <children>
@@ -143,11 +143,11 @@
                      </children></AnchorPane>
             </content>
           </Tab>
-          <Tab onSelectionChanged="#onTabChangeVacationReport" closable="false" text="  Vacation Report  ">
+          <Tab closable="false" onSelectionChanged="#onTabChangeVacationReport" text="  Vacation Report  ">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="405.0" prefWidth="640.0">
                      <children>
-                        <TableView fx:id="tableHistoricalRequest" layoutX="32.0" layoutY="26.0" prefHeight="355.0" prefWidth="572.0">
+                        <TableView fx:id="tableHistoricalRequest" layoutX="32.0" layoutY="26.0" prefHeight="327.0" prefWidth="572.0">
                           <columns>
                             <TableColumn fx:id="columnRequestID" editable="false" prefWidth="101.0" text="Request ID" />
                               <TableColumn fx:id="columnStartDate" prefWidth="143.0" text="Start Date" />
@@ -156,6 +156,7 @@
                               <TableColumn fx:id="columnStatus" prefWidth="89.0" text="Status" />
                           </columns>
                         </TableView>
+                        <Button onAction="#generateReport" text="Generate PDF" layoutX="259.0" layoutY="366.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="113.0" />
                      </children>
                   </AnchorPane>
             </content>
@@ -191,11 +192,11 @@
                   </AnchorPane>
               </content>
             </Tab>
-            <Tab text="  Vacation Cancel  ">
+            <Tab closable="false" onSelectionChanged="#onTabChangeVacationCancel" text="  Vacation Cancel  ">
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TableView fx:id="tableCancelRequest" layoutX="31.0" layoutY="28.0" onMouseClicked="#enableCancelButton" prefHeight="305.0" prefWidth="573.0">
+                        <TableView fx:id="tableCancelRequest" layoutX="31.0" layoutY="28.0" onMouseClicked="#enableCancelButton" prefHeight="321.0" prefWidth="573.0">
                           <columns>
                             <TableColumn fx:id="vacCancelColumnID" editable="false" prefWidth="113.0" sortType="DESCENDING" text="Request ID" />
                             <TableColumn fx:id="vacCancelColumnStartD" editable="false" prefWidth="190.0" sortType="DESCENDING" text="Start Date" />
@@ -203,7 +204,7 @@
                               <TableColumn fx:id="vacCancelColumnDays" editable="false" prefWidth="114.0" sortType="DESCENDING" text="Days" />
                           </columns>
                         </TableView>
-                        <Button fx:id="buttonCancelVacation" layoutX="250.0" layoutY="350.0" mnemonicParsing="false" onAction="#cancelVacationRequest" prefHeight="39.0" prefWidth="126.0" text="Cancel Vacation" />
+                        <Button fx:id="buttonCancelVacation" layoutX="250.0" layoutY="363.0" mnemonicParsing="false" onAction="#cancelVacationRequest" prefHeight="34.0" prefWidth="126.0" text="Cancel Vacation" />
                      </children>
                   </AnchorPane>
               </content>

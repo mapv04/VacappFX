@@ -14,23 +14,6 @@ public class EmployeeUpdate {
 
     public static void modifyEmployee(Employee employee) {
         String sql="update usuario set name_user='"+employee.getName()+"', last_name='"+employee.getLastName()
-<<<<<<< HEAD
-                +"', type_user='"+employee.getType()+"', status_user='"+employee.getStatus()
-                +"' where pk_id_user='"+employee.getId()+"';";
-        preparedStatement=conn.prepareStatement(sql);
-        preparedStatement.executeUpdate();
-
-        // this is to modify employee from the other table
-        String sqlQuery3 = "SELECT fk_id_user FROM vac_request WHERE supervisor_id = ?;";
-        String sqlQuery4 = "UPDATE vac_request SET  supervisor_id = 1 WHERE supervisor_id = ?;";
-        preparedStatement=conn.prepareStatement(sqlQuery3);
-        preparedStatement.setInt(1,employee.getId());
-        ResultSet rs = preparedStatement.executeQuery();
-        if(rs.next()){
-            preparedStatement=conn.prepareStatement(sqlQuery4);
-            preparedStatement.setInt(1,employee.getId());
-            preparedStatement.executeUpdate();
-=======
                 +"', type_user='"+employee.getType()+"' where pk_id_user='"+employee.getId()+"';";
         String sql2="update workgroup_data set employee_name='"+ employee.getName() +" "+employee.getLastName()+"' where " +
                 "fk_usuario_id="+employee.getId()+";";
@@ -53,8 +36,28 @@ public class EmployeeUpdate {
             }
         }catch(SQLException e){
             System.out.println("ERROR in sql2 statement on method EmployeeUpdate.modifyEmployee error: "+e);
->>>>>>> c5c0fdfb1d13405ace91db48ccab5d30aa02efc0
         }
+
+        //@RobertoR this is to update vac_request tables
+        String sqlQuery1 = "SELECT fk_id_user FROM vac_request WHERE supervisor_id = ?;";
+        String sqlQuery2 = "UPDATE vac_request SET  supervisor_id = 1 WHERE supervisor_id = ?;";
+        try{
+            preparedStatement = conn.prepareStatement(sqlQuery1);
+            preparedStatement.setInt(1, employee.getId());
+            ResultSet rs = preparedStatement.executeQuery();
+            if (rs.next()) {
+                preparedStatement = conn.prepareStatement(sqlQuery2);
+                preparedStatement.setInt(1, employee.getId());
+                preparedStatement.executeUpdate();
+            }
+        }catch (SQLException e){
+            System.out.println("ERROR in statemen method EmployeeUpdate.modifyEmployee error: "+e);
+        }
+
+
+
+
+
     }
 
 

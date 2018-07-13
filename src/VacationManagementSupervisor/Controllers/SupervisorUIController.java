@@ -1,7 +1,8 @@
 package VacationManagementSupervisor.Controllers;
 
 import VacationManagementEmployee.Controllers.EmployeeUIController;
-import VacationManagementSupervisor.Models.*;
+import VacationManagementSupervisor.Models.Abstracts.*;
+import VacationManagementSupervisor.Models.Implementations.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -19,7 +20,7 @@ import java.util.Optional;
 
 public class SupervisorUIController {
 
-    @FXML private TableView<VacRequest> tablePendingRequest;
+    @FXML private TableView<AVacRequest> tablePendingRequest;
     @FXML private TableColumn pColumnRequestID;
     @FXML private TableColumn pColumnEmployeeID;
     @FXML private TableColumn pColumnName;
@@ -27,7 +28,7 @@ public class SupervisorUIController {
     @FXML private TableColumn pColumnEndDate;
     @FXML private TableColumn pColumnDays;
 
-    @FXML private TableView<VacRequest> tableHistoryRequest;
+    @FXML private TableView<AVacRequest> tableHistoryRequest;
     @FXML private TableColumn hColumnRequestID;
     @FXML private TableColumn hColumnEmployeeID;
     @FXML private TableColumn hColumnName;
@@ -39,10 +40,9 @@ public class SupervisorUIController {
     @FXML private Button buttonApprove;
     @FXML private Button buttonDeny;
     @FXML private Button buttonEmployeeScene;
-    @FXML private Button buttonGenerateReport;
     @FXML private TextField historyTextField;
 
-    private ObservableList<VacRequest> vacRequests;
+    private ObservableList<AVacRequest> vacRequests;
     private ButtonType buttonTypeYes = new ButtonType("Yes");
     private ButtonType buttonTypeNo = new ButtonType("No");
     private static int supervisorID;
@@ -56,15 +56,16 @@ public class SupervisorUIController {
 
     @FXML
     private void approveRequest(){
+        IVacRequestHandleStatus vacRequestHandleStatus = new VacRequestHandleStatus();
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirmation");
         alert.setHeaderText("Are you sure you want to approve this employee's vacations?");
         alert.getButtonTypes().setAll(buttonTypeYes, buttonTypeNo);
         Optional<ButtonType> result = alert.showAndWait();
         if(result.get()== buttonTypeYes){
-            List<VacRequest> vacRequestList = tablePendingRequest.getSelectionModel().getSelectedItems();
-            VacRequest vacRequest = vacRequestList.get(0);
-            VacRequestHandleStatus.approveVacation(vacRequest.getPkIDRequest(),vacRequest.getFkIDUser(),vacRequest.getDaysRequested());
+            List<AVacRequest> vacRequestList = tablePendingRequest.getSelectionModel().getSelectedItems();
+            AVacRequest vacRequest = vacRequestList.get(0);
+            vacRequestHandleStatus.approveVacation(vacRequest.getPkIDRequest(),vacRequest.getFkIDUser(),vacRequest.getDaysRequested());
             loadTablePendingRequest();
             disableRequestButtons();
         }
@@ -73,6 +74,7 @@ public class SupervisorUIController {
 
     @FXML
     private void denyRequest(){
+        IVacRequestHandleStatus vacRequestHandleStatus = new VacRequestHandleStatus();
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirmation");
         alert.setHeaderText("Are you sure you want to deny this employee's vacations?");
@@ -80,9 +82,9 @@ public class SupervisorUIController {
         Optional<ButtonType> result = alert.showAndWait();
 
         if(result.get()== buttonTypeYes){
-            List<VacRequest> vacRequestList = tablePendingRequest.getSelectionModel().getSelectedItems();
-            VacRequest vacRequest = vacRequestList.get(0);
-            VacRequestHandleStatus.denyVacation(vacRequest.getPkIDRequest());
+            List<AVacRequest> vacRequestList = tablePendingRequest.getSelectionModel().getSelectedItems();
+            AVacRequest vacRequest = vacRequestList.get(0);
+            vacRequestHandleStatus.denyVacation(vacRequest.getPkIDRequest());
             loadTablePendingRequest();
             disableRequestButtons();
         }
@@ -124,12 +126,13 @@ public class SupervisorUIController {
 
     @FXML
     private void searchHistoryByID(){
+        IVacRequestSearch vacRequestSearch = new VacRequestSearch();
         String text = historyTextField.getText();
        if(text.isEmpty() || text.trim().isEmpty()) {
            loadTableHistoryRequest();
        } else{
            if(isNumeric(text)){
-               loadTableHistoryRequestAr(VacRequestSearch.searchAllRequests(Integer.valueOf(text),supervisorID));
+               loadTableHistoryRequest(vacRequestSearch.searchAllRequests(Integer.valueOf(text),supervisorID));
            }
        }
     }
@@ -144,14 +147,17 @@ public class SupervisorUIController {
 
     @FXML
     private void generateReport(){
-
+        IVacRequestReport vacRequestReport = new VacRequestReport();
+        List<AVacRequest> vacRequestList = tableHistoryRequest.getItems();
+        vacRequestReport.createReportTable(vacRequestList);
     }
 
 
 
     private void loadTableHistoryRequest(){
+        IVacRequestReadHistory vacRequestReadHistory = new VacRequestReadHistory();
         disableRequestButtons();
-        vacRequests=FXCollections.observableArrayList(VacRequestReadHistory.getHistorySupervisor(supervisorID));
+        vacRequests=FXCollections.observableArrayList(vacRequestReadHistory.getHistorySupervisor(supervisorID));
         hColumnRequestID.setCellValueFactory(new PropertyValueFactory<>("pkIDRequest"));
         hColumnEmployeeID.setCellValueFactory(new PropertyValueFactory<>("fkIDUser"));
         hColumnName.setCellValueFactory(new PropertyValueFactory<>("name"));
@@ -163,7 +169,7 @@ public class SupervisorUIController {
     }
 
 
-    private void loadTableHistoryRequestAr(List<VacRequest> vacHistoryList){
+    private void loadTableHistoryRequest(List<AVacRequest> vacHistoryList){
         vacRequests=FXCollections.observableArrayList(vacHistoryList);
         hColumnRequestID.setCellValueFactory(new PropertyValueFactory<>("pkIDRequest"));
         hColumnEmployeeID.setCellValueFactory(new PropertyValueFactory<>("fkIDUser"));
@@ -177,7 +183,8 @@ public class SupervisorUIController {
 
 
     private void loadTablePendingRequest(){
-        vacRequests=FXCollections.observableArrayList(VacRequestReadPending.getPendingRequestSupervisor(supervisorID));
+        IVacRequestReadPending vacRequestReadPending = new VacRequestReadPending();
+        vacRequests=FXCollections.observableArrayList(vacRequestReadPending.getPendingRequestSupervisor(supervisorID));
         pColumnRequestID.setCellValueFactory(new PropertyValueFactory<>("pkIDRequest"));
         pColumnEmployeeID.setCellValueFactory(new PropertyValueFactory<>("fkIDUser"));
         pColumnName.setCellValueFactory(new PropertyValueFactory<>("name"));

@@ -1,19 +1,22 @@
-package VacationManagementEmployee.Models;
+package VacationManagementEmployee.Models.Implemetations;
 
 import Database.DatabaseConnection;
+import VacationManagementEmployee.Models.Abstracts.AVacEmployee;
+import VacationManagementEmployee.Models.Abstracts.IVacEmployeeSearch;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class VacEmployeeSearch {
+public class VacEmployeeSearch implements IVacEmployeeSearch {
     private static ResultSet rs;
     private static Connection conn= DatabaseConnection.getInstance().getConnection();
     private static PreparedStatement pStatement;
 
-    public static VacEmployee searchVacEmployeeData(int employeeID){
-        VacEmployee vacEmployee = new VacEmployee();
+    @Override
+    public AVacEmployee searchVacEmployeeData(int employeeID){
+        AVacEmployee vacEmployee = new VacEmployee();
         String sqlQuery = "SELECT * FROM vac_employee_data WHERE fk_id_user = ?";
         try{
             pStatement = conn.prepareStatement(sqlQuery);

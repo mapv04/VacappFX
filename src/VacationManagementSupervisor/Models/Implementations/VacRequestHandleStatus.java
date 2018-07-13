@@ -1,18 +1,21 @@
-package VacationManagementSupervisor.Models;
+package VacationManagementSupervisor.Models.Implementations;
 
 import Database.DatabaseConnection;
+import VacationManagementSupervisor.Models.Abstracts.IVacRequestHandleStatus;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class VacRequestHandleStatus {
+public class VacRequestHandleStatus implements IVacRequestHandleStatus {
     private static ResultSet rs;
     private static Connection conn= DatabaseConnection.getInstance().getConnection();
     private static PreparedStatement pStatement;
 
 
-    public static void approveVacation(int requestID, int employeeID , int days){
+    @Override
+    public  void approveVacation(int requestID, int employeeID , int days){
         rs = null;
         String sqlQuery1 = "UPDATE vac_request SET status='Approved' WHERE pk_id_request = ?;";
         String sqlQuery2 = "SELECT vac_days_available FROM vac_employee_data WHERE fk_id_user = ?;";
@@ -36,11 +39,11 @@ public class VacRequestHandleStatus {
         }catch (SQLException e){
             System.out.println("ERROR in sql statement method VacRequestHandleStatus.approveVacation error: "+e);
         }
-
     }
 
 
-    public static void denyVacation(int requestID){
+    @Override
+    public  void denyVacation(int requestID){
         rs= null;
         String sqlQuery1 = "UPDATE vac_request SET status='Denied' WHERE pk_id_request = ?;";
         try{

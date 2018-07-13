@@ -1,6 +1,7 @@
-package VacationManagementEmployee.Models;
+package VacationManagementEmployee.Models.Implemetations;
 
 import Database.DatabaseConnection;
+import VacationManagementEmployee.Models.Abstracts.IVacEmployeeGenerateReq;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,12 +10,13 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 
-public class VacEmployeeGenerateReq {
+public class VacEmployeeGenerateReq implements IVacEmployeeGenerateReq {
     private static ResultSet rs;
     private static Connection conn= DatabaseConnection.getInstance().getConnection();
     private static PreparedStatement pStatement;
 
-    public static boolean vacGenerateRequest(int employeeID, LocalDate start_date,LocalDate end_date) {
+    @Override
+    public  boolean vacGenerateRequest(int employeeID, LocalDate start_date,LocalDate end_date) {
         int vacDaysAvailable ;
         int supervisorID;
         String sqlQuery1 = "SELECT vac_days_available FROM vac_employee_data WHERE fk_id_user = ?;";
@@ -54,7 +56,6 @@ public class VacEmployeeGenerateReq {
         } catch (SQLException e) {
             System.out.println("ERROR in sql statement method VacEmployeeGenerateReq.vacGenerateRequest error: " + e);
         }
-
         return false;
     }
 

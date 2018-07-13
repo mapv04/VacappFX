@@ -13,7 +13,7 @@ type_user int not null,
 status_user int not null);
 
 INSERT INTO usuario (name_user, last_name, username, email, password_user, type_user, status_user) VALUES
-("CEO","CEO","ceo","root","owner@ceo.com",1,1),
+("CEO","CEO","ceo","ceo","owner@ceo.com",1,1),
 ('Miguel','Partida','mapv04','mapv04@gmail.com','qwerty', 0,1),
 ('Angel','Velasco','asxc','asxc@outlook.com','zxcd', 0,1),
 ('Oscar','Gonzalez','osc12','oscg@gmail.com','qwerty123', 1,1),
@@ -62,6 +62,7 @@ CREATE TABLE vac_employee_data(
  INSERT INTO vac_employee_data
  (fk_id_user, hired_date, vac_days_available)
  VALUES
+ (1, '2010-01-01', 100),
  (2, '2013-01-01', 12),
  (3, '2014-01-01', 10),
  (4, '2016-01-01', 6),
