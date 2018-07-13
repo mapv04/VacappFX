@@ -91,22 +91,26 @@ public class SupervisorUIController {
     }
 
     @FXML
-    private void requestsTabChange(){
+    private void onTabChangeRequest(){
         loadTablePendingRequest();
         disableRequestButtons();
     }
 
 
     @FXML
-    private void historyTabChange(){
+    private void onTabChangeReport(){
         loadTableHistoryRequest();
         try{
             historyTextField.setText("");
-        }catch(NullPointerException e){ }
+        }catch(Exception e){ }
     }
 
     @FXML
-    private void changeSceneTab(){
+    private void onTabChangeVacation(){
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Vacation Window");
+        alert.setHeaderText("You are going to exit supervisor management to enter employee vacation");
+        alert.showAndWait();
         EmployeeUIController.setEmployeeID(supervisorID);
         buttonEmployeeScene.setOnAction(a ->{
             try {
@@ -115,7 +119,6 @@ public class SupervisorUIController {
                 Stage app_stage = (Stage) ((Node) a.getSource()).getScene().getWindow();
                 app_stage.setScene(otherScene);
                 app_stage.show();
-
             } catch(Exception e) {
                 System.out.println("cant load new window "+e);
             }

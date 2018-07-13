@@ -151,6 +151,7 @@ public class EmployeeUIController   {
             loadTableHistorical();
             loadTableCancelRequest();
             loadEmployeeInfo();
+            setLabelReqVacDays();
             buttonCancelVacation.setDisable(true);
         } catch (Exception e){
 
@@ -163,6 +164,7 @@ public class EmployeeUIController   {
             loadTableHistorical();
             loadTableCancelRequest();
             loadEmployeeInfo();
+            setLabelReqVacDays();
             buttonCancelVacation.setDisable(true);
         } catch (Exception e){
         }
@@ -174,6 +176,7 @@ public class EmployeeUIController   {
             loadTableHistorical();
             loadTableCancelRequest();
             loadEmployeeInfo();
+            setLabelReqVacDays();
             buttonCancelVacation.setDisable(true);
         } catch (Exception e){
         }
@@ -238,8 +241,8 @@ public class EmployeeUIController   {
             labelReqStatus.setText(vacRequest.getStatus());
         }
         else {
-            labelReqID.setText(" ");
-            labelReqStatus.setText("  ");
+            labelReqID.setText("None");
+            labelReqStatus.setText("None");
         }
     }
 

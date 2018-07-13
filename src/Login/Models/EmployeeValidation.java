@@ -39,35 +39,10 @@ public class EmployeeValidation {
 
     public static void blockUser(String user) throws SQLException {
         rs = null;
-<<<<<<< HEAD
-        String sql = "select type_user from usuario where username='" + user + "';";
-        preparedStatement = conn.prepareStatement(sql);
-        rs = preparedStatement.executeQuery();
-        while (rs.next()) {
-            int type = rs.getInt("type_user");
-            return type;//return the type, Manager, Supervisor or Employee
-        }
-        return 5;//return other number just in case  
-    }
-
-
-    public static boolean validateEmployeeExists(String user, String password) throws SQLException {
-        rs = null;
-        String sql = "SELECT * FROM usuario where username='" + user + "' and password_user='" + password + "'";
-        preparedStatement = conn.prepareStatement(sql);
-        rs = preparedStatement.executeQuery();
-        if (rs.first()) {
-            rs.close();
-            return true;
-        } else {
-            return false;
-        }
-=======
         String sql = "UPDATE `usuario` SET `status_user` = '0' WHERE `usuario`.`username` = '"
                 + user + "';";
         st = conn.createStatement();
         st.executeUpdate(sql);
->>>>>>> 731ad649ff56c69736651f339146086b072b8bf1
     }
 
 

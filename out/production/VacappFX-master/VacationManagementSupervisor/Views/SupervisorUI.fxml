@@ -14,7 +14,7 @@
    <children>
       <TabPane prefHeight="484.0" prefWidth="722.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
-            <Tab onSelectionChanged="#requestsTabChange" text="  Requests Pending  ">
+            <Tab onSelectionChanged="#onTabChangeRequest" text="  Requests Pending  ">
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="448.0" prefWidth="722.0">
                      <children>
@@ -34,7 +34,7 @@
                   </AnchorPane>
               </content>
             </Tab>
-          <Tab onSelectionChanged="#historyTabChange" text="  Requests Report  ">
+          <Tab onSelectionChanged="#onTabChangeReport" text="  Requests Report  ">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="413.0" prefWidth="709.0">
                      <children>
@@ -62,7 +62,7 @@
                   </AnchorPane>
             </content>
           </Tab>
-            <Tab onSelectionChanged="#changeSceneTab" text="    Vacation    ">
+            <Tab onSelectionChanged="#onTabChangeVacation" text="    Vacation    ">
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>

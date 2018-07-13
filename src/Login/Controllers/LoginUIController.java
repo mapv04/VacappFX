@@ -1,9 +1,10 @@
 package Login.Controllers;
 
-import VacationManagementEmployee.Controllers.EmployeeUIController;
-import VacationManagementSupervisor.Controllers.SupervisorUIController;
+
 import Login.Models.*;
 
+import VacationManagementEmployee.Controllers.EmployeeUIController;
+import VacationManagementSupervisor.Controllers.SupervisorUIController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -64,41 +65,6 @@ public class LoginUIController implements Initializable {
                 alert.setHeaderText("The user doesn't exist");
 
                 alert.show();
-<<<<<<< HEAD
-            } else {
-                switch (EmployeeValidation.validateType(user)) {//this send the user to the screen that he belongs
-                    case 0:
-                        fxml = FXMLLoader.load(getClass().getResource("/UserManagement/Views/AdminUI.fxml"));
-                        scene = new Scene(fxml);
-                        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                        stage.setScene(scene);
-                        stage.show();
-                        break;
-
-                    case 1:
-                        SupervisorUIController.setSupervisorID(EmployeeSearch.searchEmployeeUserName(user));
-                        fxml = FXMLLoader.load(getClass().getResource("/VacationManagementSupervisor/Views/SupervisorUI.fxml"));
-                        scene = new Scene(fxml);
-                        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                        stage.setScene(scene);
-                        stage.show();
-                        break;
-
-                    case 2:
-                        EmployeeUIController.setEmployeeID(EmployeeSearch.searchEmployeeUserName(user));
-                        fxml = FXMLLoader.load(getClass().getResource("/VacationManagementEmployee/Views/EmployeeUI.fxml"));
-                        scene = new Scene(fxml);
-                        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                        stage.setScene(scene);
-                        stage.show();
-
-                        break;
-
-                    default:
-                        break;
-                }
-=======
->>>>>>> 731ad649ff56c69736651f339146086b072b8bf1
             }
             else {
                 if (userData.getStatus() != 1) {
@@ -135,7 +101,7 @@ public class LoginUIController implements Initializable {
 
                             case 1:
                                 SupervisorUIController.setSupervisorID(EmployeeSearch.searchEmployeeUserName(user));
-                                fxml = FXMLLoader.load(getClass().getResource("/VacationManagement/Views/SupervisorUI.fxml"));
+                                fxml = FXMLLoader.load(getClass().getResource("/VacationManagementSupervisor/Views/SupervisorUI.fxml"));
                                 scene = new Scene(fxml);
                                 stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                                 stage.setScene(scene);
@@ -144,7 +110,7 @@ public class LoginUIController implements Initializable {
 
                             case 2:
                                 EmployeeUIController.setEmployeeID(EmployeeSearch.searchEmployeeUserName(user));
-                                fxml = FXMLLoader.load(getClass().getResource("/VacationManagement/Views/EmployeeUI.fxml"));
+                                fxml = FXMLLoader.load(getClass().getResource("/VacationManagementEmployee/Views/EmployeeUI.fxml"));
                                 scene = new Scene(fxml);
                                 stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                                 stage.setScene(scene);

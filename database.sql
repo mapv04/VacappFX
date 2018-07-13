@@ -13,7 +13,7 @@ type_user int not null,
 status_user int not null);
 
 INSERT INTO usuario (name_user, last_name, username, email, password_user, type_user, status_user) VALUES
-("CEO","CEO","ceo","ceo","owner@ceo.com",1,1),
+("Jorge ","C","ceo","owner@ceo.com","ceo",1,1),
 ('Miguel','Partida','mapv04','mapv04@gmail.com','qwerty', 0,1),
 ('Angel','Velasco','asxc','asxc@outlook.com','zxcd', 0,1),
 ('Oscar','Gonzalez','osc12','oscg@gmail.com','qwerty123', 1,1),
