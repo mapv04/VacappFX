@@ -37,4 +37,19 @@ public class WorkGroupUpdate {
         }
     }
 
+    public static void addMember(WorkGroupData newMember){
+        String sql="insert into workgroup_data(fk_workgroup_id, fk_usuario_id,employee_name,added_date) values " +
+                "(?,?,?,?);";
+        try{
+            preparedStatement=conn.prepareStatement(sql);
+            preparedStatement.setInt(1,newMember.getGroupID());
+            preparedStatement.setInt(2,newMember.getEmployeeID());
+            preparedStatement.setString(3,newMember.getEmployeeName());
+            preparedStatement.setDate(4,Date.valueOf(newMember.getAddedDate()));
+            preparedStatement.executeUpdate();
+        }catch(SQLException e){
+            System.out.println("ERROR in sql statement on method WorkGroupUpdate.addMember error: "+e);
+        }
+    }
+
 }

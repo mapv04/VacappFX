@@ -1,8 +1,9 @@
 package UserManagement.Controllers;
 
-import Interfaces.Tables;
+import UserManagement.Interfaces.Tables;
 import UserManagement.Models.*;
-import Values.MessagesStrings;
+import UserManagement.Values.Strings;
+import WorkGroupManagement.Controllers.AddMembersController;
 import WorkGroupManagement.Controllers.ShowMembersController;
 import WorkGroupManagement.Models.*;
 import javafx.collections.FXCollections;
@@ -24,6 +25,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -78,8 +80,6 @@ public class AdminUIController implements Initializable, Tables {
     ObservableList<WorkGroup> workGroupList;
     ObservableList<Employee> employeeList;
     private int tablePosition;
-    ButtonType buttonTypeYes = new ButtonType("Yes");
-    ButtonType buttonTypeNo = new ButtonType("No");
     Scene scene;
     Parent fxml;
     Stage stage;
@@ -168,46 +168,55 @@ public class AdminUIController implements Initializable, Tables {
     private void btnDeleteAction() {
         Employee employee=getSelected();
         if(employee.getType()!=0) {
-            if (confirmChanges(MessagesStrings.deleteEmployee)) {
+            if (confirmChanges(Strings.deleteEmployee)) {
                 int employeeID = Integer.parseInt(txtEmployeeID.getText());
                 EmployeeDelete.deleteEmployee(employeeID);
                 employeeList.remove(tablePosition);
             }
         }
-        else
-            restritionAdmin();
+        else {
+            restriction(Strings.modifyAdmin);
+        }
+        if(employeeList.size()==0){
+            clearText();
+        }
     }
 
 
     @FXML
-    private void btnEditAction(ActionEvent event){
+    private void btnEditAction(){
         Employee modifiedEmployee = getSelected();
         if(modifiedEmployee.getType()!=0) {
-            modifiedEmployee.setName(txtEmployeeName.getText());
-            modifiedEmployee.setLastName(txtEmployeeLastName.getText());
-            modifiedEmployee.setId(Integer.parseInt(txtEmployeeID.getText()));
-            if (txtEmployeeStatus.getText().equals("ACTIVE"))
-                modifiedEmployee.setStatus(1);
-            else {
-                modifiedEmployee.setStatus(0);
+            modifiedEmployee.setName(toUpperCase(txtEmployeeName.getText()));
+            if (modifiedEmployee.getName() != null) {
+                modifiedEmployee.setLastName(toUpperCase(txtEmployeeLastName.getText()));
+                modifiedEmployee.setId(Integer.parseInt(txtEmployeeID.getText()));
+                if (modifiedEmployee.getName() != null && modifiedEmployee.getLastName() != null) {
+                    if (txtEmployeeStatus.getText().equals("ACTIVE"))
+                        modifiedEmployee.setStatus(1);
+                    else {
+                        modifiedEmployee.setStatus(0);
+                    }
+
+                    modifiedEmployee.setType(getStatus());
+                    if (confirmChanges(Strings.editEmployee)) {
+                        EmployeeUpdate.modifyEmployee(modifiedEmployee);
+                        employeeList.set(tablePosition, modifiedEmployee);
+                        clearText();
+                    }
+                }
             }
 
-            modifiedEmployee.setType(getStatus());
-            if (confirmChanges(MessagesStrings.editEmployee)) {
-                EmployeeUpdate.modifyEmployee(modifiedEmployee);
-                employeeList.set(tablePosition, modifiedEmployee);
-                clearText();
-            }
         }
         else
-            restritionAdmin();
+            restriction(Strings.modifyAdmin);
     }
 
     @FXML
-    private void btnActivateEmployeeAction(ActionEvent event){
+    private void btnActivateEmployeeAction(){
         Employee employee= getSelected();
         if(employee.getType()!=0) {
-            if (confirmChanges(MessagesStrings.activateUser)) {
+            if (confirmChanges(Strings.activateUser)) {
                 employee.setStatus(1);
                 EmployeeHandleStatus.activateUser(Integer.parseInt(txtEmployeeID.getText()));
                 employeeList.set(tablePosition, employee);
@@ -215,14 +224,14 @@ public class AdminUIController implements Initializable, Tables {
             }
         }
         else
-            restritionAdmin();
+            restriction(Strings.modifyAdmin);
     }
 
     @FXML
     private void btnDesactivateEmployeeAction(ActionEvent event){
         Employee employee= getSelected();
         if(employee.getType()!=0) {
-            if (confirmChanges(MessagesStrings.desactivateUser)) {
+            if (confirmChanges(Strings.desactivateUser)) {
                 employee.setStatus(0);
                 EmployeeHandleStatus.activateUser(Integer.parseInt(txtEmployeeID.getText()));
                 employeeList.set(tablePosition, employee);
@@ -230,7 +239,7 @@ public class AdminUIController implements Initializable, Tables {
             }
         }
         else
-            restritionAdmin();
+            restriction(Strings.modifyAdmin);
     }
 
     @FXML
@@ -362,7 +371,7 @@ public class AdminUIController implements Initializable, Tables {
         groupModified.setLeaderName((String) columnLeaderName.getCellObservableValue(tablePosition).getValue());
         groupModified.setCreatedDate((LocalDate) columnCreatedDate.getCellObservableValue(tablePosition).getValue());
         groupModified.setStatus((Integer) columnStatus.getCellObservableValue(tablePosition).getValue());
-        if (confirmChanges(MessagesStrings.editWorkGroup)) {
+        if (confirmChanges(Strings.editWorkGroup)) {
             WorkGroupUpdate.editGroup(groupModified);
             workGroupList.set(tablePosition, groupModified);
             clearGroupText();
@@ -371,17 +380,20 @@ public class AdminUIController implements Initializable, Tables {
     }
 
     @FXML
-    private void btnDeleteGroupAction(ActionEvent event){
-        if(confirmChanges(MessagesStrings.deleteWorkGroup)){
+    private void btnDeleteGroupAction(){
+        if(confirmChanges(Strings.deleteWorkGroup)){
             int id=Integer.parseInt(txtGroupID.getText());
             WorkGroupDelete.deleteGroup(id);
             workGroupList.remove(tablePosition);
+        }
+        if(workGroupList.size()==0){
+            clearGroupText();
         }
     }
 
     @FXML
     private void btnActivateGroupAction(){
-        if(confirmChanges(MessagesStrings.activateWorkGroup)){
+        if(confirmChanges(Strings.activateWorkGroup)){
             WorkGroup group= getSelectedWorkGroup();
             group.setStatus(1);
             WorkGroupHandleStatus.activateWorkGroup(group.getWorkGroupID());
@@ -392,7 +404,7 @@ public class AdminUIController implements Initializable, Tables {
 
     @FXML
     private void btnDesactivateGroupAction(){
-        if(confirmChanges(MessagesStrings.desactivateGroup)){
+        if(confirmChanges(Strings.desactivateGroup)){
             WorkGroup group= getSelectedWorkGroup();
             group.setStatus(0);
             WorkGroupHandleStatus.desactivateWorkGroup(group.getWorkGroupID());
@@ -415,6 +427,20 @@ public class AdminUIController implements Initializable, Tables {
         }
     }
 
+    @FXML
+    private void btnAddNewMember(ActionEvent event){
+        AddMembersController.setGroupID(Integer.parseInt(txtGroupID.getText()));
+        try {
+            fxml = FXMLLoader.load(getClass().getResource("/WorkGroupManagement/Views/AddMembers.fxml"));
+            scene = new Scene(fxml);
+            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+        }catch(IOException e){
+            System.out.println("ERROR in method AdminUIController.btnAddNewMembersAction error: "+e);
+        }
+    }
+
     private void disableAllGroupBTN(){
         btnDeleteGroup.setDisable(true);
         btnEditGroup.setDisable(true);
@@ -434,29 +460,54 @@ public class AdminUIController implements Initializable, Tables {
 
     private boolean confirmChanges(String message) {
         Alert alert = new Alert(AlertType.CONFIRMATION);
-        alert.setTitle("Confirmation");
         alert.setContentText(message);
-        alert.getButtonTypes().setAll(buttonTypeYes, buttonTypeNo);
         Optional<ButtonType> result = alert.showAndWait();
-        if (result.get() == buttonTypeYes) {
+        if (result.get() == ButtonType.OK) {
+            alert.close();
             return true;
         }
         else {
+            alert.close();
             return false;
         }
     }
 
-    private void restritionAdmin(){
+    private void restriction(String message){
         Alert alert = new Alert(AlertType.ERROR);
         alert.setTitle("Restriction");
-        alert.setHeaderText(MessagesStrings.modifyAdmin);
+        alert.setHeaderText(message);
 
         Optional<ButtonType> result = alert.showAndWait();
-        if(result.get()==ButtonType.OK ){
+        try {
+            if (result.get() == ButtonType.OK) {
+                alert.close();
+            } else
+                alert.close();
+        }catch(NoSuchElementException e){
             alert.close();
         }
-        else
-            alert.close();
     }
+
+    private String toUpperCase(String str){
+        if(!str.isEmpty()) {
+            if(containsDigit(str)) {
+                str.toLowerCase();
+                return str.substring(0, 1).toUpperCase() + str.substring(1);
+            }
+            else{
+                restriction(Strings.containsDigit);
+                return null;
+            }
+        }
+        else{
+            restriction(Strings.emptyField);
+            return null;
+        }
+
+    }
+    private boolean containsDigit(String str){
+        return str.matches("[a-zA-z]*");
+    }
+
 
 }

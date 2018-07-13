@@ -97,7 +97,7 @@
                                     <Button fx:id="btnShowGroup" layoutX="52.0" layoutY="217.0" mnemonicParsing="false" onAction="#btnShowMembersAction" prefHeight="25.0" prefWidth="145.0" text="Show members" />
                                     <Button fx:id="btnEditGroup" layoutX="52.0" layoutY="145.0" mnemonicParsing="false" onAction="#btnEditGroupAction" prefHeight="25.0" prefWidth="145.0" text="Edit" />
                                     <Button layoutX="52.0" layoutY="380.0" mnemonicParsing="false" onAction="#btnNewGroupAction" prefHeight="25.0" prefWidth="145.0" text="Create new team" />
-                                    <Button fx:id="btnAddMember" layoutX="53.0" layoutY="254.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="145.0" text="Add a new member" />
+                                    <Button fx:id="btnAddMember" layoutX="53.0" layoutY="254.0" mnemonicParsing="false" onAction="#btnAddNewMember" prefHeight="25.0" prefWidth="145.0" text="Add a new member" />
                                     <Button fx:id="btnActivateGroup" layoutX="5.0" layoutY="306.0" mnemonicParsing="false" onAction="#btnActivateGroupAction" prefHeight="25.0" prefWidth="116.0" text="Activate Group" />
                                     <Button fx:id="btnDesactivateGroup" layoutX="138.0" layoutY="306.0" mnemonicParsing="false" onAction="#btnDesactivateGroupAction" prefHeight="25.0" prefWidth="116.0" text="Desactivate Group" />
                                  </children>

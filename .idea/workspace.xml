@@ -1,7 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7b429817-2956-4fa8-b12e-f9fe4525f7ef" name="Default" comment="" />
+    <list default="true" id="7b429817-2956-4fa8-b12e-f9fe4525f7ef" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/mysql_connector_java_8_0_11.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/mysql_connector_java_8_0_11.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/VacappFX-master/Login/Views/RegistrationUI.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/VacappFX-master/Login/Views/RegistrationUI.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Login/Controllers/LoginUIController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Login/Controllers/LoginUIController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Login/Controllers/RegistrationUIController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Login/Controllers/RegistrationUIController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Login/Models/EmployeeValidation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Login/Models/EmployeeValidation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Login/Views/RegistrationUI.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/Login/Views/RegistrationUI.fxml" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -15,11 +25,28 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
+<<<<<<< HEAD
       <file leaf-file-name="MainVacapp.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/MainVacapp.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="118">
               <caret line="11" column="16" lean-forward="true" selection-start-line="11" selection-start-column="16" selection-end-line="11" selection-end-column="16" />
+=======
+      <file leaf-file-name="LoginUIController.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/Login/Controllers/LoginUIController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="136">
+              <caret line="71" column="42" selection-start-line="71" selection-start-column="42" selection-end-line="71" selection-end-column="42" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RegistrationUIController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Login/Controllers/RegistrationUIController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="452">
+              <caret line="146" lean-forward="true" selection-start-line="146" selection-end-line="146" />
+>>>>>>> 731ad649ff56c69736651f339146086b072b8bf1
             </state>
           </provider>
         </entry>
@@ -29,7 +56,11 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+<<<<<<< HEAD
         <option value="Singleton" />
+=======
+        <option value="Interface" />
+>>>>>>> 731ad649ff56c69736651f339146086b072b8bf1
         <option value="Class" />
         <option value="Interface" />
       </list>
@@ -61,9 +92,13 @@
       <find>labelStatus</find>
     </findStrings>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
+<<<<<<< HEAD
         <option value="$PROJECT_DIR$/src/VacationManagementEmployee/Models/VacRequestGenerate.java" />
         <option value="$PROJECT_DIR$/src/UserManagement/Views/AdminUI.fxml" />
         <option value="$PROJECT_DIR$/src/VacationManagementEmployee/Models/VacEmployeeSearch.java" />
@@ -115,6 +150,59 @@
         <option value="$PROJECT_DIR$/src/VacationManagementSupervisor/Models/Abstracts/VacRequestSearch.java" />
         <option value="$PROJECT_DIR$/src/VacationManagementSupervisor/Models/Implementations/VacRequest.java" />
         <option value="$PROJECT_DIR$/src/VacationManagementSupervisor/Models/Implementations/VacRequestSearch.java" />
+=======
+        <option value="$PROJECT_DIR$/src/Models/Vacation/VacRequest.java" />
+        <option value="$PROJECT_DIR$/src/Models/Vacation/VacRequestSearch.java" />
+        <option value="$PROJECT_DIR$/src/Controllers/EmployeeUIController.java" />
+        <option value="$PROJECT_DIR$/src/Login/RegistrationUIController.java" />
+        <option value="$PROJECT_DIR$/src/Models/Employee/Employee.java" />
+        <option value="$PROJECT_DIR$/src/UserManagement/WorkGroupUIController.java" />
+        <option value="$PROJECT_DIR$/src/VacationManagement/SupervisorUIController.java" />
+        <option value="$PROJECT_DIR$/src/UserManagement/Models/Employee.java" />
+        <option value="$PROJECT_DIR$/src/Login/Models/Employee.java" />
+        <option value="$PROJECT_DIR$/src/Login/Models/EmployeeCreate.java" />
+        <option value="$PROJECT_DIR$/src/Login/Models/EmployeeSearch.java" />
+        <option value="$PROJECT_DIR$/src/VacationManagement/Controllers/EmployeeUIController.java" />
+        <option value="$PROJECT_DIR$/src/VacationManagement/Controllers/SupervisorUIController.java" />
+        <option value="$PROJECT_DIR$/src/UserManagement/Controllers/WorkGroupRegisterController.java" />
+        <option value="$PROJECT_DIR$/src/UserManagement/Controllers/WorkGroupUIController.java" />
+        <option value="$PROJECT_DIR$/src/VacationManagement/Models/VacRequestRead.java" />
+        <option value="$PROJECT_DIR$/src/VacationManagement/Models/VacRequestSearch.java" />
+        <option value="$PROJECT_DIR$/src/MainVacapp.java" />
+        <option value="$PROJECT_DIR$/src/VacationManagement/Models/VacRequestHandleStatus.java" />
+        <option value="$PROJECT_DIR$/src/Database/DatabaseConnection.java" />
+        <option value="$PROJECT_DIR$/src/WorkGroupManagement/WorkGroup.java" />
+        <option value="$PROJECT_DIR$/src/UserManagement/Models/WorkGroup.java" />
+        <option value="$PROJECT_DIR$/src/WorkGroupManagement/Models/WorkGroup.java" />
+        <option value="$PROJECT_DIR$/src/UserManagement/Controllers/Listeners.java" />
+        <option value="$PROJECT_DIR$/src/WorkGroupManagement/Controllers/WorkGroupRead.java" />
+        <option value="$PROJECT_DIR$/src/Confirmations.java" />
+        <option value="$PROJECT_DIR$/src/UserManagement/Models/EmployeeHandleStatus.java" />
+        <option value="$PROJECT_DIR$/src/UserManagement/Models/EmployeeUpdate.java" />
+        <option value="$PROJECT_DIR$/src/Tables.java" />
+        <option value="$PROJECT_DIR$/src/WorkGroupManagement/Models/WorkGroupData.java" />
+        <option value="$PROJECT_DIR$/src/Interfaces/Tables.java" />
+        <option value="$PROJECT_DIR$/src/WorkGroupManagement/Models/WorkGroupHandleStatus.java" />
+        <option value="$PROJECT_DIR$/src/UserManagement/Confirmations.java" />
+        <option value="$PROJECT_DIR$/src/WorkGroupManagement/Models/WorkGroupDelete.java" />
+        <option value="$PROJECT_DIR$/src/Styles/styles.css" />
+        <option value="$PROJECT_DIR$/src/UserManagement/Views/AdminUI.fxml" />
+        <option value="$PROJECT_DIR$/src/Interfaces/Confirmations.java" />
+        <option value="$PROJECT_DIR$/src/WorkGroupManagement/Controllers/ShowMembersController.java" />
+        <option value="$PROJECT_DIR$/src/WorkGroupManagement/Views/ShowMembers.fxml" />
+        <option value="$PROJECT_DIR$/src/WorkGroupManagement/Models/WorkGroupUpdate.java" />
+        <option value="$PROJECT_DIR$/src/WorkGroupManagement/Views/WorkGroupRegister.fxml" />
+        <option value="$PROJECT_DIR$/src/UserManagement/Models/EmployeeRead.java" />
+        <option value="$PROJECT_DIR$/src/WorkGroupManagement/Models/WorkGroupRead.java" />
+        <option value="$PROJECT_DIR$/src/Values/MessagesStrings.java" />
+        <option value="$PROJECT_DIR$/src/WorkGroupManagement/Controllers/WorkGroupRegisterController.java" />
+        <option value="$PROJECT_DIR$/src/UserManagement/Controllers/AdminUIController.java" />
+        <option value="$PROJECT_DIR$/src/UserManagement/Models/EmployeeDelete.java" />
+        <option value="$PROJECT_DIR$/src/Login/Views/RegistrationUI.fxml" />
+        <option value="$PROJECT_DIR$/src/Login/Models/EmployeeValidation.java" />
+        <option value="$PROJECT_DIR$/src/Login/Controllers/RegistrationUIController.java" />
+        <option value="$PROJECT_DIR$/src/Login/Controllers/LoginUIController.java" />
+>>>>>>> 731ad649ff56c69736651f339146086b072b8bf1
       </list>
     </option>
   </component>
@@ -124,48 +212,180 @@
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
-    <navigator proportions="" version="1">
+    <navigator currentView="PackagesPane" proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+<<<<<<< HEAD
       <pane id="AndroidView" />
       <pane id="PackagesPane" />
       <pane id="Scope" />
-      <pane id="ProjectPane">
-        <subPane>
+=======
+      <pane id="Scope">
+        <subPane subId="Default">
           <expand>
             <path>
-              <item name="VACAPP" type="b2602c69:ProjectViewProjectNode" />
-              <item name="VACAPP" type="462c0819:PsiDirectoryNode" />
+              <item name="Root" type="cbb8eebc:String" user="Root" />
+              <item name="VacappFX-master" type="cbb8eebc:String" user="VacappFX-master" />
             </path>
             <path>
-              <item name="VACAPP" type="b2602c69:ProjectViewProjectNode" />
-              <item name="VACAPP" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Root" type="cbb8eebc:String" user="Root" />
+              <item name="VacappFX-master" type="cbb8eebc:String" user="VacappFX-master" />
+              <item name="VacappFX" type="cbb8eebc:String" user="VacappFX" />
+            </path>
+            <path>
+              <item name="Root" type="cbb8eebc:String" user="Root" />
+              <item name="VacappFX-master" type="cbb8eebc:String" user="VacappFX-master" />
+              <item name="VacappFX" type="cbb8eebc:String" user="VacappFX" />
+              <item name=".idea" type="cbb8eebc:String" user=".idea" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+>>>>>>> 731ad649ff56c69736651f339146086b072b8bf1
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+<<<<<<< HEAD
+              <item name="VACAPP" type="b2602c69:ProjectViewProjectNode" />
+              <item name="VACAPP" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="VACAPP" type="b2602c69:ProjectViewProjectNode" />
+              <item name="VACAPP" type="462c0819:PsiDirectoryNode" />
+=======
+              <item name="VacappFX" type="b2602c69:ProjectViewProjectNode" />
+              <item name="VacappFX" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="VacappFX" type="b2602c69:ProjectViewProjectNode" />
+              <item name="VacappFX" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="VacappFX" type="b2602c69:ProjectViewProjectNode" />
+              <item name="VacappFX" type="462c0819:PsiDirectoryNode" />
+>>>>>>> 731ad649ff56c69736651f339146086b072b8bf1
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="UserManagement" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="VacappFX" type="b2602c69:ProjectViewProjectNode" />
+              <item name="VacappFX" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="UserManagement" type="462c0819:PsiDirectoryNode" />
+              <item name="Models" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="VacappFX" type="b2602c69:ProjectViewProjectNode" />
+              <item name="VacappFX" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="VacationManagement" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="VacappFX" type="b2602c69:ProjectViewProjectNode" />
+              <item name="VacappFX" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="VacationManagement" type="462c0819:PsiDirectoryNode" />
+              <item name="Models" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="VacappFX" type="b2602c69:ProjectViewProjectNode" />
+              <item name="VacappFX" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="WorkGroupManagement" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="VacappFX" type="b2602c69:ProjectViewProjectNode" />
+              <item name="VacappFX" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="WorkGroupManagement" type="462c0819:PsiDirectoryNode" />
+              <item name="Controllers" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="PackagesPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="VacappFX" type="58d84e3e:PackageViewProjectNode" />
+              <item name="VacappFX-master" type="616d4139:PackageViewModuleNode" />
+            </path>
+            <path>
+              <item name="VacappFX" type="58d84e3e:PackageViewProjectNode" />
+              <item name="VacappFX-master" type="616d4139:PackageViewModuleNode" />
+              <item name="Login" type="1f31426a:PackageElementNode" />
+            </path>
+            <path>
+              <item name="VacappFX" type="58d84e3e:PackageViewProjectNode" />
+              <item name="VacappFX-master" type="616d4139:PackageViewModuleNode" />
+              <item name="Login" type="1f31426a:PackageElementNode" />
+              <item name="Controllers" type="1f31426a:PackageElementNode" />
+            </path>
+            <path>
+              <item name="VacappFX" type="58d84e3e:PackageViewProjectNode" />
+              <item name="VacappFX-master" type="616d4139:PackageViewModuleNode" />
+              <item name="Login" type="1f31426a:PackageElementNode" />
+              <item name="Models" type="1f31426a:PackageElementNode" />
+            </path>
+            <path>
+              <item name="VacappFX" type="58d84e3e:PackageViewProjectNode" />
+              <item name="VacappFX-master" type="616d4139:PackageViewModuleNode" />
+              <item name="Login" type="1f31426a:PackageElementNode" />
+              <item name="Views" type="1f31426a:PackageElementNode" />
+            </path>
+            <path>
+              <item name="VacappFX" type="58d84e3e:PackageViewProjectNode" />
+              <item name="VacappFX-master" type="616d4139:PackageViewModuleNode" />
+              <item name="WorkGroupManagement" type="1f31426a:PackageElementNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+<<<<<<< HEAD
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../New folder" />
+=======
+      <pane id="AndroidView" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../Drivers DB/Drivers Java/Connector J 8.0/mysql-connector-java-8.0.11.jar!/" />
+>>>>>>> 731ad649ff56c69736651f339146086b072b8bf1
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.1565762" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="Values" />
+      <recent name="Interfaces" />
+    </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="UserManagement.Models" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+<<<<<<< HEAD
       <recent name="C:\Users\soycp\Desktop\VACAPP\github\VACAPP\src\VacationManagementSupervisor\Models" />
       <recent name="C:\Users\soycp\Desktop\VACAPP\VacappFX-master\src\VacationManagementEmployee\Views" />
       <recent name="C:\Users\soycp\Desktop\VACAPP\VacappFX-master\src\VacationManagementSupervisor\Views" />
       <recent name="C:\Users\soycp\Desktop\VACAPP\VacappFX-master\src\VacationManagementEmployee" />
       <recent name="C:\Users\soycp\Desktop\VACAPP\VacappFX-master\src\VacationManagementSupervisor" />
+=======
+      <recent name="C:\Users\migue\OneDrive\Documentos\GitHub\VacappFX\src\WorkGroupManagement\Views" />
+      <recent name="C:\Users\soycp\Desktop\VACAPP\VacappFX-master\src\VacationManagement\Views" />
+      <recent name="C:\Users\soycp\Desktop\VACAPP\VacappFX-master\src\UserManagement\Views" />
+      <recent name="C:\Users\soycp\Desktop\VACAPP\VacappFX-master\src\VacationManagement" />
+      <recent name="C:\Users\soycp\Desktop\VACAPP\VacappFX-master\src\UsersManagement" />
+>>>>>>> 731ad649ff56c69736651f339146086b072b8bf1
     </key>
   </component>
   <component name="RunDashboard">
@@ -253,11 +473,12 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="TODO" order="6" />
+<<<<<<< HEAD
       <window_info anchor="bottom" id="Messages" order="10" weight="0.32752994" />
       <window_info anchor="right" id="Palette&#9;" order="7" />
       <window_info id="Image Layers" order="2" />
@@ -266,15 +487,26 @@
       <window_info anchor="right" id="Maven Projects" order="6" />
       <window_info anchor="bottom" id="Version Control" order="9" show_stripe_button="false" />
       <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49947917" visible="true" weight="0.33079433" />
+=======
+      <window_info anchor="bottom" id="Messages" order="10" weight="0.3285151" />
+      <window_info anchor="right" id="Palette&#9;" order="7" />
+      <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" weight="0.3298292" />
+      <window_info anchor="right" id="Maven Projects" order="6" />
+      <window_info anchor="bottom" id="Version Control" order="9" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.25361368" />
+>>>>>>> 731ad649ff56c69736651f339146086b072b8bf1
       <window_info anchor="bottom" id="Terminal" order="7" />
-      <window_info id="Capture Tool" order="6" />
       <window_info id="Designer" order="3" />
+<<<<<<< HEAD
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.17395833" />
+=======
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.17375" />
+>>>>>>> 731ad649ff56c69736651f339146086b072b8bf1
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info id="UI Designer" order="4" />
-      <window_info anchor="right" id="Theme Preview" order="5" />
       <window_info id="Favorites" order="5" side_tool="true" />
+<<<<<<< HEAD
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39934713" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -311,6 +543,20 @@
       <window_info anchor="right" id="Maven Projects" order="6" />
       <window_info id="Favorites" order="5" side_tool="true" />
     </layout-to-restore>
+=======
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.3981603" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Capture Analysis" order="4" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="right" id="Theme Preview" order="5" />
+      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
+      <window_info id="Image Layers" order="2" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info id="Capture Tool" order="6" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.3285151" />
+    </layout>
+>>>>>>> 731ad649ff56c69736651f339146086b072b8bf1
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
@@ -322,10 +568,11 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="2" />
+      <option name="time" value="22" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
+<<<<<<< HEAD
     <entry file="jar://C:/Program Files/Java/jdk-9.0.4/lib/src.zip!/java.base/jdk/internal/reflect/NativeMethodAccessorImpl.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="344">
@@ -344,11 +591,48 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="195">
           <caret line="184" selection-start-line="184" selection-end-line="184" />
+=======
+    <entry file="jar://C:/Program Files/Java/jdk-9.0.4/lib/src.zip!/java.base/java/lang/Math.java" />
+    <entry file="file://$PROJECT_DIR$/src/Models/EmployeeCRUD.java" />
+    <entry file="jar://C:/Program Files/Java/jdk-9.0.4/lib/src.zip!/javafx.controls/javafx/scene/control/ChoiceBox.java" />
+    <entry file="jar://C:/Program Files/Java/jdk-9.0.4/lib/src.zip!/javafx.graphics/javafx/application/Platform.java" />
+    <entry file="file://$PROJECT_DIR$/src/Models/Vacation/EmployeeVacationData.java" />
+    <entry file="file://$PROJECT_DIR$/src/Models/Vacation/VacationRequestData.java" />
+    <entry file="jar://C:/Program Files/Java/jdk-9.0.4/lib/src.zip!/java.base/java/time/LocalDate.java" />
+    <entry file="jar://C:/Program Files/Java/jdk-9.0.4/lib/src.zip!/java.base/java/time/Duration.java" />
+    <entry file="file://$PROJECT_DIR$/Connector J 8.0/src/generated/java/com/mysql/cj/x/protobuf/MysqlxExpr.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="258">
+          <caret line="40" column="69" lean-forward="true" selection-start-line="40" selection-start-column="69" selection-end-line="40" selection-end-column="69" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk-9.0.4/lib/src.zip!/javafx.controls/javafx/scene/control/TableColumn.java" />
+    <entry file="file://$PROJECT_DIR$/src/Login/Models/EmployeeSearch.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="264">
+          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/VacationManagement/Controllers/EmployeeUIController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/VacationManagement/Controllers/SupervisorUIController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="29">
+          <caret line="81" column="9" lean-forward="true" selection-start-line="81" selection-start-column="9" selection-end-line="81" selection-end-column="9" />
+>>>>>>> 731ad649ff56c69736651f339146086b072b8bf1
         </state>
       </provider>
     </entry>
     <entry file="jar://C:/Program Files/Java/jdk-9.0.4/lib/src.zip!/java.base/jdk/internal/loader/BuiltinClassLoader.java">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="195">
           <caret line="581" selection-start-line="581" selection-end-line="581" />
         </state>
@@ -517,11 +801,208 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="48">
           <caret line="2" lean-forward="true" selection-start-line="2" selection-end-line="2" />
+=======
+        <state relative-caret-position="287">
+          <caret line="18" column="34" selection-start-line="18" selection-start-column="34" selection-end-line="18" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/UserManagement/Controllers/Listeners.java" />
+    <entry file="file://$PROJECT_DIR$/src/VacationManagement/Models/VacRequestSearch.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-289">
+          <caret line="16" column="56" selection-start-line="16" selection-start-column="35" selection-end-line="16" selection-end-column="56" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/UserManagement/Models/EmployeeUpdate.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="418">
+          <caret line="41" lean-forward="true" selection-start-line="41" selection-end-line="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/UserManagement/Models/EmployeeHandleStatus.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="61">
+          <caret line="12" column="55" lean-forward="true" selection-start-line="10" selection-start-column="3" selection-end-line="12" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/WorkGroupManagement/Models/WorkGroupHandleStatus.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="146">
+          <caret line="14" column="17" selection-start-line="14" selection-start-column="17" selection-end-line="14" selection-end-column="17" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/WorkGroupManagement/Models/WorkGroupDelete.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="418">
+          <caret line="39" column="9" lean-forward="true" selection-start-line="39" selection-start-column="9" selection-end-line="39" selection-end-column="9" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/WorkGroupManagement/Models/WorkGroupData.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="35" column="37" lean-forward="true" selection-start-line="35" selection-start-column="37" selection-end-line="35" selection-end-column="37" />
+          <folding>
+            <element signature="e#795#796#0" expanded="true" />
+            <element signature="e#928#929#0" expanded="true" />
+            <element signature="e#965#966#0" expanded="true" />
+            <element signature="e#1022#1023#0" expanded="true" />
+            <element signature="e#1074#1075#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Styles/styles.css" />
+    <entry file="file://$PROJECT_DIR$/src/WorkGroupManagement/Views/ShowMembers.fxml">
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="92">
+          <caret line="22" column="60" selection-start-line="22" selection-start-column="60" selection-end-line="22" selection-end-column="60" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/VacationManagement/Models/VacRequestGenerate.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/VacationManagement/Models/VacRequestHandleStatus.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="731">
+          <caret line="47" column="21" selection-start-line="47" selection-start-column="21" selection-end-line="47" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/VacationManagement/Models/VacRequestRead.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/VacationManagement/Models/VacEmployeeSearch.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/VacationManagement/Models/VacEmployee.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/VacationManagement/Models/VacRequest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="577">
+          <caret line="81" column="5" lean-forward="true" selection-start-line="81" selection-start-column="5" selection-end-line="81" selection-end-column="5" />
+          <folding>
+            <element signature="e#1550#1551#0" expanded="true" />
+            <element signature="e#1582#1583#0" expanded="true" />
+            <element signature="e#1619#1620#0" expanded="true" />
+            <element signature="e#1649#1650#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Login/Models/Employee.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/WorkGroupManagement/Models/WorkGroup.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="19" lean-forward="true" selection-start-line="9" selection-start-column="19" selection-end-line="9" selection-end-column="29" />
+          <folding>
+            <element signature="e#988#989#0" expanded="true" />
+            <element signature="e#1022#1023#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/UserManagement/Models/Employee.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret line="3" column="2" lean-forward="true" selection-start-line="3" selection-start-column="2" selection-end-line="3" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/UserManagement/Views/AdminUI.fxml">
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="69" column="21" lean-forward="true" selection-start-line="69" selection-start-column="21" selection-end-line="69" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Interfaces/Tables.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="4" selection-start-line="8" selection-start-column="4" selection-end-line="8" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk-10.0.1/lib/src.zip!/java.base/java/util/Optional.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="181">
+          <caret line="147" selection-start-line="147" selection-end-line="147" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/WorkGroupManagement/Views/WorkGroupRegister.fxml">
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="25" column="79" lean-forward="true" selection-start-line="25" selection-start-column="79" selection-end-line="25" selection-end-column="79" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Values/MessagesStrings.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="15" column="103" selection-start-line="15" selection-start-column="103" selection-end-line="15" selection-end-column="103" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/WorkGroupManagement/Models/WorkGroupRead.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="333">
+          <caret line="91" column="30" lean-forward="true" selection-start-line="91" selection-start-column="30" selection-end-line="91" selection-end-column="30" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/WorkGroupManagement/Models/WorkGroupUpdate.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="26" column="13" lean-forward="true" selection-start-line="26" selection-start-column="13" selection-end-line="26" selection-end-column="13" />
+>>>>>>> 731ad649ff56c69736651f339146086b072b8bf1
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/VacationManagementEmployee/Models/Abstracts/IVacEmployeeReport.java">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="120">
           <caret line="5" column="17" selection-start-line="5" selection-start-column="17" selection-end-line="5" selection-end-column="17" />
         </state>
@@ -538,11 +1019,16 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="48">
           <caret line="2" column="17" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="17" />
+=======
+        <state relative-caret-position="424">
+          <caret line="31" column="13" lean-forward="true" selection-start-line="31" selection-start-column="13" selection-end-line="31" selection-end-column="13" />
+>>>>>>> 731ad649ff56c69736651f339146086b072b8bf1
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/VacationManagementSupervisor/Controllers/SupervisorUIController.java">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="2111">
           <caret line="178" column="63" lean-forward="true" selection-start-line="178" selection-start-column="63" selection-end-line="178" selection-end-column="64" />
         </state>
@@ -580,11 +1066,70 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
           <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
+=======
+        <state relative-caret-position="272">
+          <caret line="173" column="51" selection-start-line="173" selection-start-column="51" selection-end-line="173" selection-end-column="51" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#5625#5626#0" expanded="true" />
+            <element signature="e#5662#5663#0" expanded="true" />
+            <element signature="e#7874#7875#0" expanded="true" />
+            <element signature="e#7901#7902#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/UserManagement/Controllers/WorkGroupRegisterController.java" />
+    <entry file="file://$PROJECT_DIR$/src/UserManagement/Models/EmployeeRead.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="527">
+          <caret line="36" lean-forward="true" selection-start-line="36" selection-end-line="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/WorkGroupManagement/Controllers/ShowMembersController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1597">
+          <caret line="128" column="62" selection-start-line="128" selection-start-column="62" selection-end-line="128" selection-end-column="62" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/WorkGroupManagement/Controllers/WorkGroupRegisterController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="316">
+          <caret line="182" column="17" lean-forward="true" selection-start-line="182" selection-start-column="17" selection-end-line="182" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Login/Views/RegistrationUI.fxml">
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="697">
+          <caret line="41" column="13" selection-start-line="41" selection-start-column="13" selection-end-line="41" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Database/DatabaseConnection.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="51" lean-forward="true" selection-start-line="51" selection-end-line="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Login/Models/EmployeeValidation.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-92">
+          <caret line="15" selection-start-line="15" selection-end-line="15" />
+>>>>>>> 731ad649ff56c69736651f339146086b072b8bf1
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/VacationManagementSupervisor/Models/Implementations/VacRequestReport.java">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="191">
           <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
         </state>
@@ -643,6 +1188,24 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="118">
           <caret line="11" column="16" lean-forward="true" selection-start-line="11" selection-start-column="16" selection-end-line="11" selection-end-column="16" />
+=======
+        <state relative-caret-position="102">
+          <caret line="9" column="19" selection-start-line="9" selection-start-column="19" selection-end-line="9" selection-end-column="85" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Login/Controllers/RegistrationUIController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="452">
+          <caret line="146" lean-forward="true" selection-start-line="146" selection-end-line="146" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Login/Controllers/LoginUIController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="71" column="42" selection-start-line="71" selection-start-column="42" selection-end-line="71" selection-end-column="42" />
+>>>>>>> 731ad649ff56c69736651f339146086b072b8bf1
         </state>
       </provider>
     </entry>
@@ -686,7 +1249,7 @@
       </state>
       <state key="JdkListConfigurable.UI">
         <settings>
-          <last-edited>9.0</last-edited>
+          <last-edited>10</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
@@ -703,7 +1266,6 @@
             <option name="proportions">
               <list>
                 <option value="0.2" />
-                <option value="0.6" />
               </list>
             </option>
           </splitter-proportions>
