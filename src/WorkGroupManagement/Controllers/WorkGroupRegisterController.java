@@ -45,7 +45,6 @@ public class WorkGroupRegisterController implements Initializable, Tables {
     @FXML private Button btnCreate;
 
     private ObservableList<Employee> supervisorsList;
-    private int tablePosition;
     Stage stage;
     Scene scene;
     Parent fxml;
@@ -56,7 +55,6 @@ public class WorkGroupRegisterController implements Initializable, Tables {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
         clearAll();
         initializeTable();
 
@@ -67,26 +65,24 @@ public class WorkGroupRegisterController implements Initializable, Tables {
 
     @FXML
     private void btnCreateAction(){
-        if(!txtGroupName.getText().isEmpty()) {
-            if(!WorkGroupRead.ifGroupExist(txtGroupName.getText())) {
-                LocalDate currentDate = LocalDate.now();
-                Employee leader = getSelected();
-                WorkGroup newGroup = new WorkGroup();
-                newGroup.setWorkGroupName(txtGroupName.getText());
-                newGroup.setFkLeaderID(leader.getId());
-                newGroup.setLeaderName(leader.getName());
-                newGroup.setCreatedDate(currentDate);
-                newGroup.setStatus(1);
-                WorkGroupUpdate.createGroup(newGroup);
-                groupCreated();
-                clearAll();
+            String name=toUpperCase(txtGroupName.getText());
+            if(name != null) {
+                if (!WorkGroupRead.ifGroupExist(name)) {
+                    LocalDate currentDate = LocalDate.now();
+                    Employee leader = getSelected();
+                    WorkGroup newGroup = new WorkGroup();
+                    newGroup.setWorkGroupName(name);
+                    newGroup.setFkLeaderID(leader.getId());
+                    newGroup.setLeaderName(leader.getName());
+                    newGroup.setCreatedDate(currentDate);
+                    newGroup.setStatus(1);
+                    WorkGroupUpdate.createGroup(newGroup);
+                    groupCreated();
+                    clearAll();
+                } else {
+                    groupExist();
+                }
             }
-            else{
-                groupExist();
-            }
-        }
-        else
-            alertEmpty();
 
     }
 
@@ -148,13 +144,6 @@ public class WorkGroupRegisterController implements Initializable, Tables {
         btnCreate.setDisable(true);
     }
 
-    private void alertEmpty(){
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle("Error");
-        alert.setHeaderText(Strings.fieldEmpty);
-        alert.showAndWait();
-    }
-
     private void groupCreated(){
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setHeaderText(Strings.createGroupSucced);
@@ -184,5 +173,43 @@ public class WorkGroupRegisterController implements Initializable, Tables {
             txtGroupName.clear();
         }
     }
+
+    private void restriction(String message){
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Restriction");
+        alert.setHeaderText(message);
+
+        Optional<ButtonType> result = alert.showAndWait();
+        try {
+            if (result.get() == ButtonType.OK) {
+                alert.close();
+            } else
+                alert.close();
+        }catch(NoSuchElementException e){
+            alert.close();
+        }
+    }
+
+    private String toUpperCase(String str){
+        if(!str.isEmpty()) {
+            if(containsDigit(str)) {
+                str.toLowerCase();
+                return str.substring(0, 1).toUpperCase() + str.substring(1);
+            }
+            else{
+                restriction(Strings.containsDigit);
+                return null;
+            }
+        }
+        else{
+            restriction(Strings.emptyField);
+            return null;
+        }
+
+    }
+    private boolean containsDigit(String str){
+        return str.matches("^[^\\d].*");
+    }
+
 
 }

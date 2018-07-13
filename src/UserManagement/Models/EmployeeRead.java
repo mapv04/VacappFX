@@ -25,6 +25,7 @@ public class EmployeeRead {
                 employee.setId(rs.getInt("pk_id_user"));
                 employee.setName(rs.getString("name_user"));
                 employee.setLastName(rs.getString("last_name"));
+                employee.setEmail(rs.getString(5));
                 employee.setStatus(rs.getInt("status_user"));
                 employee.setType(rs.getInt("type_user"));
                 employeeList.add(employee);
@@ -67,6 +68,28 @@ public class EmployeeRead {
             System.out.println("ERROR in sql statement on method EmployeeRead.getAllSupervisors error: "+e);
         }
 
+    }
+
+    public static void getJustEmployeesType(List<Employee> employees){
+        String sql="SELECT * FROM usuario u WHERE NOT EXISTS " +
+                "(SELECT NULL FROM workgroup_data wd WHERE wd.fk_usuario_id =u.pk_id_user)";
+        try{
+            preparedStatement=conn.prepareStatement(sql);
+            rs=preparedStatement.executeQuery();
+            while(rs.next()){
+                if(rs.getInt(7)==2) {
+                    Employee employee = new Employee();
+                    employee.setId(rs.getInt(1));
+                    String fullName = rs.getString(2) + " " + rs.getString(3);
+                    employee.setName(fullName);
+                    employee.setEmail(rs.getString(5));
+                    employee.setStatus(rs.getInt(8));
+                    employees.add(employee);
+                }
+            }
+        }catch (SQLException e){
+            System.out.println("ERROR in sql statement on method EmployeeRead.getJustEmployeesType error: "+e);
+        }
     }
 
 }

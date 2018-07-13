@@ -22,6 +22,7 @@ import javafx.event.ActionEvent;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -44,8 +45,6 @@ public class ShowMembersController implements Initializable,Tables {
     private ObservableList<WorkGroupData> groupDataList;
     private int tablePosition;
     public static int groupID;
-    ButtonType buttonTypeYes = new ButtonType("Yes");
-    ButtonType buttonTypeNo = new ButtonType("No");
     Scene scene;
     Parent fxml;
     Stage stage;
@@ -79,7 +78,6 @@ public class ShowMembersController implements Initializable,Tables {
             List<WorkGroupData> groupList = table.getSelectionModel().getSelectedItems();
             if (groupList.size() == 1) {
                 final WorkGroupData groupSelected = groupList.get(0);
-                btnDelete.setDisable(false);
                 return groupSelected;
             }
         }
@@ -90,6 +88,7 @@ public class ShowMembersController implements Initializable,Tables {
         @Override
         public void onChanged(ListChangeListener.Change<? extends WorkGroupData> c) {
             getSelected();
+            btnDelete.setDisable(false);
         }
     };
 
@@ -100,7 +99,9 @@ public class ShowMembersController implements Initializable,Tables {
             tablePosition=groupDataList.indexOf(group);
             WorkGroupDelete.deleteFromGroup(group.getEmployeeID());
             groupDataList.remove(tablePosition);
-            btnDelete.setDisable(true);
+            if(groupDataList.size()==0){
+                btnDelete.setDisable(true);
+            }
         }
     }
 
@@ -126,11 +127,19 @@ public class ShowMembersController implements Initializable,Tables {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirmation");
         alert.setContentText(message);
-        alert.getButtonTypes().setAll(buttonTypeYes, buttonTypeNo);
         Optional<ButtonType> result = alert.showAndWait();
-        if (result.get() == buttonTypeYes) {
-            return true;
+        try {
+            if (result.get() == ButtonType.OK) {
+                alert.close();
+                return true;
+            }
+            else {
+                alert.close();
+                return false;
+            }
+        }catch (NoSuchElementException e){
+            alert.close();
+            return false;
         }
-        return false;
     }
 }
