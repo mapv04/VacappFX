@@ -1,9 +1,12 @@
 package WorkGroupManagement.Controllers;
 
-import UserManagement.Models.Employee;
+import UserManagement.Models.Abstracts.AEmployee;
+import UserManagement.Models.Abstracts.IEmployeeRead;
+import UserManagement.Models.Implementations.EmployeeRead;
 import WorkGroupManagement.Interfaces.Tables;
-import WorkGroupManagement.Models.WorkGroupData;
-import WorkGroupManagement.Models.WorkGroupUpdate;
+import WorkGroupManagement.Models.Abstracts.IWorkGroupUpdate;
+import WorkGroupManagement.Models.Implementations.WorkGroupData;
+import WorkGroupManagement.Models.Implementations.WorkGroupUpdate;
 import WorkGroupManagement.Values.Strings;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
@@ -29,7 +32,7 @@ import java.util.ResourceBundle;
 
 public class AddMembersController implements Initializable,Tables {
     //@FXML private TextField txtSearch;
-    @FXML private TableView<Employee> table;
+    @FXML private TableView<AEmployee> table;
     @FXML private TableColumn columnID;
     @FXML private TableColumn columnName;
     @FXML private TableColumn columnEmail;
@@ -37,7 +40,7 @@ public class AddMembersController implements Initializable,Tables {
     @FXML private Button btnAdd;
 
     private static int groupID;
-    private ObservableList<Employee> employeeList;
+    private ObservableList<AEmployee> employeeList;
     private int tablePosition;
     Scene scene;
     Stage stage;
@@ -46,7 +49,7 @@ public class AddMembersController implements Initializable,Tables {
     public void initialize(URL location, ResourceBundle resources) {
         initializeTable();
 
-        final ObservableList<Employee> employeeList= table.getSelectionModel().getSelectedItems();
+        final ObservableList<AEmployee> employeeList= table.getSelectionModel().getSelectedItems();
         employeeList.addListener(tableSelector);
         btnAdd.setDisable(true);
 
@@ -68,25 +71,26 @@ public class AddMembersController implements Initializable,Tables {
         columnEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
         columnStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
         employeeList = FXCollections.observableArrayList();
-        UserManagement.Models.EmployeeRead.getJustEmployeesType(employeeList);
+        IEmployeeRead employeeRead= new EmployeeRead();
+        employeeRead.getJustEmployeesType(employeeList);
         table.setItems(employeeList);
     }
 
     @Override
-    public Employee getSelected() {
+    public AEmployee getSelected() {
         if (table != null) {
-            List<Employee> employeeList = table.getSelectionModel().getSelectedItems();
+            List<AEmployee> employeeList = table.getSelectionModel().getSelectedItems();
             if (employeeList.size() == 1) {
-                final Employee employeeSelected = employeeList.get(0);
+                final AEmployee employeeSelected = employeeList.get(0);
                 return employeeSelected;
             }
         }
         return null;
     }
 
-    private final ListChangeListener<Employee> tableSelector = new ListChangeListener<Employee>() {
+    private final ListChangeListener<AEmployee> tableSelector = new ListChangeListener<AEmployee>() {
         @Override
-        public void onChanged(ListChangeListener.Change<? extends Employee> c) {
+        public void onChanged(ListChangeListener.Change<? extends AEmployee> c) {
             getSelected();
             btnAdd.setDisable(false);
         }
@@ -96,7 +100,7 @@ public class AddMembersController implements Initializable,Tables {
     private void btnAddAction(){
 
         if(confirmAdd(Strings.addNewMember)) {
-            Employee employee = getSelected();
+            AEmployee employee = getSelected();
             tablePosition = employeeList.indexOf(employee);
             WorkGroupData newMember = new WorkGroupData();
             LocalDate currentDate = LocalDate.now();
@@ -104,7 +108,8 @@ public class AddMembersController implements Initializable,Tables {
             newMember.setEmployeeID(employee.getId());
             newMember.setEmployeeName(employee.getName());
             newMember.setAddedDate(currentDate);
-            WorkGroupUpdate.addMember(newMember);
+            IWorkGroupUpdate workGroupUpdate= new WorkGroupUpdate();
+            workGroupUpdate.addMember(newMember);
             employeeList.remove(tablePosition);
             if (employeeList.size() == 0) {
                 btnAdd.setDisable(true);

@@ -1,12 +1,15 @@
 package WorkGroupManagement.Controllers;
 
+import UserManagement.Models.Abstracts.AEmployee;
+import UserManagement.Models.Abstracts.IEmployeeRead;
+import UserManagement.Models.Implementations.EmployeeRead;
 import WorkGroupManagement.Interfaces.Tables;
-import UserManagement.Models.Employee;
-import UserManagement.Models.EmployeeRead;
+import WorkGroupManagement.Models.Abstracts.IWorkGroupRead;
+import WorkGroupManagement.Models.Abstracts.IWorkGroupUpdate;
+import WorkGroupManagement.Models.Implementations.WorkGroup;
+import WorkGroupManagement.Models.Implementations.WorkGroupRead;
+import WorkGroupManagement.Models.Implementations.WorkGroupUpdate;
 import WorkGroupManagement.Values.Strings;
-import WorkGroupManagement.Models.WorkGroup;
-import WorkGroupManagement.Models.WorkGroupRead;
-import WorkGroupManagement.Models.WorkGroupUpdate;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
@@ -36,7 +39,7 @@ import java.util.ResourceBundle;
  */
 public class WorkGroupRegisterController implements Initializable, Tables {
 
-    @FXML private TableView<Employee> table;
+    @FXML private TableView<AEmployee> table;
     @FXML private TableColumn columnSupervisorID;
     @FXML private TableColumn columnSupervisorName;
     @FXML private TableColumn columnSupervisorStatus;
@@ -44,7 +47,7 @@ public class WorkGroupRegisterController implements Initializable, Tables {
     @FXML private Button btnCancel;
     @FXML private Button btnCreate;
 
-    private ObservableList<Employee> supervisorsList;
+    private ObservableList<AEmployee> supervisorsList;
     Stage stage;
     Scene scene;
     Parent fxml;
@@ -58,7 +61,7 @@ public class WorkGroupRegisterController implements Initializable, Tables {
         clearAll();
         initializeTable();
 
-        final ObservableList<Employee> supervisorList= table.getSelectionModel().getSelectedItems();
+        final ObservableList<AEmployee> supervisorList= table.getSelectionModel().getSelectedItems();
         supervisorList.addListener(tableSelector);
 
     }
@@ -66,17 +69,19 @@ public class WorkGroupRegisterController implements Initializable, Tables {
     @FXML
     private void btnCreateAction(){
             String name=toUpperCase(txtGroupName.getText());
+            IWorkGroupRead workGroupRead= new WorkGroupRead();
             if(name != null) {
-                if (!WorkGroupRead.ifGroupExist(name)) {
+                if (!workGroupRead.ifGroupExist(name)) {
                     LocalDate currentDate = LocalDate.now();
-                    Employee leader = getSelected();
+                    AEmployee leader = getSelected();
                     WorkGroup newGroup = new WorkGroup();
                     newGroup.setWorkGroupName(name);
                     newGroup.setFkLeaderID(leader.getId());
                     newGroup.setLeaderName(leader.getName());
                     newGroup.setCreatedDate(currentDate);
                     newGroup.setStatus(1);
-                    WorkGroupUpdate.createGroup(newGroup);
+                    IWorkGroupUpdate workGroupUpdate= new WorkGroupUpdate();
+                    workGroupUpdate.createGroup(newGroup);
                     groupCreated();
                     clearAll();
                 } else {
@@ -111,17 +116,18 @@ public class WorkGroupRegisterController implements Initializable, Tables {
         columnSupervisorName.setCellValueFactory(new PropertyValueFactory<>("name"));
         columnSupervisorStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
         supervisorsList= FXCollections.observableArrayList();
-        EmployeeRead.getAllSupervisors(supervisorsList);
+        IEmployeeRead employeeRead= new EmployeeRead();
+        employeeRead.getAllSupervisors(supervisorsList);
         table.setItems(supervisorsList);
 
     }
 
     @Override
-    public Employee getSelected() {
+    public AEmployee getSelected() {
         if (table != null) {
-            List<Employee> supervisorList = table.getSelectionModel().getSelectedItems();
+            List<AEmployee> supervisorList = table.getSelectionModel().getSelectedItems();
             if (supervisorList.size() == 1) {
-                final Employee supervisorSelected = supervisorList.get(0);
+                final AEmployee supervisorSelected = supervisorList.get(0);
                 return supervisorSelected;
             }
         }
@@ -129,9 +135,9 @@ public class WorkGroupRegisterController implements Initializable, Tables {
 
     }
 
-    private final ListChangeListener<Employee> tableSelector = new ListChangeListener<Employee>() {
+    private final ListChangeListener<AEmployee> tableSelector = new ListChangeListener<AEmployee>() {
         @Override
-        public void onChanged(ListChangeListener.Change<? extends Employee> c) {
+        public void onChanged(ListChangeListener.Change<? extends AEmployee> c) {
             getSelected();
             btnCancel.setDisable(false);
             btnCreate.setDisable(false);

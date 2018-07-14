@@ -1,19 +1,23 @@
-package UserManagement.Models;
+package UserManagement.Models.Implementations;
 
 import Database.DatabaseConnection;
+import UserManagement.Models.Abstracts.AEmployee;
+import UserManagement.Models.Abstracts.IEmployeeRead;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-public class EmployeeRead {
+public class EmployeeRead implements IEmployeeRead {
 
     private static ResultSet rs;
     private static Connection conn= DatabaseConnection.getInstance().getConnection();
     private static PreparedStatement preparedStatement;
 
-    public  static void getAllEmployees(List<Employee> employeeList){
+    @Override
+    public void getAllEmployees(List<AEmployee> employeeList){
         //List<Employee> employeeList= new ArrayList<>();
         rs = null;
         String sql="select * from usuario where pk_id_user <> 1;";
@@ -37,7 +41,8 @@ public class EmployeeRead {
     }
 
 
-    public static int getStatus(int employeeID){
+    @Override
+    public int getStatus(int employeeID){
         String sql="select status_user from usuario where pk_id_user="+employeeID+";";
         try {
             preparedStatement = conn.prepareStatement(sql);
@@ -52,7 +57,8 @@ public class EmployeeRead {
         return -1;
     }
 
-    public static void getAllSupervisors(List<Employee> supervisors){
+    @Override
+    public void getAllSupervisors(List<AEmployee> supervisors){
         String sql="select * from usuario where type_user=1;";
         try{
             preparedStatement=conn.prepareStatement(sql);
@@ -71,7 +77,8 @@ public class EmployeeRead {
 
     }
 
-    public static void getJustEmployeesType(List<Employee> employees){
+    @Override
+    public void getJustEmployeesType(List<AEmployee> employees){
         String sql="SELECT * FROM usuario u WHERE NOT EXISTS " +
                 "(SELECT NULL FROM workgroup_data wd WHERE wd.fk_usuario_id =u.pk_id_user)";
         try{

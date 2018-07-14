@@ -1,18 +1,18 @@
-package WorkGroupManagement.Models;
+package WorkGroupManagement.Models.Implementations;
 
 import Database.DatabaseConnection;
+import WorkGroupManagement.Models.Abstracts.IWorkGroupHandleStatus;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class WorkGroupHandleStatus {
-    private static ResultSet rs;
+public class WorkGroupHandleStatus implements IWorkGroupHandleStatus {
     private static Connection conn= DatabaseConnection.getInstance().getConnection();
     private static PreparedStatement preparedStatement;
 
-    public static void activateWorkGroup(int groupID){
+    @Override
+    public void activateWorkGroup(int groupID){
         String sql="update workgroup set workgroup_status=1 where pk_workgroup_id=?;";
         try {
             preparedStatement = conn.prepareStatement(sql);
@@ -24,7 +24,8 @@ public class WorkGroupHandleStatus {
 
     }
 
-    public static void desactivateWorkGroup(int groupID){
+    @Override
+    public void desactivateWorkGroup(int groupID){
         String sql="update workgroup set workgroup_status=0 where pk_workgroup_id=?;";
         try {
             preparedStatement = conn.prepareStatement(sql);

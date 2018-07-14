@@ -1,18 +1,18 @@
-package UserManagement.Models;
+package UserManagement.Models.Implementations;
 
 import Database.DatabaseConnection;
+import UserManagement.Models.Abstracts.IEmployeeHandleStatus;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class EmployeeHandleStatus {
-    private static ResultSet rs;
+public class EmployeeHandleStatus implements IEmployeeHandleStatus {
     private static Connection conn= DatabaseConnection.getInstance().getConnection();
     private static PreparedStatement preparedStatement;
 
-    public static void activateUser(int employeeID){
+    @Override
+    public void activateUser(int employeeID){
         String sql="update usuario set status_user=1 where pk_id_user=?";
         try {
             preparedStatement = conn.prepareStatement(sql);
@@ -23,7 +23,8 @@ public class EmployeeHandleStatus {
         }
     }
 
-    public static void desactiateUser(int employeeID){
+    @Override
+    public void desactivateUser(int employeeID){
         String sql="update usuario set status_user=0 where pk_id_user=?";
         try {
             preparedStatement = conn.prepareStatement(sql);

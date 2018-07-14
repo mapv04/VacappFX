@@ -1,20 +1,21 @@
-package UserManagement.Models;
+package UserManagement.Models.Implementations;
 
 import Database.DatabaseConnection;
+import UserManagement.Models.Abstracts.IEmployeeDelete;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public  class EmployeeDelete {
+public  class EmployeeDelete implements IEmployeeDelete {
 
     private static Connection conn= DatabaseConnection.getInstance().getConnection();
     private static PreparedStatement preparedStatement;
 
 
-
-    public  static void deleteEmployee(int employeeID) {
+    @Override
+    public void deleteEmployee(int employeeID) {
         // @RobertoR this is to delete  vac_request tables has to be before usuario delete
         try {
             String sqlQuery1 = "DELETE FROM vac_employee_data WHERE fk_id_user = ?;";

@@ -1,83 +1,91 @@
-package UserManagement.Models;
+package UserManagement.Models.Implementations;
+
+import UserManagement.Models.Abstracts.AEmployee;
 
 /**
  *
  * @author migue
  */
-public class Employee {
-    private int id;
-    private String name;
-    private String lastName;
-    private String username;
-    private String email;
-    private String password;
-    private int type;
-    private int status;
+public class Employee extends AEmployee {
 
+
+    @Override
     public int getId() {
         return id;
     }
-    public void setId(int id){
-        this.id=id;
+
+    @Override
+    public void setId(int id) {
+        super.id=id;
     }
 
+    @Override
     public String getName() {
         return name;
     }
 
+    @Override
     public void setName(String name) {
-        this.name = name;
+        super.name=name;
     }
 
+    @Override
     public String getLastName() {
         return lastName;
     }
 
+    @Override
     public void setLastName(String lastName) {
-        this.lastName = lastName;
+        super.lastName=lastName;
     }
 
+    @Override
     public String getUsername() {
         return username;
     }
 
+    @Override
     public void setUsername(String username) {
-        this.username = username;
+        super.username=username;
     }
-    
 
+    @Override
     public String getEmail() {
         return email;
     }
 
+    @Override
     public void setEmail(String email) {
-        this.email = email;
+        super.email=email;
     }
 
+    @Override
     public String getPassword() {
         return password;
     }
 
+    @Override
     public void setPassword(String password) {
-        this.password = password;
+        super.password=password;
     }
 
+    @Override
     public int getType() {
         return type;
     }
 
+    @Override
     public void setType(int type) {
-        this.type = type;
+        super.type=type;
     }
 
+    @Override
     public int getStatus() {
         return status;
     }
 
+    @Override
     public void setStatus(int status) {
-        this.status = status;
+        super.status= status;
     }
-    
-    
-    
 }

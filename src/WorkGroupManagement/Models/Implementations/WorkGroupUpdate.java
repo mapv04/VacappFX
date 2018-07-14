@@ -1,15 +1,21 @@
-package WorkGroupManagement.Models;
+package WorkGroupManagement.Models.Implementations;
 
 import Database.DatabaseConnection;
+import WorkGroupManagement.Models.Abstracts.AWorkGroup;
+import WorkGroupManagement.Models.Abstracts.AWorkGroupData;
+import WorkGroupManagement.Models.Abstracts.IWorkGroupUpdate;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
-public class WorkGroupUpdate {
-    private static ResultSet rs;
+public class WorkGroupUpdate implements IWorkGroupUpdate {
     private static Connection conn= DatabaseConnection.getInstance().getConnection();
     private static PreparedStatement preparedStatement;
 
-    public static void editGroup(WorkGroup group){
+    @Override
+    public void editGroup(AWorkGroup group){
         String sql="update workgroup set workgroup_name='"+ group.getWorkGroupName()
                 +"' where pk_workgroup_id="+group.getWorkGroupID()+";";
         try {
@@ -21,7 +27,8 @@ public class WorkGroupUpdate {
 
     }
 
-    public static void createGroup(WorkGroup group){
+    @Override
+    public void createGroup(AWorkGroup group){
         String sql="insert into workgroup (workgroup_name,fk_leader_id,leader_name,created_date,workgroup_status) " +
                 "values (?,?,?,?,?);";
         try {
@@ -37,7 +44,8 @@ public class WorkGroupUpdate {
         }
     }
 
-    public static void addMember(WorkGroupData newMember){
+    @Override
+    public void addMember(AWorkGroupData newMember){
         String sql="insert into workgroup_data(fk_workgroup_id, fk_usuario_id,employee_name,added_date) values " +
                 "(?,?,?,?);";
         try{

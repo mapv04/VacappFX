@@ -1,13 +1,16 @@
 package WorkGroupManagement.Controllers;
 
-import WorkGroupManagement.Values.Strings;
 import WorkGroupManagement.Interfaces.Tables;
-import WorkGroupManagement.Models.WorkGroupData;
-import WorkGroupManagement.Models.WorkGroupDelete;
-import WorkGroupManagement.Models.WorkGroupRead;
+import WorkGroupManagement.Models.Abstracts.AWorkGroupData;
+import WorkGroupManagement.Models.Abstracts.IWorkGroupDelete;
+import WorkGroupManagement.Models.Abstracts.IWorkGroupRead;
+import WorkGroupManagement.Models.Implementations.WorkGroupDelete;
+import WorkGroupManagement.Models.Implementations.WorkGroupRead;
+import WorkGroupManagement.Values.Strings;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -18,7 +21,6 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
-import javafx.event.ActionEvent;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
@@ -34,15 +36,14 @@ import java.util.ResourceBundle;
 public class ShowMembersController implements Initializable,Tables {
 
     @FXML private Label labelName;
-    @FXML private TableView<WorkGroupData> table;
+    @FXML private TableView<AWorkGroupData> table;
     @FXML private TableColumn columnID;
     @FXML private TableColumn columnName;
     @FXML private TableColumn columnStatus;
     @FXML private TableColumn columnDateAdded;
     @FXML private Button btnDelete;
-    @FXML private Button btnBack;
 
-    private ObservableList<WorkGroupData> groupDataList;
+    private ObservableList<AWorkGroupData> groupDataList;
     private int tablePosition;
     public static int groupID;
     Scene scene;
@@ -51,11 +52,12 @@ public class ShowMembersController implements Initializable,Tables {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        labelName.setText(WorkGroupRead.getGroupName(groupID));
+        IWorkGroupRead workGroupRead= new WorkGroupRead();
+        labelName.setText(workGroupRead.getGroupName(groupID));
 
         initializeTable();
         btnDelete.setDisable(true);
-        final ObservableList<WorkGroupData> groupList= table.getSelectionModel().getSelectedItems();
+        final ObservableList<AWorkGroupData> groupList= table.getSelectionModel().getSelectedItems();
         groupList.addListener(tableSelector);
     }
 
@@ -67,26 +69,27 @@ public class ShowMembersController implements Initializable,Tables {
         columnStatus.setCellValueFactory(new PropertyValueFactory<>("employeeStatus"));
         columnDateAdded.setCellValueFactory(new PropertyValueFactory<>("addedDate"));
         groupDataList = FXCollections.observableArrayList();
-        WorkGroupRead.getWorkgroupData(groupDataList,this.groupID);
+        IWorkGroupRead workGroupRead = new WorkGroupRead();
+        workGroupRead.getWorkgroupData(groupDataList,this.groupID);
         table.setItems(groupDataList);
     }
 
 
     @Override
-    public WorkGroupData getSelected() {
+    public AWorkGroupData getSelected() {
         if (table != null) {
-            List<WorkGroupData> groupList = table.getSelectionModel().getSelectedItems();
+            List<AWorkGroupData> groupList = table.getSelectionModel().getSelectedItems();
             if (groupList.size() == 1) {
-                final WorkGroupData groupSelected = groupList.get(0);
+                final AWorkGroupData groupSelected = groupList.get(0);
                 return groupSelected;
             }
         }
         return null;
     }
 
-    private final ListChangeListener<WorkGroupData> tableSelector = new ListChangeListener<WorkGroupData>() {
+    private final ListChangeListener<AWorkGroupData> tableSelector = new ListChangeListener<AWorkGroupData>() {
         @Override
-        public void onChanged(ListChangeListener.Change<? extends WorkGroupData> c) {
+        public void onChanged(ListChangeListener.Change<? extends AWorkGroupData> c) {
             getSelected();
             btnDelete.setDisable(false);
         }
@@ -95,9 +98,10 @@ public class ShowMembersController implements Initializable,Tables {
     @FXML
     private void btnDeleteFromGroupAction(){
         if(confirmChanges(Strings.deleteEmployeeFromGroup)) {
-            WorkGroupData group = getSelected();
+            AWorkGroupData group = getSelected();
             tablePosition=groupDataList.indexOf(group);
-            WorkGroupDelete.deleteFromGroup(group.getEmployeeID());
+            IWorkGroupDelete workGroupDelete= new WorkGroupDelete();
+            workGroupDelete.deleteFromGroup(group.getEmployeeID());
             groupDataList.remove(tablePosition);
             if(groupDataList.size()==0){
                 btnDelete.setDisable(true);

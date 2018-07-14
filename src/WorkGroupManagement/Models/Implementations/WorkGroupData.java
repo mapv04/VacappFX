@@ -1,51 +1,58 @@
-package WorkGroupManagement.Models;
+package WorkGroupManagement.Models.Implementations;
+
+import WorkGroupManagement.Models.Abstracts.AWorkGroupData;
 
 import java.time.LocalDate;
 
-public class WorkGroupData {
-    private int groupID;
-    private int employeeID;
-    private String employeeName;
-    private LocalDate addedDate;
-    private int employeeStatus;
+public class WorkGroupData extends AWorkGroupData {
 
+    @Override
     public int getGroupID() {
-        return groupID;
+        return  groupID;
     }
 
+    @Override
     public void setGroupID(int groupID) {
-        this.groupID = groupID;
+        super.groupID=groupID;
     }
 
+    @Override
     public int getEmployeeID() {
         return employeeID;
     }
 
+    @Override
     public void setEmployeeID(int employeeID) {
-        this.employeeID = employeeID;
+        super.employeeID=employeeID;
     }
 
+    @Override
     public String getEmployeeName() {
         return employeeName;
     }
 
+    @Override
     public void setEmployeeName(String employeeName) {
-        this.employeeName = employeeName;
+        super.employeeName=employeeName;
     }
 
+    @Override
     public LocalDate getAddedDate() {
         return addedDate;
     }
 
+    @Override
     public void setAddedDate(LocalDate addedDate) {
-        this.addedDate = addedDate;
+        super.addedDate=addedDate;
     }
 
+    @Override
     public int getEmployeeStatus() {
         return employeeStatus;
     }
 
+    @Override
     public void setEmployeeStatus(int employeeStatus) {
-        this.employeeStatus = employeeStatus;
+        super.employeeStatus=employeeStatus;
     }
 }

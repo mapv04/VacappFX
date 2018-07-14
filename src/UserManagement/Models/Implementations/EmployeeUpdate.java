@@ -1,18 +1,20 @@
-package UserManagement.Models;
+package UserManagement.Models.Implementations;
 
 import Database.DatabaseConnection;
+import UserManagement.Models.Abstracts.AEmployee;
+import UserManagement.Models.Abstracts.IEmployeeUpdate;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class EmployeeUpdate {
+public class EmployeeUpdate implements IEmployeeUpdate {
     private static Connection conn= DatabaseConnection.getInstance().getConnection();
     private static PreparedStatement preparedStatement;
 
-
-    public static void modifyEmployee(Employee employee) {
+    @Override
+    public void modifyEmployee(AEmployee employee) {
         String sql="update usuario set name_user='"+employee.getName()+"', last_name='"+employee.getLastName()
                 +"', type_user='"+employee.getType()+"' where pk_id_user='"+employee.getId()+"';";
         String sql2="update workgroup_data set employee_name='"+ employee.getName() +" "+employee.getLastName()+"' where " +

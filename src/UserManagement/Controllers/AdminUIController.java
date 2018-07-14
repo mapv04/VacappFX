@@ -1,11 +1,13 @@
 package UserManagement.Controllers;
 
 import UserManagement.Interfaces.Tables;
-import UserManagement.Models.*;
+import UserManagement.Models.Abstracts.*;
+import UserManagement.Models.Implementations.*;
 import UserManagement.Values.Strings;
 import WorkGroupManagement.Controllers.AddMembersController;
 import WorkGroupManagement.Controllers.ShowMembersController;
-import WorkGroupManagement.Models.*;
+import WorkGroupManagement.Models.Abstracts.*;
+import WorkGroupManagement.Models.Implementations.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
@@ -49,7 +51,7 @@ public class AdminUIController implements Initializable, Tables {
     @FXML private Button btnActivateUser;
     @FXML private Button btnDesactivateUser;
 
-    @FXML private TableView<Employee> table;
+    @FXML private TableView<AEmployee> table;
     @FXML private TableColumn columnID;
     @FXML private TableColumn columnType;
     @FXML private TableColumn columnName;
@@ -61,7 +63,7 @@ public class AdminUIController implements Initializable, Tables {
     @FXML private TextField txtGroupName;
 
 
-    @FXML private TableView<WorkGroup> tableWorkgroup;
+    @FXML private TableView<AWorkGroup> tableWorkgroup;
     @FXML private TableColumn columnWorkID;
     @FXML private TableColumn columnWorkName;
     @FXML private TableColumn columnLeaderName;
@@ -77,8 +79,8 @@ public class AdminUIController implements Initializable, Tables {
     @FXML private Button btnDesactivateGroup;
 
 
-    ObservableList<WorkGroup> workGroupList;
-    ObservableList<Employee> employeeList;
+    ObservableList<AWorkGroup> workGroupList;
+    ObservableList<AEmployee> employeeList;
     private int tablePosition;
     Scene scene;
     Parent fxml;
@@ -98,8 +100,8 @@ public class AdminUIController implements Initializable, Tables {
         disableAllGroupBTN();
 
         //add the listeners
-        final ObservableList<WorkGroup> tableGroup= tableWorkgroup.getSelectionModel().getSelectedItems();
-        final ObservableList<Employee> tableEmployees = table.getSelectionModel().getSelectedItems();
+        final ObservableList<AWorkGroup> tableGroup= tableWorkgroup.getSelectionModel().getSelectedItems();
+        final ObservableList<AEmployee> tableEmployees = table.getSelectionModel().getSelectedItems();
         tableGroup.addListener(tableGroupSelector);
         tableEmployees.addListener(tableSelector);
     }
@@ -113,13 +115,14 @@ public class AdminUIController implements Initializable, Tables {
         columnLastName.setCellValueFactory(new PropertyValueFactory<>("lastName"));
         columnStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
         employeeList = FXCollections.observableArrayList();
-        EmployeeRead.getAllEmployees(employeeList);
+        IEmployeeRead employeeRead= new EmployeeRead();
+        employeeRead.getAllEmployees(employeeList);
         table.setItems(employeeList);
     }
 
 
     public void setSelected() {
-        final Employee employee = getSelected();
+        final AEmployee employee = getSelected();
         tablePosition = employeeList.indexOf(employee);
         if (employee != null) {
             txtEmployeeID.setText(String.valueOf(employee.getId()));
@@ -144,11 +147,11 @@ public class AdminUIController implements Initializable, Tables {
     }
 
     @Override
-    public Employee getSelected() {
+    public AEmployee getSelected() {
         if (table != null) {
-            List<Employee> employeeList = table.getSelectionModel().getSelectedItems();
+            List<AEmployee> employeeList = table.getSelectionModel().getSelectedItems();
             if (employeeList.size() == 1) {
-                final Employee employeeSelected = employeeList.get(0);
+                final AEmployee employeeSelected = employeeList.get(0);
                 return employeeSelected;
             }
         }
@@ -157,20 +160,21 @@ public class AdminUIController implements Initializable, Tables {
 
 
 
-    private final ListChangeListener<Employee> tableSelector = new ListChangeListener<Employee>() {
+    private final ListChangeListener<AEmployee> tableSelector = new ListChangeListener<AEmployee>() {
         @Override
-        public void onChanged(ListChangeListener.Change<? extends Employee> c) {
+        public void onChanged(ListChangeListener.Change<? extends AEmployee> c) {
             setSelected();
         }
     };
 
     @FXML
     private void btnDeleteAction() {
-        Employee employee=getSelected();
+        AEmployee employee=getSelected();
         if(employee.getType()!=0) {
             if (confirmChanges(Strings.deleteEmployee)) {
                 int employeeID = Integer.parseInt(txtEmployeeID.getText());
-                EmployeeDelete.deleteEmployee(employeeID);
+                IEmployeeDelete employeeDelete= new EmployeeDelete();
+                employeeDelete.deleteEmployee(employeeID);
                 employeeList.remove(tablePosition);
             }
         }
@@ -185,7 +189,7 @@ public class AdminUIController implements Initializable, Tables {
 
     @FXML
     private void btnEditAction(){
-        Employee modifiedEmployee = getSelected();
+        AEmployee modifiedEmployee = getSelected();
         if(modifiedEmployee.getType()!=0) {
             modifiedEmployee.setName(toUpperCase(txtEmployeeName.getText()));
             if (modifiedEmployee.getName() != null) {
@@ -200,7 +204,8 @@ public class AdminUIController implements Initializable, Tables {
 
                     modifiedEmployee.setType(getStatus());
                     if (confirmChanges(Strings.editEmployee)) {
-                        EmployeeUpdate.modifyEmployee(modifiedEmployee);
+                        IEmployeeUpdate employeeUpdate= new EmployeeUpdate();
+                        employeeUpdate.modifyEmployee(modifiedEmployee);
                         employeeList.set(tablePosition, modifiedEmployee);
                         clearText();
                     }
@@ -214,11 +219,12 @@ public class AdminUIController implements Initializable, Tables {
 
     @FXML
     private void btnActivateEmployeeAction(){
-        Employee employee= getSelected();
+        AEmployee employee= getSelected();
         if(employee.getType()!=0) {
             if (confirmChanges(Strings.activateUser)) {
                 employee.setStatus(1);
-                EmployeeHandleStatus.activateUser(Integer.parseInt(txtEmployeeID.getText()));
+                IEmployeeHandleStatus employeeHandleStatus= new EmployeeHandleStatus();
+                employeeHandleStatus.activateUser(Integer.parseInt(txtEmployeeID.getText()));
                 employeeList.set(tablePosition, employee);
                 clearText();
             }
@@ -229,11 +235,12 @@ public class AdminUIController implements Initializable, Tables {
 
     @FXML
     private void btnDesactivateEmployeeAction(ActionEvent event){
-        Employee employee= getSelected();
+        AEmployee employee= getSelected();
         if(employee.getType()!=0) {
             if (confirmChanges(Strings.desactivateUser)) {
                 employee.setStatus(0);
-                EmployeeHandleStatus.activateUser(Integer.parseInt(txtEmployeeID.getText()));
+                IEmployeeHandleStatus employeeHandleStatus= new EmployeeHandleStatus();
+                employeeHandleStatus.desactivateUser(Integer.parseInt(txtEmployeeID.getText()));
                 employeeList.set(tablePosition, employee);
                 clearText();
             }
@@ -262,7 +269,7 @@ public class AdminUIController implements Initializable, Tables {
         return -1;
     }
 
-    private void setTypeChoiceBox(Employee employee){
+    private void setTypeChoiceBox(AEmployee employee){
         switch (employee.getType()) {
             case 0:
                 choiceType.setValue("Admin");
@@ -301,25 +308,27 @@ public class AdminUIController implements Initializable, Tables {
         columnCreatedDate.setCellValueFactory(new PropertyValueFactory<>("createdDate"));
         columnWorkStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
         workGroupList=FXCollections.observableArrayList();
-        WorkGroupRead.getAllWorkgroups(workGroupList);
+        IWorkGroupRead workGroupRead= new WorkGroupRead();
+        workGroupRead.getAllWorkgroups(workGroupList);
         tableWorkgroup.setItems(workGroupList);
 
     }
 
-    private final ListChangeListener<WorkGroup> tableGroupSelector= new ListChangeListener<WorkGroup>() {
+    private final ListChangeListener<AWorkGroup> tableGroupSelector= new ListChangeListener<AWorkGroup>() {
         @Override
-        public void onChanged(Change<? extends WorkGroup> c) {
+        public void onChanged(Change<? extends AWorkGroup> c) {
             setSelectedWorkGroup();
         }
     };
 
     private void setSelectedWorkGroup(){
-        final WorkGroup group = getSelectedWorkGroup();
+        final AWorkGroup group = getSelectedWorkGroup();
         tablePosition = workGroupList.indexOf(group);
         if (group != null) {
             txtGroupID.setText(String.valueOf(group.getWorkGroupID()));
             txtGroupName.setText(group.getWorkGroupName());
-            txtGroupMembers.setText(String.valueOf(WorkGroupRead.getMembersCount(group.getWorkGroupID())));
+            IWorkGroupRead workGroupRead= new WorkGroupRead();
+            txtGroupMembers.setText(String.valueOf(workGroupRead.getMembersCount(group.getWorkGroupID())));
             txtEmployeeStatus.setText(String.valueOf(group.getStatus()));
             btnEditGroup.setDisable(false);
             btnDeleteGroup.setDisable(false);
@@ -337,11 +346,11 @@ public class AdminUIController implements Initializable, Tables {
         }
     }
 
-    private WorkGroup getSelectedWorkGroup(){
+    private AWorkGroup getSelectedWorkGroup(){
         if (tableWorkgroup != null) {
-            List<WorkGroup> workGroupList = tableWorkgroup.getSelectionModel().getSelectedItems();
+            List<AWorkGroup> workGroupList = tableWorkgroup.getSelectionModel().getSelectedItems();
             if (workGroupList.size() == 1) {
-                final WorkGroup groupSelected = workGroupList.get(0);
+                final AWorkGroup groupSelected = workGroupList.get(0);
                 return groupSelected;
             }
         }
@@ -364,26 +373,29 @@ public class AdminUIController implements Initializable, Tables {
     }
 
     @FXML
-    private void btnEditGroupAction(ActionEvent event){
-        WorkGroup groupModified= new WorkGroup();
+    private void btnEditGroupAction(){
+        AWorkGroup groupModified= new WorkGroup();
         groupModified.setWorkGroupID(Integer.parseInt(txtGroupID.getText()));
         groupModified.setWorkGroupName(txtGroupName.getText());
         groupModified.setLeaderName((String) columnLeaderName.getCellObservableValue(tablePosition).getValue());
         groupModified.setCreatedDate((LocalDate) columnCreatedDate.getCellObservableValue(tablePosition).getValue());
         groupModified.setStatus((Integer) columnStatus.getCellObservableValue(tablePosition).getValue());
         if (confirmChanges(Strings.editWorkGroup)) {
-            WorkGroupUpdate.editGroup(groupModified);
+            IWorkGroupUpdate workGroupUpdate= new WorkGroupUpdate();
+            workGroupUpdate.editGroup(groupModified);
             workGroupList.set(tablePosition, groupModified);
             clearGroupText();
         }
-        WorkGroupUpdate.editGroup(groupModified);
+        IWorkGroupUpdate workGroupUpdate= new WorkGroupUpdate();
+        workGroupUpdate.editGroup(groupModified);
     }
 
     @FXML
     private void btnDeleteGroupAction(){
         if(confirmChanges(Strings.deleteWorkGroup)){
             int id=Integer.parseInt(txtGroupID.getText());
-            WorkGroupDelete.deleteGroup(id);
+            IWorkGroupDelete workGroupDelete= new WorkGroupDelete();
+            workGroupDelete.deleteGroup(id);
             workGroupList.remove(tablePosition);
         }
         if(workGroupList.size()==0){
@@ -394,9 +406,10 @@ public class AdminUIController implements Initializable, Tables {
     @FXML
     private void btnActivateGroupAction(){
         if(confirmChanges(Strings.activateWorkGroup)){
-            WorkGroup group= getSelectedWorkGroup();
+            AWorkGroup group= getSelectedWorkGroup();
             group.setStatus(1);
-            WorkGroupHandleStatus.activateWorkGroup(group.getWorkGroupID());
+            IWorkGroupHandleStatus workGroupHandleStatus= new WorkGroupHandleStatus();
+            workGroupHandleStatus.activateWorkGroup(group.getWorkGroupID());
             workGroupList.set(tablePosition,group);
             clearGroupText();
         }
@@ -405,9 +418,10 @@ public class AdminUIController implements Initializable, Tables {
     @FXML
     private void btnDesactivateGroupAction(){
         if(confirmChanges(Strings.desactivateGroup)){
-            WorkGroup group= getSelectedWorkGroup();
+            AWorkGroup group= getSelectedWorkGroup();
             group.setStatus(0);
-            WorkGroupHandleStatus.desactivateWorkGroup(group.getWorkGroupID());
+            IWorkGroupHandleStatus workGroupHandleStatus= new WorkGroupHandleStatus();
+            workGroupHandleStatus.desactivateWorkGroup(group.getWorkGroupID());
             workGroupList.set(tablePosition,group);
             clearGroupText();
         }

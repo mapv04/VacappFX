@@ -1,18 +1,18 @@
-package WorkGroupManagement.Models;
+package WorkGroupManagement.Models.Implementations;
 
 import Database.DatabaseConnection;
+import WorkGroupManagement.Models.Abstracts.IWorkGroupDelete;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class WorkGroupDelete {
-    private static ResultSet rs;
+public class WorkGroupDelete implements IWorkGroupDelete {
     private static Connection conn= DatabaseConnection.getInstance().getConnection();
     private static PreparedStatement preparedStatement;
 
-    public static void deleteGroup(int groupID){
+    @Override
+    public void deleteGroup(int groupID){
         String sql="delete from workgroup where pk_workgroup_id='"+groupID+"';";
         String sql2="delete from workgroup_data where fk_workgroup_id="+groupID+";";
         try {
@@ -29,7 +29,8 @@ public class WorkGroupDelete {
         }
     }
 
-    public static void deleteFromGroup(int employeeID){
+    @Override
+    public void deleteFromGroup(int employeeID){
         String sql="delete from workgroup_data where fk_usuario_id=?";
         try {
             preparedStatement = conn.prepareStatement(sql);
