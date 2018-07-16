@@ -1302,7 +1302,7 @@
         <attribute name="jarfile"/>
         <sequential>
             <local name="tmpdir"/>
-            <property name="tmpdir" value="${java.io.tmpdir}${file.separator}${user.name}_${ant.project.name}_rebase" />
+            <property name="tmpdir" value="${java.io.tmpdir}${file.separator}${employee.name}_${ant.project.name}_rebase" />
             <echo message="tmpdir = ${tmpdir}" level="verbose"/>
             <delete dir="${tmpdir}" quiet="true"/>
             <mkdir dir="${tmpdir}"/>
@@ -1445,7 +1445,7 @@
     </target>
     
 
-    <!-- Main Deployment Target -->
+    <!-- MainVacapp Deployment Target -->
 
     <!-- Note: target "jfx-deployment" is referenced from NB 7.1+ build-impl.xml -->
     <target name="jfx-deployment" depends="-check-jfx-deployment-launch,-do-jfx-deployment-script,-do-jfx-deployment-noscript" if="jfx-deployment-available"/>

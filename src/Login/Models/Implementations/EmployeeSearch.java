@@ -1,31 +1,29 @@
-package Login.Models;
+package Login.Models.Implementations;
 
 import Database.DatabaseConnection;
+import Login.Models.Abstracts.IEmployeeSearch;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-/**
- * @author migue
- */
-public class EmployeeSearch {
-
+public class EmployeeSearch implements IEmployeeSearch {
     private static ResultSet rs;
     private static Connection conn = DatabaseConnection.getInstance().getConnection();
     private static PreparedStatement preparedStatement;
 
-    public static boolean searchEmployeeExists(Employee employee) throws SQLException {//this method validate that the employee entered en the register not exist
+    @Override
+    public boolean searchEmployeeExists(Employee employee) throws SQLException {
         rs = null;
         String sql = "select username, email from usuario where username='" + employee.getUsername() + "' or email='"
                 + employee.getEmail() + "';";
         preparedStatement = conn.prepareStatement(sql);
         rs = preparedStatement.executeQuery();
         return rs.first();//true if the employee already exists
-
     }
 
-    public static int searchEmployeeUserName(String user) {
+    @Override
+    public int searchEmployeeUserName(String user) {
         rs = null;
         String sqlQuery = "SELECT pk_id_user FROM usuario WHERE username = ?";
         try {
@@ -41,7 +39,8 @@ public class EmployeeSearch {
         return -1;
     }
 
-    public static Employee searchEmployeeID(int employeeID){
+    @Override
+    public Employee searchEmployeeID(int employeeID) {
         rs = null;
         Employee employee = new Employee();
         String sqlQuery = "SELECT * FROM usuario WHERE pk_id_user = ?";
@@ -67,5 +66,4 @@ public class EmployeeSearch {
         }
         return employee;
     }
-
 }

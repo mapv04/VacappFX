@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="556.0" prefWidth="829.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="WorkGroupManagement.Controllers.AddMembersController">
+   <children>
+      <TableView fx:id="table" layoutX="202.0" layoutY="137.0" prefHeight="240.0" prefWidth="426.0">
+        <columns>
+          <TableColumn fx:id="columnID" prefWidth="75.0" text="ID" />
+          <TableColumn fx:id="columnName" prefWidth="141.0" text="Name" />
+            <TableColumn fx:id="columnEmail" prefWidth="148.0" text="Email" />
+            <TableColumn fx:id="columnStatus" prefWidth="60.0" text="Status" />
+        </columns>
+      </TableView>
+      <Label layoutX="258.0" layoutY="38.0" text="ADD A MEMBER TO THE GROUP">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Button fx:id="btnAdd" layoutX="555.0" layoutY="386.0" mnemonicParsing="false" onAction="#btnAddAction" prefHeight="25.0" prefWidth="73.0" text="Add" />
+      <Button layoutX="46.0" layoutY="483.0" mnemonicParsing="false" onAction="#btnBackAction" text="&lt; Back" />
+   </children>
+</AnchorPane>

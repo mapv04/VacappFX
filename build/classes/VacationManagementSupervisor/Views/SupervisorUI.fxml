@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="381.0" prefWidth="578.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="VacationManagementSupervisor.Controllers.SupervisorUIController">
+   <children>
+      <TabPane prefHeight="484.0" prefWidth="722.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+            <Tab onSelectionChanged="#onTabChangeRequest" text="  Requests Pending  ">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="448.0" prefWidth="722.0">
+                     <children>
+                        <TableView fx:id="tablePendingRequest" layoutX="33.0" layoutY="29.0" onMouseClicked="#enableRequestButtons" prefHeight="351.0" prefWidth="657.0">
+                          <columns>
+                            <TableColumn fx:id="pColumnRequestID" prefWidth="75.0" text="Request_ID" />
+                            <TableColumn fx:id="pColumnEmployeeID" prefWidth="88.0" text="Employee_ID" />
+                              <TableColumn fx:id="pColumnName" prefWidth="123.0" text="Employee_Name" />
+                              <TableColumn fx:id="pColumnStartDate" prefWidth="131.0" text="Start_Date" />
+                              <TableColumn fx:id="pColumnEndDate" prefWidth="123.0" text="End_Date" />
+                              <TableColumn fx:id="pColumnDays" prefWidth="116.0" text="Days" />
+                          </columns>
+                        </TableView>
+                        <Button fx:id="buttonApprove" layoutX="199.0" layoutY="397.0" mnemonicParsing="false" onAction="#approveRequest" prefHeight="36.0" prefWidth="102.0" text="Approve" />
+                        <Button fx:id="buttonDeny" layoutX="399.0" layoutY="396.0" mnemonicParsing="false" onAction="#denyRequest" prefHeight="38.0" prefWidth="105.0" text="Deny" />
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
+          <Tab onSelectionChanged="#onTabChangeReport" text="  Requests Report  ">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="413.0" prefWidth="709.0">
+                     <children>
+                        <TableView fx:id="tableHistoryRequest" layoutX="34.0" layoutY="26.0" prefHeight="350.0" prefWidth="651.0">
+                          <columns>
+                            <TableColumn fx:id="hColumnEmployeeID" prefWidth="72.0" sortType="DESCENDING" text="Empl_ID" />
+                              <TableColumn fx:id="hColumnRequestID" prefWidth="78.0" sortType="DESCENDING" text="Req_ID" />
+                            <TableColumn fx:id="hColumnName" prefWidth="125.0" sortType="DESCENDING" text="Employee_Name" />
+                              <TableColumn fx:id="hColumnStartDate" prefWidth="125.0" sortType="DESCENDING" text="Start_Date" />
+                              <TableColumn fx:id="hColumnEndDate" prefWidth="90.0" sortType="DESCENDING" text="End_Date" />
+                              <TableColumn fx:id="hColumnStatus" prefWidth="75.0" text="Status" />
+                              <TableColumn fx:id="hColumnDays" prefWidth="75.0" text="Days" />
+                          </columns>
+                        </TableView>
+                        <Text layoutX="34.0" layoutY="419.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Employee ID:  ">
+                           <font>
+                              <Font size="13.0" />
+                           </font></Text>
+                        <TextField fx:id="historyTextField" layoutX="118.0" layoutY="400.0" onKeyTyped="#searchHistoryByID">
+                           <font>
+                              <Font size="13.0" />
+                           </font></TextField>
+                        <Button  layoutX="527.0" layoutY="392.0" mnemonicParsing="false" onAction="#generateReport" prefHeight="39.0" prefWidth="131.0" text="Generate PDF" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+            <Tab onSelectionChanged="#onTabChangeVacation" text="    Vacation    ">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Button fx:id="buttonEmployeeScene" layoutX="14.0" layoutY="396.0" mnemonicParsing="false" prefHeight="0.0" prefWidth="0.0" text="Button" />
+                     </children></AnchorPane>
+              </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+   </children>
+</AnchorPane>
