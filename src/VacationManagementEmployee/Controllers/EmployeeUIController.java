@@ -1,8 +1,7 @@
 package VacationManagementEmployee.Controllers;
 
 
-import Login.Models.Employee;
-import Login.Models.EmployeeSearch;
+import Login.Models.Implementations.*;
 import VacationManagementEmployee.Models.Abstracts.*;
 import VacationManagementEmployee.Models.Implemetations.VacEmployeeCancel;
 import VacationManagementEmployee.Models.Implemetations.VacEmployeeGenerateReq;
@@ -217,7 +216,8 @@ public class EmployeeUIController   {
     private void loadEmployeeInfo(){
         IVacRequestSearch vacRequestSearch = new VacRequestSearch();
         IVacEmployeeSearch vacEmployeeSearch = new VacEmployeeSearch();
-        Employee employee = EmployeeSearch.searchEmployeeID(employeeID);
+        EmployeeSearch employeeSearch = new EmployeeSearch();
+        Employee employee = employeeSearch.searchEmployeeID(employeeID);
         AVacEmployee vacEmployee = vacEmployeeSearch.searchVacEmployeeData(employeeID);
         AVacRequest vacRequest = vacRequestSearch.searchLatestRequest(employeeID);
 

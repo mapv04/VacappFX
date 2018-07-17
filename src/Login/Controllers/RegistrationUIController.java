@@ -1,8 +1,8 @@
 package Login.Controllers;
 
-import Login.Models.Employee;
-import Login.Models.EmployeeCreate;
-import Login.Models.EmployeeSearch;
+import Login.Models.Implementations.Employee;
+import Login.Models.Implementations.EmployeeCreate;
+import Login.Models.Implementations.EmployeeSearch;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -131,8 +131,10 @@ public class RegistrationUIController implements Initializable {
         }
 
         if (pass == 6) {
-            if (!EmployeeSearch.searchEmployeeExists(employee)) {
-                EmployeeCreate.addNewEmployee(employee);
+            EmployeeSearch searchObject = new EmployeeSearch();
+            EmployeeCreate objectcreate = new EmployeeCreate();
+            if (!searchObject.searchEmployeeExists(employee)) {
+                objectcreate.addNewEmployee(employee);
                 fxml = FXMLLoader.load(getClass().getResource("/Login/Views/LoginUI.fxml"));
                 scene = new Scene(fxml);
                 stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

@@ -1,8 +1,7 @@
 package Login.Controllers;
 
 
-import Login.Models.*;
-
+import Login.Models.Implementations.*;
 import VacationManagementEmployee.Controllers.EmployeeUIController;
 import VacationManagementSupervisor.Controllers.SupervisorUIController;
 import javafx.event.ActionEvent;
@@ -48,6 +47,8 @@ public class LoginUIController implements Initializable {
     Scene scene;
     Parent fxml;
     Stage stage;
+    EmployeeSearch employeeSearch = new EmployeeSearch();
+    EmployeeValidation employeeValidation = new EmployeeValidation();
 
     @FXML
     private void btnLoginAction(ActionEvent event) throws SQLException, IOException {
@@ -59,7 +60,7 @@ public class LoginUIController implements Initializable {
             alert.setHeaderText("Employee or password incorrect");
             alert.show();
         } else{
-            Employee userData = EmployeeValidation.employeeExist(user);
+            Employee userData = employeeValidation.employeeExist(user);
             if(userData==null){
                 alert.setTitle("Error Login");
                 alert.setHeaderText("The user doesn't exist");
@@ -83,7 +84,7 @@ public class LoginUIController implements Initializable {
                                 + "\n after the 3rd attempt the user blocks");
                         alert.show();
                         if (counterFalses == 3) {
-                            EmployeeValidation.blockUser(user);
+                            employeeValidation.blockUser(user);
                             alert.setTitle("Error Login");
                             alert.setHeaderText("The user has been blocked ,please contact an administrator to unlock the user");
                             alert.setContentText("");
@@ -100,7 +101,8 @@ public class LoginUIController implements Initializable {
                                 break;
 
                             case 1:
-                                SupervisorUIController.setSupervisorID(EmployeeSearch.searchEmployeeUserName(user));
+
+                                SupervisorUIController.setSupervisorID(employeeSearch.searchEmployeeUserName(user));
                                 fxml = FXMLLoader.load(getClass().getResource("/VacationManagementSupervisor/Views/SupervisorUI.fxml"));
                                 scene = new Scene(fxml);
                                 stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -109,7 +111,8 @@ public class LoginUIController implements Initializable {
                                 break;
 
                             case 2:
-                                EmployeeUIController.setEmployeeID(EmployeeSearch.searchEmployeeUserName(user));
+                                employeeSearch = new EmployeeSearch();
+                                EmployeeUIController.setEmployeeID(employeeSearch.searchEmployeeUserName(user));
                                 fxml = FXMLLoader.load(getClass().getResource("/VacationManagementEmployee/Views/EmployeeUI.fxml"));
                                 scene = new Scene(fxml);
                                 stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
