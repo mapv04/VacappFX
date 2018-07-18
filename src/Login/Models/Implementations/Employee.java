@@ -64,6 +64,26 @@ public class Employee extends AEmployee {
     }
 
     @Override
+    public String getResponse() {
+        return super.getResponse();
+    }
+
+    @Override
+    public void setResponse(String response) {
+        super.setResponse(response);
+    }
+
+    @Override
+    public int getQuestion() {
+        return super.getQuestion();
+    }
+
+    @Override
+    public void setQuestion(int question) {
+        super.setQuestion(question);
+    }
+
+    @Override
     public int getType() {
         return super.getType();
     }

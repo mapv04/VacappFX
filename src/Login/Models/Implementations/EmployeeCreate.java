@@ -16,9 +16,17 @@ public class EmployeeCreate implements IEmployeeCreate {
     @Override
     public void addNewEmployee(Employee employee)   {
         try {
-            String sql = "insert into usuario(name_user, last_name, username, email, password_user, type_user, status_user) "
-                    + "values ('" + employee.getName() + "','" + employee.getLastName() + "','" + employee.getUsername() + "','" + employee.getEmail() + "','"
-                    + employee.getPassword() + "','" + employee.getType() + "','" + employee.getStatus() + "');";
+            String sql = "insert into usuario(name_user, last_name, username, email, password_user, type_user, question, answer, status_user) "
+                    + "values ('"
+                    + employee.getName() + "','"
+                    + employee.getLastName() + "','"
+                    + employee.getUsername() + "','"
+                    + employee.getEmail() + "','"
+                    + employee.getPassword() + "','"
+                    + employee.getType() + "','"
+                    + employee.getQuestion() + "','"
+                    + employee.getResponse() + "','"
+                    + employee.getStatus() + "');";
             preparedStatement = conn.prepareStatement(sql);
             preparedStatement.executeUpdate();
 

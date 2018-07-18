@@ -7,6 +7,8 @@ public abstract class AEmployee {
     private String username;
     private String email;
     private String password;
+    private String response;
+    private int question;
     private int type;
     private int status;
 
@@ -56,6 +58,22 @@ public abstract class AEmployee {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getResponse() {
+        return response;
+    }
+
+    public void setResponse(String response) {
+        this.response = response;
+    }
+
+    public int getQuestion() {
+        return question;
+    }
+
+    public void setQuestion(int question) {
+        this.question = question;
     }
 
     public int getType() {

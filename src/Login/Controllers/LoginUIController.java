@@ -59,22 +59,20 @@ public class LoginUIController implements Initializable {
             alert.setTitle("Error Login");
             alert.setHeaderText("Employee or password incorrect");
             alert.show();
-        } else{
+        } else {
             Employee userData = employeeValidation.employeeExist(user);
-            if(userData==null){
+            if (userData == null) {
                 alert.setTitle("Error Login");
                 alert.setHeaderText("The user doesn't exist");
 
                 alert.show();
-            }
-            else {
+            } else {
                 if (userData.getStatus() != 1) {
                     alert.setTitle("Error Login");
                     alert.setHeaderText("This user has been desactivated");
                     alert.setContentText("");
                     alert.show();
-                }
-                else {
+                } else {
 
                     if (!password.equals(userData.getPassword())) {
                         counterFalses++;
@@ -126,17 +124,23 @@ public class LoginUIController implements Initializable {
                         }
                     }
                 }
-                }
-
-
             }
         }
-
+    }
 
 
     @FXML
     private void btnRegisterAction(ActionEvent event) throws IOException {
         fxml = FXMLLoader.load(getClass().getResource("/Login/Views/RegistrationUI.fxml"));
+        scene = new Scene(fxml);
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML
+    private void btnRecoverAction(ActionEvent event) throws IOException {
+        fxml = FXMLLoader.load(getClass().getResource("/Login/Views/RecoverUI.fxml"));
         scene = new Scene(fxml);
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(scene);

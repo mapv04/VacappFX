@@ -12,19 +12,19 @@ password_user nvarchar(30) not null,
 type_user int not null,
 status_user int not null);
 
-INSERT INTO usuario (name_user, last_name, username, email, password_user, type_user, status_user) VALUES
-("Jorge ","C","ceo","owner@ceo.com","ceo",1,1),
-('Miguel','Partida','mapv04','mapv04@gmail.com','qwerty', 0,1),
-('Angel','Velasco','asxc','asxc@outlook.com','zxcd', 0,1),
-('Oscar','Gonzalez','osc12','oscg@gmail.com','qwerty123', 1,1),
-('Fernando','Garcia','garfer','owerg@gmail.com','qwedc', 1,1),
-('Alfredo','Ibarra','alfib','alfi@gmail.com','qwertyasd', 2,1),
-('Gustavo','Segura','alfhsxb','asji@gmail.com','qwertyassdfd', 2,1),
-('Eduardo','Ramirez','edu','edurai@gmail.com','qwertyasde', 2,1),
-('Ruben','Ochoa','rub123','ruben.och@gmail.com','qwertyasasd', 2,1),
-('Ivan','Martinez','ivvan','martinez.iv@gmail.com','qwesxasasd', 2,1),
-('Gerardo','Contreras','gera12','gerardo12@gmail.com','asdfcx', 2,1),
-('Erika','Preciado','erk13','preciado.erk@gmail.com','qwsxdc', 2,1);
+INSERT INTO `usuario` (`pk_id_user`, `name_user`, `last_name`, `username`, `email`, `password_user`, `type_user`, `question`, `answer`, `status_user`) VALUES
+("Jorge ","C","ceo","owner@ceo.com","ceo",1,3, 'UNIVA', 1),
+('Miguel','Partida','mapv04','mapv04@gmail.com','qwerty', 0,3, 'UNIVA', 1),
+('Angel','Velasco','asxc','asxc@outlook.com','zxcd', 0,3, 'UNIVA', 1),
+('Oscar','Gonzalez','osc12','oscg@gmail.com','qwerty123', 1,3, 'UNIVA', 1),
+('Fernando','Garcia','garfer','owerg@gmail.com','qwedc', 1,3, 'UNIVA', 1),
+('Alfredo','Ibarra','alfib','alfi@gmail.com','qwertyasd', 2,3, 'UNIVA', 1),
+('Gustavo','Segura','alfhsxb','asji@gmail.com','qwertyassdfd', 2,3, 'UNIVA', 1),
+('Eduardo','Ramirez','edu','edurai@gmail.com','qwertyasde', 2,3, 'UNIVA', 1),
+('Ruben','Ochoa','rub123','ruben.och@gmail.com','qwertyasasd', 2,3, 'UNIVA', 1),
+('Ivan','Martinez','ivvan','martinez.iv@gmail.com','qwesxasasd', 2,3, 'UNIVA', 1),
+('Gerardo','Contreras','gera12','gerardo12@gmail.com','asdfcx', 2,3, 'UNIVA', 1),
+('Erika','Preciado','erk13','preciado.erk@gmail.com','qwsxdc', 2,3, 'UNIVA', 1);
 
 
 
