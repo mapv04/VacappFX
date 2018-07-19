@@ -12,6 +12,7 @@ public abstract class AVacRequest {
     protected int daysRequested;
     protected int SupervisorID;
 
+
     public abstract void setPkIDRequest(int pkIDRequest);
     public abstract  void setFkIDUser(int fkIDUser);
     public abstract void setName(String name);

@@ -8,7 +8,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -17,11 +16,16 @@ public class VacRequestReadPending implements IVacRequestReadPending {
     private static ResultSet rs;
     private static Connection conn= DatabaseConnection.getInstance().getConnection();
     private static PreparedStatement pStatement;
+    private List<AVacRequest> listVacReq;
+    private AVacRequest vacReq;
 
+    public VacRequestReadPending(List<AVacRequest> listVacReq,AVacRequest vacReq){
+        this.listVacReq = listVacReq;
+        this.vacReq = vacReq;
+    }
 
     @Override
     public  List<AVacRequest> getPendingRequestSupervisor(int supervisorID){
-        List<AVacRequest> listVacReq = new ArrayList<>();
         rs = null;
         String sqlQuery = "SELECT * FROM vac_request vr" +
                           " INNER JOIN usuario u ON vr.fk_id_user = u.pk_id_user"+
@@ -33,7 +37,6 @@ public class VacRequestReadPending implements IVacRequestReadPending {
             pStatement.setInt(1,supervisorID);
              rs= pStatement.executeQuery();
             while(rs.next()){
-                AVacRequest vacReq = new VacRequest();
                 vacReq.setPkIDRequest(rs.getInt(1));
                 vacReq.setFkIDUser(rs.getInt(2));
                 vacReq.setStartDate(rs.getDate(3).toLocalDate());
@@ -54,7 +57,6 @@ public class VacRequestReadPending implements IVacRequestReadPending {
 
     @Override
     public  List<AVacRequest> getPendingRequestEmployee(int employeeID){
-        List<AVacRequest> listVacReq = new ArrayList<>();
         rs = null;
         String sqlQuery = "SELECT * FROM vac_request " +
                 " WHERE  fk_id_user  = ?  AND status = 'Pending'  " +
@@ -64,7 +66,6 @@ public class VacRequestReadPending implements IVacRequestReadPending {
             pStatement.setInt(1,employeeID);
             rs= pStatement.executeQuery();
             while(rs.next()){
-                AVacRequest vacReq = new VacRequest();
                 vacReq.setPkIDRequest(rs.getInt(1));
                 vacReq.setFkIDUser(rs.getInt(2));
                 vacReq.setStartDate(rs.getDate(3).toLocalDate());
