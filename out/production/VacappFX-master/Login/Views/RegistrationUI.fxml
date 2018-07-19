@@ -10,14 +10,14 @@
 
 <AnchorPane id="AnchorPane" prefHeight="498.0" prefWidth="372.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Login.Controllers.RegistrationUIController">
     <children>
-        <Pane fx:id="content_area" prefHeight="498.0" prefWidth="372.0">
+        <Pane fx:id="content_area" prefHeight="600.0" prefWidth="400.0">
             <children>
-                <TextField fx:id="name" layoutX="112.0" layoutY="107.0" promptText="Name" />
-                <TextField fx:id="lastName" layoutX="112.0" layoutY="156.0" promptText="Last Name" />
-                <TextField fx:id="username" layoutX="112.0" layoutY="201.0" promptText="Username" />
-                <TextField fx:id="email" layoutX="112.0" layoutY="237.0" promptText="Email" />
-                <PasswordField fx:id="password" layoutX="112.0" layoutY="285.0" promptText="Password" />
-                <ChoiceBox fx:id="comboType" layoutX="112.0" layoutY="330.0" prefWidth="150.0">
+                <TextField fx:id="name" layoutX="126.0" layoutY="50.0" promptText="Name" />
+                <TextField fx:id="lastName" layoutX="126.0" layoutY="100.0" promptText="Last Name" />
+                <TextField fx:id="username" layoutX="126.0" layoutY="150.0" promptText="Username" />
+                <TextField fx:id="email" layoutX="126.0" layoutY="200.0" promptText="Email" />
+                <PasswordField fx:id="password" layoutX="126.0" layoutY="250.0" promptText="Password" />
+                <ChoiceBox fx:id="comboType" layoutX="125.0" layoutY="300.0" prefWidth="150.0">
                     <items>
                         <FXCollections fx:factory="observableArrayList">
                             <String fx:value="Admin" />
@@ -26,16 +26,26 @@
                         </FXCollections>
                     </items>
                 </ChoiceBox>
-                <Button layoutX="112.0" layoutY="385.0" mnemonicParsing="false" onAction="#btnRegisterUser" prefHeight="32.0" prefWidth="149.0" text="Register">
+                <Button layoutX="126.0" layoutY="450.0" mnemonicParsing="false" onAction="#btnRegisterUser" prefHeight="32.0" prefWidth="149.0" text="Register">
                     <font>
                         <Font size="15.0" />
                     </font>
                 </Button>
-                <Button layoutX="112.0" layoutY="425.0" mnemonicParsing="false" onAction="#btnBackLogin" prefHeight="25.0" prefWidth="150.0" text="Back">
+                <Button layoutX="125.0" layoutY="500.0" mnemonicParsing="false" onAction="#btnBackLogin" prefHeight="25.0" prefWidth="150.0" text="Back">
                     <font>
                         <Font size="15.0" />
                     </font>
                 </Button>
+            <ChoiceBox fx:id="comboQuestion" layoutX="125.0" layoutY="350.0" prefWidth="150.0">
+                <items>
+                    <FXCollections fx:factory="observableArrayList">
+                        <String fx:value="Name of your pet" />
+                        <String fx:value="Name of your dad or mom" />
+                        <String fx:value="Name of your first school" />
+                    </FXCollections>
+                </items>
+            </ChoiceBox>
+            <TextField fx:id="response" layoutX="126.0" layoutY="400.0" promptText="Response" />
             </children>
         </Pane>
     </children>

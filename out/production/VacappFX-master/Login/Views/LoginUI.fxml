@@ -20,6 +20,7 @@
                </font>
             </Button>
             <PasswordField fx:id="txtPassword" layoutX="92.0" layoutY="224.0" prefHeight="25.0" prefWidth="190.0" promptText="Password" />
+            <Button fx:id="btnRecover" layoutX="128.0" layoutY="360.0" mnemonicParsing="false" onAction="#btnRecoverAction" prefHeight="25.0" prefWidth="113.0" text="Recover password" />
          </children>
       </Pane>
    </children>

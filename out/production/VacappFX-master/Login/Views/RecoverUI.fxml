@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.collections.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.Pane?>
+<?import java.lang.String?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="250.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Login.Controllers.RecoverUIController">
+   <children>
+      <TextField fx:id="txtUser" layoutX="28.0" layoutY="30.0" prefHeight="25.0" prefWidth="250.0" promptText="User" />
+      <Button layoutX="76.0" layoutY="150.0" mnemonicParsing="false" onAction="#btnRecover" prefHeight="25.0" prefWidth="149.0" text="Recover" />
+      <PasswordField fx:id="txtPassword" layoutX="28.0" layoutY="60.0" prefHeight="25.0" prefWidth="250.0" promptText="New password" />
+      <ChoiceBox fx:id="comboQuestion" layoutX="27.0" layoutY="90.0" prefHeight="25.0" prefWidth="250.0">
+         <items>
+             <FXCollections fx:factory="observableArrayList">
+                 <String fx:value="Name of your pet" />
+                 <String fx:value="Name of your dad or mom" />
+                 <String fx:value="Name of your first school" />
+             </FXCollections>
+         </items>
+      </ChoiceBox>
+      <TextField fx:id="txtResponse" layoutX="26.0" layoutY="120.0" prefHeight="25.0" prefWidth="250.0" promptText="Response" />
+      <Button layoutX="76.0" layoutY="180.0" mnemonicParsing="false" onAction="#btnBackLogin" prefHeight="25.0" prefWidth="149.0" text="Back" />
+   </children>
+</Pane>

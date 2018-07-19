@@ -1,8 +1,8 @@
 package Login.Controllers;
 
-import Login.Models.Employee;
-import Login.Models.EmployeeCreate;
-import Login.Models.EmployeeSearch;
+import Login.Models.Implementations.Employee;
+import Login.Models.Implementations.EmployeeCreate;
+import Login.Models.Implementations.EmployeeSearch;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,7 +16,6 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -35,8 +34,10 @@ public class RegistrationUIController implements Initializable {
     @FXML private TextField lastName;
     @FXML private TextField username;
     @FXML private TextField email;
+    @FXML private TextField response;
     @FXML private PasswordField password;
     @FXML private ChoiceBox comboType;
+    @FXML private ChoiceBox comboQuestion;
     @FXML private Pane content_area;
     Alert alert = new Alert(Alert.AlertType.ERROR);
     Parent fxml;
@@ -105,6 +106,15 @@ public class RegistrationUIController implements Initializable {
             alert.show();
             pass = 0;
         }
+        if (!response.getText().isEmpty()) {
+            employee.setResponse(response.getText());
+            pass++;
+        } else {
+            alert.setTitle("Error incomplete data");
+            alert.setHeaderText("Ups your response is very short. please enter it full");
+            alert.show();
+            pass = 0;
+        }
 
 
         if (!comboType.getSelectionModel().isEmpty()) {
@@ -130,9 +140,34 @@ public class RegistrationUIController implements Initializable {
             }
         }
 
-        if (pass == 6) {
-            if (!EmployeeSearch.searchEmployeeExists(employee)) {
-                EmployeeCreate.addNewEmployee(employee);
+        if (!comboQuestion.getSelectionModel().isEmpty()) {
+            switch (comboQuestion.getValue().toString()) {//compare which is your secret question
+                case "Name of your pet":
+                    employee.setQuestion(1);
+                    pass++;
+                    break;
+                case "Name of your dad or mom":
+                    employee.setQuestion(2);
+                    pass++;
+                    break;
+                case "Name of your first school":
+                    employee.setQuestion(3);
+                    pass++;
+                    break;
+                default:
+                    alert.setTitle("Error incomplete data");
+                    alert.setHeaderText("Ups You have not selected which is your secret question. please enter it full");
+                    alert.show();
+                    pass = 0;
+                    break;
+            }
+        }
+
+        if (pass == 8) {
+            EmployeeSearch searchObject = new EmployeeSearch();
+            EmployeeCreate objectcreate = new EmployeeCreate();
+            if (!searchObject.searchEmployeeExists(employee)) {
+                objectcreate.addNewEmployee(employee);
                 fxml = FXMLLoader.load(getClass().getResource("/Login/Views/LoginUI.fxml"));
                 scene = new Scene(fxml);
                 stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
