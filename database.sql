@@ -4,28 +4,29 @@ use vacapp;
 
 create table usuario(
 pk_id_user int not null auto_increment primary key,
-name_user nvarchar(30) not null,
-last_name nvarchar(30) not null,
-username nvarchar(30) not null,
-email nvarchar(50) not null,
-password_user nvarchar(30) not null,
+name_user varchar(30) not null,
+last_name varchar(30) not null,
+username varchar(30) not null,
+email varchar(50) not null,
+password_user varchar(30) not null,
 type_user int not null,
-status_user int not null);
+status_user int not null,
+question varchar(30) not null,
+answer varchar(30) not null);
 
-INSERT INTO `usuario` (`pk_id_user`, `name_user`, `last_name`, `username`, `email`, `password_user`, `type_user`, `question`, `answer`, `status_user`) VALUES
-("Jorge ","C","ceo","owner@ceo.com","ceo",1,3, 'UNIVA', 1),
-('Miguel','Partida','mapv04','mapv04@gmail.com','qwerty', 0,3, 'UNIVA', 1),
-('Angel','Velasco','asxc','asxc@outlook.com','zxcd', 0,3, 'UNIVA', 1),
-('Oscar','Gonzalez','osc12','oscg@gmail.com','qwerty123', 1,3, 'UNIVA', 1),
-('Fernando','Garcia','garfer','owerg@gmail.com','qwedc', 1,3, 'UNIVA', 1),
-('Alfredo','Ibarra','alfib','alfi@gmail.com','qwertyasd', 2,3, 'UNIVA', 1),
-('Gustavo','Segura','alfhsxb','asji@gmail.com','qwertyassdfd', 2,3, 'UNIVA', 1),
-('Eduardo','Ramirez','edu','edurai@gmail.com','qwertyasde', 2,3, 'UNIVA', 1),
-('Ruben','Ochoa','rub123','ruben.och@gmail.com','qwertyasasd', 2,3, 'UNIVA', 1),
-('Ivan','Martinez','ivvan','martinez.iv@gmail.com','qwesxasasd', 2,3, 'UNIVA', 1),
-('Gerardo','Contreras','gera12','gerardo12@gmail.com','asdfcx', 2,3, 'UNIVA', 1),
-('Erika','Preciado','erk13','preciado.erk@gmail.com','qwsxdc', 2,3, 'UNIVA', 1);
-
+INSERT INTO usuario (name_user, last_name, username, email, password_user, type_user, status_user) VALUES
+("Jorge ","C","ceo","owner@ceo.com","ceo",1,1,3,'UNIVA'),
+('Miguel','Partida','mapv04','mapv04@gmail.com','qwerty', 0,1,3,'UNIVA'),
+('Angel','Velasco','asxc','asxc@outlook.com','zxcd', 0,1,3,'UNIVA'),
+('Oscar','Gonzalez','osc12','oscg@gmail.com','qwerty123', 1,1,3,'UNIVA'),
+('Fernando','Garcia','garfer','owerg@gmail.com','qwedc', 1,1,3,'UNIVA'),
+('Alfredo','Ibarra','alfib','alfi@gmail.com','qwertyasd', 2,1,3,'UNIVA'),
+('Gustavo','Segura','alfhsxb','asji@gmail.com','qwertyassdfd', 2,1,3,'UNIVA'),
+('Eduardo','Ramirez','edu','edurai@gmail.com','qwertyasde', 2,1,3,'UNIVA'),
+('Ruben','Ochoa','rub123','ruben.och@gmail.com','qwertyasasd', 2,1,3,'UNIVA'),
+('Ivan','Martinez','ivvan','martinez.iv@gmail.com','qwesxasasd', 2,1,3,'UNIVA'),
+('Gerardo','Contreras','gera12','gerardo12@gmail.com','asdfcx', 2,1,3,'UNIVA'),
+('Erika','Preciado','erk13','preciado.erk@gmail.com','qwsxdc', 2,1,3,'UNIVA');
 
 
  CREATE TABLE vac_request(

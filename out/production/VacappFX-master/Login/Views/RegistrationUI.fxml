@@ -17,7 +17,7 @@
                 <TextField fx:id="username" layoutX="126.0" layoutY="150.0" promptText="Username" />
                 <TextField fx:id="email" layoutX="126.0" layoutY="200.0" promptText="Email" />
                 <PasswordField fx:id="password" layoutX="126.0" layoutY="250.0" promptText="Password" />
-                <ChoiceBox fx:id="comboType" layoutX="125.0" layoutY="300.0" prefWidth="150.0">
+                <ChoiceBox fx:id="comboType" layoutX="100.0" layoutY="300.0" prefWidth="200.0">
                     <items>
                         <FXCollections fx:factory="observableArrayList">
                             <String fx:value="Admin" />
@@ -36,7 +36,7 @@
                         <Font size="15.0" />
                     </font>
                 </Button>
-            <ChoiceBox fx:id="comboQuestion" layoutX="125.0" layoutY="350.0" prefWidth="150.0">
+            <ChoiceBox fx:id="comboQuestion" layoutX="100.0" layoutY="351.0" prefWidth="200.0">
                 <items>
                     <FXCollections fx:factory="observableArrayList">
                         <String fx:value="Name of your pet" />
