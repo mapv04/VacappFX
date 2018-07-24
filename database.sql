@@ -14,7 +14,7 @@ status_user int not null,
 question varchar(30) not null,
 answer varchar(30) not null);
 
-INSERT INTO usuario (name_user, last_name, username, email, password_user, type_user, status_user) VALUES
+INSERT INTO usuario (name_user, last_name, username, email, password_user, type_user, status_user, question, answer) VALUES
 ("Jorge ","C","ceo","owner@ceo.com","ceo",1,1,3,'UNIVA'),
 ('Miguel','Partida','mapv04','mapv04@gmail.com','qwerty', 0,1,3,'UNIVA'),
 ('Angel','Velasco','asxc','asxc@outlook.com','zxcd', 0,1,3,'UNIVA'),

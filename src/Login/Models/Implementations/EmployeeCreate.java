@@ -24,9 +24,9 @@ public class EmployeeCreate implements IEmployeeCreate {
                     + employee.getEmail() + "','"
                     + employee.getPassword() + "','"
                     + employee.getType() + "','"
-                    + employee.getQuestion() + "','"
+                    + employee.getStatus() + "','"
                     + employee.getResponse() + "','"
-                    + employee.getStatus() + "');";
+                    + employee.getQuestion() + "');";
             preparedStatement = conn.prepareStatement(sql);
             preparedStatement.executeUpdate();
 
