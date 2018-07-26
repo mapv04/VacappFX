@@ -58,6 +58,7 @@
                                     <Button fx:id="btnCancel" layoutX="97.0" layoutY="327.0" mnemonicParsing="false" onAction="#btnCancelAction" prefHeight="25.0" prefWidth="72.0" text="Cancel" />
                                     <Button id="activateButton" fx:id="btnActivateUser" layoutX="135.0" layoutY="243.0" mnemonicParsing="false" onAction="#btnActivateEmployeeAction" prefHeight="25.0" prefWidth="104.0" text="Activate User" />
                                     <Button id="desactivateButton" fx:id="btnDesactivateUser" layoutX="135.0" layoutY="277.0" mnemonicParsing="false" onAction="#btnDesactivateEmployeeAction" text="Desactivate User" />
+                                    <Button layoutX="191.0" layoutY="486.0" mnemonicParsing="false" onAction="#btnLogoutAction" text="Logout" />
                                  </children>
                               </AnchorPane>
                           </items>
@@ -100,6 +101,7 @@
                                     <Button fx:id="btnAddMember" layoutX="53.0" layoutY="254.0" mnemonicParsing="false" onAction="#btnAddNewMember" prefHeight="25.0" prefWidth="145.0" text="Add a new member" />
                                     <Button fx:id="btnActivateGroup" layoutX="5.0" layoutY="306.0" mnemonicParsing="false" onAction="#btnActivateGroupAction" prefHeight="25.0" prefWidth="116.0" text="Activate Group" />
                                     <Button fx:id="btnDesactivateGroup" layoutX="138.0" layoutY="306.0" mnemonicParsing="false" onAction="#btnDesactivateGroupAction" prefHeight="25.0" prefWidth="116.0" text="Desactivate Group" />
+                                    <Button layoutX="191.0" layoutY="486.0" mnemonicParsing="false" onAction="#btnLogoutAction" text="Logout" />
                                  </children>
                               </AnchorPane>
                           </items>

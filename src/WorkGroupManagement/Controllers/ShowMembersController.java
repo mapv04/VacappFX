@@ -1,6 +1,5 @@
 package WorkGroupManagement.Controllers;
 
-import WorkGroupManagement.Interfaces.Tables;
 import WorkGroupManagement.Models.Abstracts.AWorkGroupData;
 import WorkGroupManagement.Models.Abstracts.IWorkGroupDelete;
 import WorkGroupManagement.Models.Abstracts.IWorkGroupRead;
@@ -33,7 +32,7 @@ import java.util.ResourceBundle;
  *
  * @author migue
  */
-public class ShowMembersController implements Initializable,Tables {
+public class ShowMembersController implements Initializable {
 
     @FXML private Label labelName;
     @FXML private TableView<AWorkGroupData> table;
@@ -62,7 +61,7 @@ public class ShowMembersController implements Initializable,Tables {
     }
 
 
-    @Override
+
     public void initializeTable() {
         columnID.setCellValueFactory(new PropertyValueFactory<>("employeeID"));
         columnName.setCellValueFactory(new PropertyValueFactory<>("employeeName"));
@@ -75,7 +74,6 @@ public class ShowMembersController implements Initializable,Tables {
     }
 
 
-    @Override
     public AWorkGroupData getSelected() {
         if (table != null) {
             List<AWorkGroupData> groupList = table.getSelectionModel().getSelectedItems();
@@ -146,4 +144,20 @@ public class ShowMembersController implements Initializable,Tables {
             return false;
         }
     }
+
+    @FXML
+    private void btnLogoutAction(ActionEvent event) {
+        if (confirmChanges(Strings.logout)) {
+            try {
+                fxml = FXMLLoader.load(getClass().getResource("/Login/Views/LoginUI.fxml"));
+                scene = new Scene(fxml);
+                stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                stage.setScene(scene);
+                stage.show();
+            } catch (IOException e) {
+                System.out.println("ERROR in method AdminUIController.btnLogoutAction error: " + e);
+            }
+        }
+    }
+
 }
