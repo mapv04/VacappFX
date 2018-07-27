@@ -23,6 +23,18 @@ public class EmployeeSearch implements IEmployeeSearch {
     }
 
     @Override
+    public boolean searchEmployeeValidateAnswer(Employee employee) throws SQLException {
+        rs = null;
+        String sql = "select question,answer from usuario where " +
+                "username ='"+ employee.getUsername() +
+                "' and question='"+employee.getQuestion() +
+                "' and answer='"+employee.getResponse()+"';";
+        preparedStatement = conn.prepareStatement(sql);
+        rs = preparedStatement.executeQuery();
+        return rs.first();//true if the answer of employee exists
+    }
+
+    @Override
     public int searchEmployeeUserName(String user) {
         rs = null;
         String sqlQuery = "SELECT pk_id_user FROM usuario WHERE username = ?";

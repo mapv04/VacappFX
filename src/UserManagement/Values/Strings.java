@@ -12,5 +12,6 @@ public class Strings {
     public static final String modifyAdmin="You cannot modify data from an administrator";
     public static final String emptyField="You cannot left empty fields";
     public static final String containsDigit="You cannot enter digits on the fields";
+    public static final String logout="Are you sure you want to logout?";
 
 }

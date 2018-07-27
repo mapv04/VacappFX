@@ -109,7 +109,7 @@ public class RecoverUIController implements Initializable {
         if (pass == 4) {
             EmployeeSearch searchObject = new EmployeeSearch();
             EmployeeRecover employeeRecover = new EmployeeRecover();
-            if (searchObject.searchEmployeeExists(employee)) {
+            if (searchObject.searchEmployeeExists(employee) && searchObject.searchEmployeeValidateAnswer(employee)) {
                 employeeRecover.changePassword(stringEmployee,stringPassword,intQuestion,stringResponse);
                 //objectcreate.addNewEmployee(employee);
                 fxml = FXMLLoader.load(getClass().getResource("/Login/Views/LoginUI.fxml"));
@@ -119,7 +119,7 @@ public class RecoverUIController implements Initializable {
                 stage.show();
             } else {
                 alert.setTitle("Error Login");
-                alert.setHeaderText("This employee does not exist");
+                alert.setHeaderText("this data is incorrect please check them");
                 alert.show();
             }
         }

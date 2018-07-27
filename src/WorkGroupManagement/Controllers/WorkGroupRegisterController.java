@@ -3,7 +3,6 @@ package WorkGroupManagement.Controllers;
 import UserManagement.Models.Abstracts.AEmployee;
 import UserManagement.Models.Abstracts.IEmployeeRead;
 import UserManagement.Models.Implementations.EmployeeRead;
-import WorkGroupManagement.Interfaces.Tables;
 import WorkGroupManagement.Models.Abstracts.IWorkGroupRead;
 import WorkGroupManagement.Models.Abstracts.IWorkGroupUpdate;
 import WorkGroupManagement.Models.Implementations.WorkGroup;
@@ -37,7 +36,7 @@ import java.util.ResourceBundle;
  *
  * @author migue
  */
-public class WorkGroupRegisterController implements Initializable, Tables {
+public class WorkGroupRegisterController implements Initializable {
 
     @FXML private TableView<AEmployee> table;
     @FXML private TableColumn columnSupervisorID;
@@ -110,7 +109,6 @@ public class WorkGroupRegisterController implements Initializable, Tables {
     }
 
 
-    @Override
     public void initializeTable(){
         columnSupervisorID.setCellValueFactory(new PropertyValueFactory<>("id"));
         columnSupervisorName.setCellValueFactory(new PropertyValueFactory<>("name"));
@@ -122,7 +120,7 @@ public class WorkGroupRegisterController implements Initializable, Tables {
 
     }
 
-    @Override
+
     public AEmployee getSelected() {
         if (table != null) {
             List<AEmployee> supervisorList = table.getSelectionModel().getSelectedItems();
@@ -216,6 +214,42 @@ public class WorkGroupRegisterController implements Initializable, Tables {
     private boolean containsDigit(String str){
         return str.matches("^[^\\d].*");
     }
+
+    public boolean confirmLogout(String message) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmation");
+        alert.setContentText(message);
+        Optional<ButtonType> result = alert.showAndWait();
+        try {
+            if (result.get() == ButtonType.OK) {
+                alert.close();
+                return true;
+            }
+            else {
+                alert.close();
+                return false;
+            }
+        }catch (NoSuchElementException e){
+            alert.close();
+            return false;
+        }
+    }
+
+    @FXML
+    private void btnLogoutAction(ActionEvent event) {
+        if (confirmLogout(Strings.logout)) {
+            try {
+                fxml = FXMLLoader.load(getClass().getResource("/Login/Views/LoginUI.fxml"));
+                scene = new Scene(fxml);
+                stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                stage.setScene(scene);
+                stage.show();
+            } catch (IOException e) {
+                System.out.println("ERROR in method AdminUIController.btnLogoutAction error: " + e);
+            }
+        }
+    }
+
 
 
 }

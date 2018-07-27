@@ -1,8 +1,10 @@
 package UserManagement.Controllers;
 
-import UserManagement.Interfaces.Tables;
 import UserManagement.Models.Abstracts.*;
-import UserManagement.Models.Implementations.*;
+import UserManagement.Models.Implementations.EmployeeDelete;
+import UserManagement.Models.Implementations.EmployeeHandleStatus;
+import UserManagement.Models.Implementations.EmployeeRead;
+import UserManagement.Models.Implementations.EmployeeUpdate;
 import UserManagement.Values.Strings;
 import WorkGroupManagement.Controllers.AddMembersController;
 import WorkGroupManagement.Controllers.ShowMembersController;
@@ -37,7 +39,7 @@ import java.util.ResourceBundle;
  *
  * @author migue
  */
-public class AdminUIController implements Initializable, Tables {
+public class AdminUIController implements Initializable {
 
     @FXML private TextField txtEmployeeID;
     @FXML private TextField txtEmployeeName;
@@ -107,7 +109,6 @@ public class AdminUIController implements Initializable, Tables {
     }
 
 
-    @Override
     public void initializeTable(){
         columnID.setCellValueFactory(new PropertyValueFactory<>("id"));
         columnType.setCellValueFactory(new PropertyValueFactory<>("type"));
@@ -146,7 +147,7 @@ public class AdminUIController implements Initializable, Tables {
         }
     }
 
-    @Override
+
     public AEmployee getSelected() {
         if (table != null) {
             List<AEmployee> employeeList = table.getSelectionModel().getSelectedItems();
@@ -523,5 +524,19 @@ public class AdminUIController implements Initializable, Tables {
         return str.matches("[a-zA-z]*");
     }
 
+    @FXML
+    private void btnLogoutAction(ActionEvent event) {
+        if (confirmChanges(Strings.logout)) {
+            try {
+                fxml = FXMLLoader.load(getClass().getResource("/Login/Views/LoginUI.fxml"));
+                scene = new Scene(fxml);
+                stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                stage.setScene(scene);
+                stage.show();
+            } catch (IOException e) {
+                System.out.println("ERROR in method AdminUIController.btnLogoutAction error: " + e);
+            }
+        }
+    }
 
 }
