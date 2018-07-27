@@ -13,10 +13,14 @@ public class VacEmployeeSearch implements IVacEmployeeSearch {
     private static ResultSet rs;
     private static Connection conn= DatabaseConnection.getInstance().getConnection();
     private static PreparedStatement pStatement;
+    private AVacEmployee vacEmployee;
+
+    public VacEmployeeSearch(AVacEmployee vacEmployee){
+        this.vacEmployee = vacEmployee;
+    }
 
     @Override
     public AVacEmployee searchVacEmployeeData(int employeeID){
-        AVacEmployee vacEmployee = new VacEmployee();
         String sqlQuery = "SELECT * FROM vac_employee_data WHERE fk_id_user = ?";
         try{
             pStatement = conn.prepareStatement(sqlQuery);

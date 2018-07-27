@@ -17,7 +17,7 @@ public class EmployeeRecover implements IEmployeeRecover {
         System.out.println("dato: "+ String.valueOf(question));
         System.out.println("dato: "+ response);
 
-        String sql="update usuario set password_user'"+password+"' where name_user = '"+user+"';";
+        String sql="update usuario set password_user '"+password+"' where name_user = '"+user+"';";
 
         try {
             preparedStatement = conn.prepareStatement(sql);

@@ -2,13 +2,13 @@ package VacationManagementSupervisor.Models.Implementations;
 
 import Database.DatabaseConnection;
 import VacationManagementSupervisor.Models.Abstracts.AVacRequest;
+import VacationManagementSupervisor.Models.Abstracts.IVacRequestFactory;
 import VacationManagementSupervisor.Models.Abstracts.IVacRequestReadHistory;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 public class VacRequestReadHistory implements IVacRequestReadHistory {
@@ -17,8 +17,10 @@ public class VacRequestReadHistory implements IVacRequestReadHistory {
     private static PreparedStatement pStatement;
     private List<AVacRequest> listVacReq;
     private AVacRequest vacReq;
+    private IVacRequestFactory vacRequestFactory;
 
-    public VacRequestReadHistory(List<AVacRequest> listVacReq,AVacRequest vacReq){
+    public VacRequestReadHistory(List<AVacRequest> listVacReq, AVacRequest vacReq, IVacRequestFactory vacRequestFactory){
+        this.vacRequestFactory = vacRequestFactory;
         this.listVacReq = listVacReq;
         this.vacReq = vacReq;
     }
@@ -30,12 +32,13 @@ public class VacRequestReadHistory implements IVacRequestReadHistory {
         String sqlQuery = "SELECT * FROM vac_request vr" +
                 " INNER JOIN usuario u ON vr.fk_id_user = u.pk_id_user"+
                 " WHERE supervisor_id = ? AND u.status_user = 1" +
-                " ORDER BY fk_id_user DESC;";
+                " ORDER BY fk_id_user ASC;";
         try{
             pStatement = conn.prepareStatement(sqlQuery);
             pStatement.setInt(1,supervisorID);
             rs= pStatement.executeQuery();
             while(rs.next()){
+                vacReq = vacRequestFactory.getVacRequest();
                 vacReq.setPkIDRequest(rs.getInt(1));
                 vacReq.setFkIDUser(rs.getInt(2));
                 vacReq.setStartDate(rs.getDate(3).toLocalDate());
@@ -49,7 +52,6 @@ public class VacRequestReadHistory implements IVacRequestReadHistory {
         }catch (SQLException e){
             System.out.println("ERROR in sql statement method VacRequestReadPending.getHistorySupervisor error: "+e);
         }
-
         return listVacReq;
     }
 
@@ -57,18 +59,16 @@ public class VacRequestReadHistory implements IVacRequestReadHistory {
 
     @Override
     public  List<AVacRequest> getHistoryEmployee(int employeeID){
-        List<AVacRequest> listVacReq = new ArrayList<>();
         rs = null;
         String sqlQuery =   "SELECT * FROM vac_request " +
                 "WHERE fk_id_user = ? " +
-                "ORDER BY pk_id_request DESC;";
+                "ORDER BY pk_id_request ASC;";
         try{
             pStatement = conn.prepareStatement(sqlQuery);
             pStatement.setInt(1,employeeID);
             rs= pStatement.executeQuery();
-
             while(rs.next()){
-                AVacRequest vacReq = new VacRequest();
+                vacReq = vacRequestFactory.getVacRequest();
                 vacReq.setPkIDRequest(rs.getInt(1));
                 vacReq.setFkIDUser(rs.getInt(2));
                 vacReq.setStartDate(rs.getDate(3).toLocalDate());
@@ -80,7 +80,6 @@ public class VacRequestReadHistory implements IVacRequestReadHistory {
         }catch (SQLException e){
             System.out.println("ERROR in sql statement method VacRequestReadPending.getHistoryEmployee error: "+e);
         }
-
         return listVacReq;
     }
 }

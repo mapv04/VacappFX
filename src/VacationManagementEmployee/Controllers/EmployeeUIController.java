@@ -1,26 +1,30 @@
 package VacationManagementEmployee.Controllers;
 
 
-import Login.Models.Implementations.*;
+import Login.Models.Implementations.Employee;
+import Login.Models.Implementations.EmployeeSearch;
 import VacationManagementEmployee.Models.Abstracts.*;
-import VacationManagementEmployee.Models.Implemetations.VacEmployeeCancel;
-import VacationManagementEmployee.Models.Implemetations.VacEmployeeGenerateReq;
-import VacationManagementEmployee.Models.Implemetations.VacEmployeeReport;
-import VacationManagementEmployee.Models.Implemetations.VacEmployeeSearch;
+import VacationManagementEmployee.Models.Implemetations.*;
+import VacationManagementSupervisor.Controllers.SupervisorUIController;
+import VacationManagementSupervisor.Models.Abstracts.*;
+import VacationManagementSupervisor.Models.Implementations.VacRequestFactory;
 import VacationManagementSupervisor.Models.Implementations.VacRequestReadHistory;
 import VacationManagementSupervisor.Models.Implementations.VacRequestReadPending;
 import VacationManagementSupervisor.Models.Implementations.VacRequestSearch;
-import VacationManagementSupervisor.Models.Abstracts.AVacRequest;
-import VacationManagementSupervisor.Models.Abstracts.IVacRequestReadHistory;
-import VacationManagementSupervisor.Models.Abstracts.IVacRequestReadPending;
-import VacationManagementSupervisor.Models.Abstracts.IVacRequestSearch;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.paint.Color;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
@@ -57,6 +61,7 @@ public class EmployeeUIController   {
 
     private ButtonType buttonTypeYes = new ButtonType("Yes");
     private ButtonType buttonTypeNo = new ButtonType("No");
+    private static boolean isSupervisor = false;
     private static int employeeID;
 
 
@@ -139,7 +144,10 @@ public class EmployeeUIController   {
 
     @FXML
     private void generateReport() {
-        IVacEmployeeReport vacEmployeeReport = new VacEmployeeReport();
+        IVacEmployeeFactory employeeFactory = new VacEmployeeFactory();
+        IVacEmployeeReport vacEmployeeReport = new VacEmployeeReport(employeeFactory.getDocumentO(),employeeFactory.getTableO(),
+                                                employeeFactory.getParagraph1(),employeeFactory.getParagraph2(),
+                                                 employeeFactory.getFileOutputStream(),employeeFactory.getFileO());
         List<AVacRequest> vacRequestList = tableHistoricalRequest.getItems();
         vacEmployeeReport.createReportTable(vacRequestList);
     }
@@ -181,6 +189,25 @@ public class EmployeeUIController   {
         }
     }
 
+    @FXML
+    private void onGoBackClick(ActionEvent event) throws IOException {
+        String UILocation;
+        if(isSupervisor){
+            SupervisorUIController.setSupervisorID(employeeID);
+            UILocation = "/VacationManagementSupervisor/Views/SupervisorUI.fxml";
+        } else{
+            UILocation ="/Login/Views/LoginUI.fxml";
+        }
+        Scene scene;
+        Parent fxml;
+        Stage stage;
+        fxml = FXMLLoader.load(getClass().getResource(UILocation));
+        scene = new Scene(fxml);
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+    }
+
 
 
     private void setLabelReqVacDays(){
@@ -189,7 +216,10 @@ public class EmployeeUIController   {
 
 
     private void loadTableHistorical(){
-        IVacRequestReadHistory vacRequestReadHistory = new VacRequestReadHistory();
+        IVacRequestFactory employeeFactory = new VacRequestFactory();
+        IVacRequestReadHistory vacRequestReadHistory = new VacRequestReadHistory(employeeFactory.getVacRequestList(),
+                                                                                employeeFactory.getVacRequest(),
+                                                                                employeeFactory);
         ObservableList<AVacRequest> vacRequests;
         vacRequests=FXCollections.observableArrayList(vacRequestReadHistory.getHistoryEmployee(employeeID));
         columnRequestID.setCellValueFactory(new PropertyValueFactory<>("pkIDRequest"));
@@ -202,7 +232,10 @@ public class EmployeeUIController   {
 
 
     private void loadTableCancelRequest(){
-        IVacRequestReadPending vacRequestReadPending = new VacRequestReadPending();
+        IVacRequestFactory employeeFactory = new VacRequestFactory();
+        IVacRequestReadPending vacRequestReadPending = new VacRequestReadPending(employeeFactory.getVacRequestList(),
+                                                                                employeeFactory.getVacRequest(),
+                                                                                employeeFactory);
         ObservableList<AVacRequest> vacRequests;
         vacRequests=FXCollections.observableArrayList(vacRequestReadPending.getPendingRequestEmployee(employeeID));
         vacCancelColumnID.setCellValueFactory(new PropertyValueFactory<>("pkIDRequest"));
@@ -214,8 +247,9 @@ public class EmployeeUIController   {
 
 
     private void loadEmployeeInfo(){
-        IVacRequestSearch vacRequestSearch = new VacRequestSearch();
-        IVacEmployeeSearch vacEmployeeSearch = new VacEmployeeSearch();
+        IVacEmployeeFactory employeeFactory = new VacEmployeeFactory();
+        IVacRequestSearch vacRequestSearch = new VacRequestSearch(employeeFactory.getVacRequestList(),employeeFactory.getVacRequest());
+        IVacEmployeeSearch vacEmployeeSearch = new VacEmployeeSearch(employeeFactory.getVacEmployee());
         EmployeeSearch employeeSearch = new EmployeeSearch();
         Employee employee = employeeSearch.searchEmployeeID(employeeID);
         AVacEmployee vacEmployee = vacEmployeeSearch.searchVacEmployeeData(employeeID);
@@ -249,6 +283,10 @@ public class EmployeeUIController   {
 
     public static void setEmployeeID(int ID){
         employeeID = ID;
+    }
+
+    public static void setIsSupervisor(boolean answer){
+        isSupervisor = answer;
     }
     
 }

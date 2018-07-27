@@ -13,6 +13,22 @@ import java.util.List;
 
 
 public class VacEmployeeReport implements IVacEmployeeReport {
+    private Document document;
+    private FileOutputStream fileOutputStream;
+    private PdfPTable table;
+    private Paragraph paragraph1;
+    private Paragraph paragraph2;
+    private File file;
+
+    public VacEmployeeReport(Document document, PdfPTable table, Paragraph paragraph1, Paragraph paragraph2,
+                            FileOutputStream fileOutputStream, File file){
+        this.document = document;
+        this.table = table;
+        this.paragraph1 = paragraph1;
+        this.paragraph2 = paragraph2;
+        this.fileOutputStream = fileOutputStream;
+        this.file = file;
+    }
 
     @Override
     public  void createReportTable(List<AVacRequest> listRequests){
@@ -21,9 +37,7 @@ public class VacEmployeeReport implements IVacEmployeeReport {
         }
         try{
             String dest = "reports/employee/employee_report.pdf";
-            Document document = new Document(PageSize.A4.rotate());
-            PdfWriter.getInstance(document, new FileOutputStream(dest));
-            PdfPTable table  = new PdfPTable(6);
+            PdfWriter.getInstance(document, fileOutputStream);
             table.setWidthPercentage(100);
 
             table.addCell("EmployeeID");
@@ -42,12 +56,11 @@ public class VacEmployeeReport implements IVacEmployeeReport {
                 table.addCell(String.valueOf(requests.getDaysRequested()));
             }
             document.open();
-            document.add(new Paragraph("Employee Vacation Requests Historical\n",
-                    FontFactory.getFont(FontFactory.HELVETICA_BOLD,20,BaseColor.BLUE)));
-            document.add(new Paragraph(" "));
+            document.add(paragraph1);
+            document.add(paragraph2);
             document.add(table);
             document.close();
-            Desktop.getDesktop().open(new File(dest));
+            Desktop.getDesktop().open(file);
         }catch (Exception e){
             System.out.println("The pdf couldn't be generated");
         }

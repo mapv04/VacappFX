@@ -7,11 +7,6 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="itextg-5.4.3-javadoc" level="project" />
-    <orderEntry type="library" name="mysql-connector-java-8.0.11" level="project" />
-<<<<<<< HEAD
-    <orderEntry type="library" name="itextg-5.4.3-javadoc" level="project" />
-=======
->>>>>>> a1cefcdfb864c8d1a39fceebea1d622414c3b362
+    <orderEntry type="library" name="itextg-5.4.3" level="project" />
   </component>
 </module>

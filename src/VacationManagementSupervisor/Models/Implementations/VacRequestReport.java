@@ -3,7 +3,8 @@ package VacationManagementSupervisor.Models.Implementations;
 
 import VacationManagementSupervisor.Models.Abstracts.AVacRequest;
 import VacationManagementSupervisor.Models.Abstracts.IVacRequestReport;
-import com.itextpdf.text.*;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 
@@ -13,6 +14,23 @@ import java.io.FileOutputStream;
 import java.util.List;
 
 public class VacRequestReport implements IVacRequestReport {
+    private Document document;
+    private FileOutputStream fileOutputStream;
+    private PdfPTable table;
+    private Paragraph paragraph1;
+    private Paragraph paragraph2;
+    private File file;
+
+    public VacRequestReport(Document document, PdfPTable table, Paragraph paragraph1, Paragraph paragraph2,
+                            FileOutputStream fileOutputStream, File file){
+        this.document = document;
+        this.table = table;
+        this.paragraph1 = paragraph1;
+        this.paragraph2 = paragraph2;
+        this.fileOutputStream = fileOutputStream;
+        this.file = file;
+    }
+
 
 
     @Override
@@ -21,10 +39,7 @@ public class VacRequestReport implements IVacRequestReport {
             return;
         }
         try{
-            String dest = "reports/supervisor/supervisor_report.pdf";
-            Document document = new Document(PageSize.A4.rotate());
-            PdfWriter.getInstance(document, new FileOutputStream(dest));
-            PdfPTable table  = new PdfPTable(7);
+            PdfWriter.getInstance(document, fileOutputStream);
             table.setWidthPercentage(100);
 
             table.addCell("EmployeeID");
@@ -45,12 +60,11 @@ public class VacRequestReport implements IVacRequestReport {
                 table.addCell(String.valueOf(requests.getDaysRequested()));
             }
             document.open();
-            document.add(new Paragraph("Supervisor Vacation Requests Historical\n",
-                                             FontFactory.getFont(FontFactory.HELVETICA_BOLD,20,BaseColor.BLUE)));
-            document.add(new Paragraph(" "));
+            document.add(paragraph1);
+            document.add(paragraph2);
             document.add(table);
             document.close();
-            Desktop.getDesktop().open(new File(dest));
+            Desktop.getDesktop().open(file);
         }catch (Exception e){
             System.out.println("The pdf couldn't be generated");
         }

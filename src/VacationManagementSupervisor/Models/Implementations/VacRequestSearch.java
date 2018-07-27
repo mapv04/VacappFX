@@ -8,7 +8,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 public class VacRequestSearch implements IVacRequestSearch {
@@ -16,10 +15,16 @@ public class VacRequestSearch implements IVacRequestSearch {
     private static ResultSet rs;
     private static Connection conn= DatabaseConnection.getInstance().getConnection();
     private static PreparedStatement pStatement;
+    private List<AVacRequest> listVacReq;
+    private AVacRequest vacReq;
+
+    public VacRequestSearch(List<AVacRequest> listVacReq,AVacRequest vacReq){
+        this.listVacReq = listVacReq;
+        this.vacReq = vacReq;
+    }
 
     @Override
     public  List<AVacRequest> searchAllRequests(int employeeID, int supervisorID){
-        List<AVacRequest> listVacReq = new ArrayList<>();
         String sqlQuery = "SELECT * FROM vac_request vr" +
                           " INNER JOIN usuario u ON vr.fk_id_user = u.pk_id_user"+
                           " WHERE fk_id_user = ?" +
@@ -31,7 +36,6 @@ public class VacRequestSearch implements IVacRequestSearch {
             pStatement.setInt(2,supervisorID);
             rs= pStatement.executeQuery();
             while(rs.next()){
-                AVacRequest vacReq = new VacRequest();
                 vacReq.setPkIDRequest(rs.getInt(1));
                 vacReq.setFkIDUser(rs.getInt(2));
                 vacReq.setStartDate(rs.getDate(3).toLocalDate());
@@ -51,7 +55,6 @@ public class VacRequestSearch implements IVacRequestSearch {
 
     @Override
     public  AVacRequest searchLatestRequest(int employeeID){
-        AVacRequest vacRequest =new VacRequest();
         String sqlQuery = "SELECT * FROM vac_request " +
                           "WHERE fk_id_user = ? " +
                           "ORDER BY pk_id_request DESC LIMIT 1";
@@ -60,15 +63,15 @@ public class VacRequestSearch implements IVacRequestSearch {
             pStatement.setInt(1, employeeID);
             rs= pStatement.executeQuery();
             if(rs.next()){
-                vacRequest.setPkIDRequest(rs.getInt(1));
-                vacRequest.setStartDate(rs.getDate(3).toLocalDate());
-                vacRequest.setEndDate(rs.getDate(4).toLocalDate());
-                vacRequest.setStatus(rs.getString(5));
+                vacReq.setPkIDRequest(rs.getInt(1));
+                vacReq.setStartDate(rs.getDate(3).toLocalDate());
+                vacReq.setEndDate(rs.getDate(4).toLocalDate());
+                vacReq.setStatus(rs.getString(5));
             }
         }catch (SQLException e){
             System.out.println("ERROR in sql statement method VacRequestSearch.searchAllRequests error: "+e);
         }
-        return vacRequest;
+        return vacReq;
     }
 
 

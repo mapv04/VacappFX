@@ -28,6 +28,7 @@
             <TableColumn fx:id="columnSupervisorStatus" prefWidth="61.0" text="Status" />
         </columns>
       </TableView>
-      <Button layoutX="38.0" layoutY="413.0" mnemonicParsing="false" onAction="#btnBackAction" text="&lt; Back" />
+      <Button layoutX="34.0" layoutY="486.0" mnemonicParsing="false" onAction="#btnBackAction" text="&lt; Back" />
+       <Button layoutX="95.0" layoutY="486.0" mnemonicParsing="false" onAction="#btnLogoutAction" text="Logout" />
    </children>
 </AnchorPane>

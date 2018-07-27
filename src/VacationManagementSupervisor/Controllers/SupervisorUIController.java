@@ -5,6 +5,7 @@ import VacationManagementSupervisor.Models.Abstracts.*;
 import VacationManagementSupervisor.Models.Implementations.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -14,6 +15,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
@@ -39,10 +41,8 @@ public class SupervisorUIController {
 
     @FXML private Button buttonApprove;
     @FXML private Button buttonDeny;
-    @FXML private Button buttonEmployeeScene;
     @FXML private TextField historyTextField;
 
-    private ObservableList<AVacRequest> vacRequests;
     private ButtonType buttonTypeYes = new ButtonType("Yes");
     private ButtonType buttonTypeNo = new ButtonType("No");
     private static int supervisorID;
@@ -105,31 +105,39 @@ public class SupervisorUIController {
         }catch(Exception e){ }
     }
 
+
+
     @FXML
-    private void onTabChangeVacation(){
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Vacation Window");
-        alert.setHeaderText("You are going to exit supervisor management to enter employee vacation");
-        alert.showAndWait();
+    private void onEmployeeUIClick(ActionEvent event) throws  IOException {
+        Scene scene;
+        Parent fxml;
+        Stage stage;
         EmployeeUIController.setEmployeeID(supervisorID);
-        buttonEmployeeScene.setOnAction(a ->{
-            try {
-                Parent parent = FXMLLoader.load(getClass().getResource("/VacationManagementEmployee/Views/EmployeeUI.fxml"));
-                Scene otherScene = new Scene(parent);
-                Stage app_stage = (Stage) ((Node) a.getSource()).getScene().getWindow();
-                app_stage.setScene(otherScene);
-                app_stage.show();
-            } catch(Exception e) {
-                System.out.println("cant load new window "+e);
-            }
-        });
-        buttonEmployeeScene.fire();
+        EmployeeUIController.setIsSupervisor(true);
+        fxml = FXMLLoader.load(getClass().getResource("/VacationManagementEmployee/Views/EmployeeUI.fxml"));
+        scene = new Scene(fxml);
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML
+    private void onLoginUIClick(ActionEvent event) throws  IOException {
+            Scene scene;
+            Parent fxml;
+            Stage stage;
+            fxml = FXMLLoader.load(getClass().getResource("/Login/Views/LoginUI.fxml"));
+            scene = new Scene(fxml);
+            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
     }
 
 
     @FXML
     private void searchHistoryByID(){
-        IVacRequestSearch vacRequestSearch = new VacRequestSearch();
+        IVacRequestFactory  requestFactory = new VacRequestFactory();
+        IVacRequestSearch vacRequestSearch = new VacRequestSearch(requestFactory.getVacRequestList(),requestFactory.getVacRequest());
         String text = historyTextField.getText();
        if(text.isEmpty() || text.trim().isEmpty()) {
            loadTableHistoryRequest();
@@ -150,7 +158,10 @@ public class SupervisorUIController {
 
     @FXML
     private void generateReport(){
-        IVacRequestReport vacRequestReport = new VacRequestReport();
+        IVacRequestFactory  requestFactory = new VacRequestFactory();
+        IVacRequestReport vacRequestReport = new VacRequestReport(requestFactory.getDocumentO(),requestFactory.getTableO(),
+                                                                  requestFactory.getParagraph1(),requestFactory.getParagraph2(),
+                                                                  requestFactory.getFileOutputStream(),requestFactory.getFileO());
         List<AVacRequest> vacRequestList = tableHistoryRequest.getItems();
         vacRequestReport.createReportTable(vacRequestList);
     }
@@ -158,7 +169,11 @@ public class SupervisorUIController {
 
 
     private void loadTableHistoryRequest(){
-        IVacRequestReadHistory vacRequestReadHistory = new VacRequestReadHistory();
+        ObservableList<AVacRequest> vacRequests;
+        IVacRequestFactory  requestFactory = new VacRequestFactory();
+        IVacRequestReadHistory vacRequestReadHistory = new VacRequestReadHistory(requestFactory.getVacRequestList(),
+                                                                                requestFactory.getVacRequest(),
+                                                                                requestFactory);
         disableRequestButtons();
         vacRequests=FXCollections.observableArrayList(vacRequestReadHistory.getHistorySupervisor(supervisorID));
         hColumnRequestID.setCellValueFactory(new PropertyValueFactory<>("pkIDRequest"));
@@ -173,6 +188,7 @@ public class SupervisorUIController {
 
 
     private void loadTableHistoryRequest(List<AVacRequest> vacHistoryList){
+        ObservableList<AVacRequest> vacRequests;
         vacRequests=FXCollections.observableArrayList(vacHistoryList);
         hColumnRequestID.setCellValueFactory(new PropertyValueFactory<>("pkIDRequest"));
         hColumnEmployeeID.setCellValueFactory(new PropertyValueFactory<>("fkIDUser"));
@@ -186,7 +202,11 @@ public class SupervisorUIController {
 
 
     private void loadTablePendingRequest(){
-        IVacRequestReadPending vacRequestReadPending = new VacRequestReadPending();
+        ObservableList<AVacRequest> vacRequests;
+        IVacRequestFactory  requestFactory = new VacRequestFactory();
+        IVacRequestReadPending vacRequestReadPending = new VacRequestReadPending(requestFactory.getVacRequestList(),
+                                                                                requestFactory.getVacRequest(),
+                                                                                requestFactory);
         vacRequests=FXCollections.observableArrayList(vacRequestReadPending.getPendingRequestSupervisor(supervisorID));
         pColumnRequestID.setCellValueFactory(new PropertyValueFactory<>("pkIDRequest"));
         pColumnEmployeeID.setCellValueFactory(new PropertyValueFactory<>("fkIDUser"));
