@@ -3,27 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="7b429817-2956-4fa8-b12e-f9fe4525f7ef" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Connector J 8.0/src/build/build.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Connector J 8.0/src/build/build.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Connector J 8.0/src/demo/demo.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Connector J 8.0/src/demo/demo.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Connector J 8.0/src/generated/generated.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Connector J 8.0/src/generated/generated.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Connector J 8.0/src/legacy/legacy.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Connector J 8.0/src/legacy/legacy.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Connector J 8.0/src/main/core-api/core-api.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Connector J 8.0/src/main/core-api/core-api.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Connector J 8.0/src/main/core-impl/core-impl.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Connector J 8.0/src/main/core-impl/core-impl.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Connector J 8.0/src/main/protocol-impl/protocol-impl.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Connector J 8.0/src/main/protocol-impl/protocol-impl.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Connector J 8.0/src/main/user-api/user-api.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Connector J 8.0/src/main/user-api/user-api.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Connector J 8.0/src/main/user-impl/user-impl.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Connector J 8.0/src/main/user-impl/user-impl.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Connector J 8.0/src/test/test.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Connector J 8.0/src/test/test.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/VacappFX-master/UserManagement/Views/AdminUI.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/VacappFX-master/UserManagement/Views/AdminUI.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/VacappFX-master/WorkGroupManagement/Views/AddMembers.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/VacappFX-master/WorkGroupManagement/Views/AddMembers.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/VacappFX-master/WorkGroupManagement/Views/ShowMembers.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/VacappFX-master/WorkGroupManagement/Views/ShowMembers.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/VacappFX-master/WorkGroupManagement/Views/WorkGroupRegister.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/VacappFX-master/WorkGroupManagement/Views/WorkGroupRegister.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reports/supervisor/employee_report.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/reports/supervisor/employee_report.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reports/supervisor/supervisor_report.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/reports/supervisor/supervisor_report.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Login/Models/Implementations/EmployeeRecover.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Login/Models/Implementations/EmployeeRecover.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/VacationManagementEmployee/Controllers/EmployeeUIController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/VacationManagementEmployee/Controllers/EmployeeUIController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/VacationManagementSupervisor/Controllers/SupervisorUIController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/VacationManagementSupervisor/Controllers/SupervisorUIController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/VacationManagementSupervisor/Models/Implementations/VacRequestSearch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/VacationManagementSupervisor/Models/Implementations/VacRequestSearch.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/VacationManagementSupervisor/Views/SupervisorUI.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/VacationManagementSupervisor/Views/SupervisorUI.fxml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -38,29 +17,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="SupervisorUIController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/VacationManagementSupervisor/Controllers/SupervisorUIController.java">
+      <file leaf-file-name="MainVacapp.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/MainVacapp.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="185">
-              <caret line="147" selection-start-line="147" selection-end-line="147" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="EmployeeUIController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/VacationManagementEmployee/Controllers/EmployeeUIController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="155">
-              <caret line="253" column="76" lean-forward="true" selection-start-line="253" selection-start-column="76" selection-end-line="253" selection-end-column="76" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="VacRequestSearch.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/VacationManagementSupervisor/Models/Implementations/VacRequestSearch.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="305">
-              <caret line="40" column="23" lean-forward="true" selection-start-line="40" selection-start-column="23" selection-end-line="40" selection-end-column="23" />
+            <state relative-caret-position="600">
+              <caret line="31" lean-forward="true" selection-start-line="31" selection-end-line="31" />
             </state>
           </provider>
         </entry>
@@ -187,43 +148,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="AndroidView" />
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="VACAPP" type="b2602c69:ProjectViewProjectNode" />
-              <item name="VACAPP" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="VACAPP" type="b2602c69:ProjectViewProjectNode" />
-              <item name="VACAPP" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="VACAPP" type="b2602c69:ProjectViewProjectNode" />
-              <item name="VACAPP" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Login" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="VACAPP" type="b2602c69:ProjectViewProjectNode" />
-              <item name="VACAPP" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="VacationManagementSupervisor" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="VACAPP" type="b2602c69:ProjectViewProjectNode" />
-              <item name="VACAPP" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="VacationManagementSupervisor" type="462c0819:PsiDirectoryNode" />
-              <item name="Controllers" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="Scope" />
       <pane id="PackagesPane">
         <subPane>
           <expand>
@@ -245,6 +169,24 @@
           <select />
         </subPane>
       </pane>
+      <pane id="AndroidView" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="VACAPP" type="b2602c69:ProjectViewProjectNode" />
+              <item name="VACAPP" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="VACAPP" type="b2602c69:ProjectViewProjectNode" />
+              <item name="VACAPP" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -356,7 +298,6 @@
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Messages" order="10" weight="0.3264418" />
       <window_info anchor="right" id="Palette&#9;" order="7" />
       <window_info id="Image Layers" order="2" />
       <window_info anchor="right" id="Capture Analysis" order="4" />
@@ -367,7 +308,7 @@
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info id="Capture Tool" order="6" />
       <window_info id="Designer" order="3" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18645833" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18645833" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info id="UI Designer" order="4" />
@@ -376,6 +317,7 @@
       <window_info id="Favorites" order="5" side_tool="true" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="Messages" order="10" weight="0.3264418" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info id="Learn" order="7" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -590,13 +532,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/MainVacapp.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="17" selection-start-line="17" selection-end-line="17" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Login/Models/Abstracts/IEmployeeRecover.java" />
     <entry file="file://$PROJECT_DIR$/src/Login/Models/Abstracts/IEmployeeValidation.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -689,13 +624,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Database/DatabaseConnection.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="22" column="44" selection-start-line="22" selection-start-column="44" selection-end-line="22" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/VacationManagementSupervisor/Models/Implementations/VacRequestReadPending.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
@@ -733,22 +661,36 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/VacationManagementEmployee/Controllers/EmployeeUIController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="155">
-          <caret line="253" column="76" lean-forward="true" selection-start-line="253" selection-start-column="76" selection-end-line="253" selection-end-column="76" />
+        <state relative-caret-position="5352">
+          <caret line="253" column="76" selection-start-line="253" selection-start-column="76" selection-end-line="253" selection-end-column="76" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/VacationManagementSupervisor/Controllers/SupervisorUIController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="185">
+        <state relative-caret-position="3120">
           <caret line="147" selection-start-line="147" selection-end-line="147" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/VacationManagementSupervisor/Models/Implementations/VacRequestSearch.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="305">
-          <caret line="40" column="23" lean-forward="true" selection-start-line="40" selection-start-column="23" selection-end-line="40" selection-end-column="23" />
+        <state relative-caret-position="696">
+          <caret line="38" column="33" selection-start-line="38" selection-start-column="33" selection-end-line="38" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Database/DatabaseConnection.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="416">
+          <caret line="48" column="9" selection-end-line="73" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/MainVacapp.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="600">
+          <caret line="31" lean-forward="true" selection-start-line="31" selection-end-line="31" />
         </state>
       </provider>
     </entry>

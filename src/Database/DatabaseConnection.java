@@ -18,8 +18,8 @@ public  class DatabaseConnection {
 
     private static  DatabaseConnection instance = new DatabaseConnection();
     private static  Connection connection;
-    private static final String user="root";
-    private static final String password="car1118";
+    private static final String user="admin";
+    private static final String password="admin123";
     private static final String bd = "vacapp";
     private static final String url="jdbc:mysql://localhost:3306/"+bd+"?useSSL=false&serverTimezone=UTC";
 
