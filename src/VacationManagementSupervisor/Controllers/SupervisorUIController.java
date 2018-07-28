@@ -137,7 +137,9 @@ public class SupervisorUIController {
     @FXML
     private void searchHistoryByID(){
         IVacRequestFactory  requestFactory = new VacRequestFactory();
-        IVacRequestSearch vacRequestSearch = new VacRequestSearch(requestFactory.getVacRequestList(),requestFactory.getVacRequest());
+        IVacRequestSearch vacRequestSearch = new VacRequestSearch(requestFactory.getVacRequestList(),
+                                                                requestFactory.getVacRequest(),
+                                                                requestFactory);
         String text = historyTextField.getText();
        if(text.isEmpty() || text.trim().isEmpty()) {
            loadTableHistoryRequest();

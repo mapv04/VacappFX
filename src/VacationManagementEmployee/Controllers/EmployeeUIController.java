@@ -248,7 +248,10 @@ public class EmployeeUIController   {
 
     private void loadEmployeeInfo(){
         IVacEmployeeFactory employeeFactory = new VacEmployeeFactory();
-        IVacRequestSearch vacRequestSearch = new VacRequestSearch(employeeFactory.getVacRequestList(),employeeFactory.getVacRequest());
+        IVacRequestFactory requestFactory = new VacRequestFactory();
+        IVacRequestSearch vacRequestSearch = new VacRequestSearch(requestFactory.getVacRequestList(),
+                                                                    requestFactory.getVacRequest(),
+                                                                    requestFactory);
         IVacEmployeeSearch vacEmployeeSearch = new VacEmployeeSearch(employeeFactory.getVacEmployee());
         EmployeeSearch employeeSearch = new EmployeeSearch();
         Employee employee = employeeSearch.searchEmployeeID(employeeID);

@@ -2,6 +2,7 @@ package VacationManagementSupervisor.Models.Implementations;
 
 import Database.DatabaseConnection;
 import VacationManagementSupervisor.Models.Abstracts.AVacRequest;
+import VacationManagementSupervisor.Models.Abstracts.IVacRequestFactory;
 import VacationManagementSupervisor.Models.Abstracts.IVacRequestSearch;
 
 import java.sql.Connection;
@@ -17,10 +18,12 @@ public class VacRequestSearch implements IVacRequestSearch {
     private static PreparedStatement pStatement;
     private List<AVacRequest> listVacReq;
     private AVacRequest vacReq;
+    private IVacRequestFactory vacRequestFactory;
 
-    public VacRequestSearch(List<AVacRequest> listVacReq,AVacRequest vacReq){
+    public VacRequestSearch(List<AVacRequest> listVacReq,AVacRequest vacReq, IVacRequestFactory vacRequestFactory){
         this.listVacReq = listVacReq;
         this.vacReq = vacReq;
+        this.vacRequestFactory = vacRequestFactory;
     }
 
     @Override
@@ -36,6 +39,7 @@ public class VacRequestSearch implements IVacRequestSearch {
             pStatement.setInt(2,supervisorID);
             rs= pStatement.executeQuery();
             while(rs.next()){
+                vacReq = vacRequestFactory.getVacRequest();
                 vacReq.setPkIDRequest(rs.getInt(1));
                 vacReq.setFkIDUser(rs.getInt(2));
                 vacReq.setStartDate(rs.getDate(3).toLocalDate());
