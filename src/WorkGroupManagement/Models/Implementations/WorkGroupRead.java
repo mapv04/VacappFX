@@ -1,10 +1,13 @@
 package WorkGroupManagement.Models.Implementations;
 
 import Database.DatabaseConnection;
+import UserManagement.Models.Abstracts.AEmployee;
+import UserManagement.Models.Abstracts.IEmployeeFactory;
 import UserManagement.Models.Abstracts.IEmployeeRead;
 import UserManagement.Models.Implementations.EmployeeRead;
 import WorkGroupManagement.Models.Abstracts.AWorkGroup;
 import WorkGroupManagement.Models.Abstracts.AWorkGroupData;
+import WorkGroupManagement.Models.Abstracts.IWorkGroupFactory;
 import WorkGroupManagement.Models.Abstracts.IWorkGroupRead;
 
 import java.sql.Connection;
@@ -18,6 +21,26 @@ public class WorkGroupRead implements IWorkGroupRead {
     private static Connection conn= DatabaseConnection.getInstance().getConnection();
     private static PreparedStatement preparedStatement;
 
+    private IWorkGroupFactory workGroupFactory;
+    private IEmployeeFactory employeeFactory;
+    private AEmployee employee;
+    private AWorkGroup group;
+    private AWorkGroupData groupData;
+
+    public WorkGroupRead(AWorkGroup group, AEmployee employee, IWorkGroupFactory workGroupFactory, IEmployeeFactory employeeFactory,
+                         AWorkGroupData groupData){
+        this.group=group;
+        this.employee=employee;
+        this.workGroupFactory=workGroupFactory;
+        this.employeeFactory= employeeFactory;
+        this.groupData=groupData;
+
+    }
+
+    public WorkGroupRead(){
+
+    }
+
     @Override
     public void getAllWorkgroups(List<AWorkGroup> workGroupsList) {
         String sql="select * from workgroup;";
@@ -25,7 +48,7 @@ public class WorkGroupRead implements IWorkGroupRead {
             preparedStatement = conn.prepareStatement(sql);
             rs = preparedStatement.executeQuery();
             while(rs.next()){
-                WorkGroup group = new WorkGroup();
+                group=workGroupFactory.getWorkGroup();
                 group.setWorkGroupID(rs.getInt(1));
                 group.setWorkGroupName(rs.getString(2));
                 group.setFkLeaderID(rs.getInt(3));
@@ -62,14 +85,15 @@ public class WorkGroupRead implements IWorkGroupRead {
             preparedStatement = conn.prepareStatement(sql);
             rs = preparedStatement.executeQuery();
             while (rs.next()) {
-                WorkGroupData group = new WorkGroupData();
-                group.setGroupID(rs.getInt(1));
-                group.setEmployeeID(rs.getInt(2));
-                group.setEmployeeName(rs.getString(3));
-                group.setAddedDate(rs.getDate(4).toLocalDate());
-                IEmployeeRead employeeRead= new EmployeeRead();
-                group.setEmployeeStatus(employeeRead.getStatus(group.getEmployeeID()));
-                groupDataList.add(group);
+                groupData=workGroupFactory.getWorkGroupData();
+                employee= employeeFactory.getEmployee();
+                groupData.setGroupID(rs.getInt(1));
+                groupData.setEmployeeID(rs.getInt(2));
+                groupData.setEmployeeName(rs.getString(3));
+                groupData.setAddedDate(rs.getDate(4).toLocalDate());
+                IEmployeeRead employeeRead= new EmployeeRead(employee,employeeFactory);
+                groupData.setEmployeeStatus(employeeRead.getStatus(groupData.getEmployeeID()));
+                groupDataList.add(groupData);
             }
         }catch(SQLException e){
             System.out.println("ERROR in sql statement on method WorkGroupRead. getWorkgroupData error: "+e);
@@ -105,6 +129,20 @@ public class WorkGroupRead implements IWorkGroupRead {
         }
         return false;
 
+    }
+
+    @Override
+    public boolean isLeader(int id) {
+        String sql="select * from workgroup where fk_leader_id=?;";
+        try{
+            preparedStatement= conn.prepareStatement(sql);
+            preparedStatement.setInt(1,id);
+            rs=preparedStatement.executeQuery();
+            return rs.first();
+        }catch(SQLException e){
+            System.out.println("ERROR in sql statement in methos WorGroupRead.isLeader error: "+e);
+        }
+        return false;
     }
 
 

@@ -1,11 +1,15 @@
 package WorkGroupManagement.Controllers;
 
 import UserManagement.Models.Abstracts.AEmployee;
+import UserManagement.Models.Abstracts.IEmployeeFactory;
 import UserManagement.Models.Abstracts.IEmployeeRead;
+import UserManagement.Models.Implementations.EmployeeFactory;
 import UserManagement.Models.Implementations.EmployeeRead;
+import WorkGroupManagement.Models.Abstracts.AWorkGroup;
+import WorkGroupManagement.Models.Abstracts.IWorkGroupFactory;
 import WorkGroupManagement.Models.Abstracts.IWorkGroupRead;
 import WorkGroupManagement.Models.Abstracts.IWorkGroupUpdate;
-import WorkGroupManagement.Models.Implementations.WorkGroup;
+import WorkGroupManagement.Models.Implementations.WorkGroupFactory;
 import WorkGroupManagement.Models.Implementations.WorkGroupRead;
 import WorkGroupManagement.Models.Implementations.WorkGroupUpdate;
 import WorkGroupManagement.Values.Strings;
@@ -38,6 +42,7 @@ import java.util.ResourceBundle;
  */
 public class WorkGroupRegisterController implements Initializable {
 
+    @FXML private Label label;
     @FXML private TableView<AEmployee> table;
     @FXML private TableColumn columnSupervisorID;
     @FXML private TableColumn columnSupervisorName;
@@ -45,6 +50,9 @@ public class WorkGroupRegisterController implements Initializable {
     @FXML private TextField txtGroupName;
     @FXML private Button btnCancel;
     @FXML private Button btnCreate;
+
+    private static int sTag=0;
+    private static int groupID;
 
     private ObservableList<AEmployee> supervisorsList;
     Stage stage;
@@ -58,28 +66,40 @@ public class WorkGroupRegisterController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         clearAll();
+        if(sTag==1){
+            label.setText("ASSIGN A LEADER");
+            txtGroupName.setVisible(false);
+            btnCreate.setText("ASSIGN");
+            btnCancel.setVisible(false);
+        }
+
         initializeTable();
 
-        final ObservableList<AEmployee> supervisorList= table.getSelectionModel().getSelectedItems();
+        final ObservableList<AEmployee> supervisorList = table.getSelectionModel().getSelectedItems();
         supervisorList.addListener(tableSelector);
+
 
     }
 
     @FXML
-    private void btnCreateAction(){
-            String name=toUpperCase(txtGroupName.getText());
-            IWorkGroupRead workGroupRead= new WorkGroupRead();
-            if(name != null) {
+    private void btnCreateAction(ActionEvent event){
+        if(sTag==0) {
+            IWorkGroupFactory workGroupFactory = new WorkGroupFactory();
+            IEmployeeFactory employeeFactory = new EmployeeFactory();
+            String name = toUpperCase(txtGroupName.getText());
+            IWorkGroupRead workGroupRead = new WorkGroupRead(workGroupFactory.getWorkGroup(), employeeFactory.getEmployee(),
+                    workGroupFactory, employeeFactory, workGroupFactory.getWorkGroupData());
+            if (name != null) {
                 if (!workGroupRead.ifGroupExist(name)) {
                     LocalDate currentDate = LocalDate.now();
                     AEmployee leader = getSelected();
-                    WorkGroup newGroup = new WorkGroup();
+                    AWorkGroup newGroup = workGroupFactory.getWorkGroup();
                     newGroup.setWorkGroupName(name);
                     newGroup.setFkLeaderID(leader.getId());
                     newGroup.setLeaderName(leader.getName());
                     newGroup.setCreatedDate(currentDate);
                     newGroup.setStatus(1);
-                    IWorkGroupUpdate workGroupUpdate= new WorkGroupUpdate();
+                    IWorkGroupUpdate workGroupUpdate = new WorkGroupUpdate();
                     workGroupUpdate.createGroup(newGroup);
                     groupCreated();
                     clearAll();
@@ -87,6 +107,22 @@ public class WorkGroupRegisterController implements Initializable {
                     groupExist();
                 }
             }
+        }
+        else{
+            IWorkGroupUpdate workGroupUpdate= new WorkGroupUpdate();
+            AEmployee leader = getSelected();
+            String fullName= leader.getName();
+            workGroupUpdate.changeLeader(leader.getId(),fullName,groupID);
+            try {
+                fxml = FXMLLoader.load(getClass().getResource("/UserManagement/Views/AdminUI.fxml"));
+                scene = new Scene(fxml);
+                stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                stage.setScene(scene);
+                stage.show();
+            }catch(IOException e){
+                System.out.println("ERROR in method WorkGroupRegisterController.btnCreateAction error: "+e);
+            }
+        }
 
     }
 
@@ -110,11 +146,12 @@ public class WorkGroupRegisterController implements Initializable {
 
 
     public void initializeTable(){
+        IEmployeeFactory employeeFactory = new EmployeeFactory();
         columnSupervisorID.setCellValueFactory(new PropertyValueFactory<>("id"));
         columnSupervisorName.setCellValueFactory(new PropertyValueFactory<>("name"));
         columnSupervisorStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
         supervisorsList= FXCollections.observableArrayList();
-        IEmployeeRead employeeRead= new EmployeeRead();
+        IEmployeeRead employeeRead= new EmployeeRead(employeeFactory.getEmployee(),employeeFactory);
         employeeRead.getAllSupervisors(supervisorsList);
         table.setItems(supervisorsList);
 
@@ -250,6 +287,13 @@ public class WorkGroupRegisterController implements Initializable {
         }
     }
 
+    public static void setTag(int tag){
+        sTag=tag;
+    }
+
+    public static void setGroupID(int id){
+        groupID=id;
+    }
 
 
 }

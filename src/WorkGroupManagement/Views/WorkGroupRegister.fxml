@@ -9,7 +9,7 @@
 
 <AnchorPane id="AnchorPane" prefHeight="556.0" prefWidth="829.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="WorkGroupManagement.Controllers.WorkGroupRegisterController">
    <children>
-      <Label layoutX="291.0" layoutY="14.0" text="Create new work group">
+      <Label fx:id="label" layoutX="291.0" layoutY="14.0" text="Create new work group">
          <font>
             <Font size="24.0" />
          </font>

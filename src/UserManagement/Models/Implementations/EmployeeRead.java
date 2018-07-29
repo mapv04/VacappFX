@@ -2,6 +2,7 @@ package UserManagement.Models.Implementations;
 
 import Database.DatabaseConnection;
 import UserManagement.Models.Abstracts.AEmployee;
+import UserManagement.Models.Abstracts.IEmployeeFactory;
 import UserManagement.Models.Abstracts.IEmployeeRead;
 
 import java.sql.Connection;
@@ -16,6 +17,16 @@ public class EmployeeRead implements IEmployeeRead {
     private static Connection conn= DatabaseConnection.getInstance().getConnection();
     private static PreparedStatement preparedStatement;
 
+    private AEmployee employee;
+    private IEmployeeFactory employeeFactory;
+
+    public EmployeeRead (AEmployee employee, IEmployeeFactory employeeFactory ){
+
+        this.employee=employee;
+        this.employeeFactory=employeeFactory;
+    }
+
+
     @Override
     public void getAllEmployees(List<AEmployee> employeeList){
         //List<Employee> employeeList= new ArrayList<>();
@@ -25,7 +36,7 @@ public class EmployeeRead implements IEmployeeRead {
             preparedStatement = conn.prepareStatement(sql);
             rs = preparedStatement.executeQuery();
             while (rs.next()) {
-                Employee employee = new Employee();
+                employee=employeeFactory.getEmployee();
                 employee.setId(rs.getInt("pk_id_user"));
                 employee.setName(rs.getString("name_user"));
                 employee.setLastName(rs.getString("last_name"));
@@ -33,11 +44,12 @@ public class EmployeeRead implements IEmployeeRead {
                 employee.setStatus(rs.getInt("status_user"));
                 employee.setType(rs.getInt("type_user"));
                 employeeList.add(employee);
+
             }
         }catch (SQLException e){
             System.out.println("ERROR in sql statement on method EmployeeRead.getAllEmployees error: "+e);
         }
-        //return employeeList;
+
     }
 
 
@@ -64,12 +76,12 @@ public class EmployeeRead implements IEmployeeRead {
             preparedStatement=conn.prepareStatement(sql);
             rs=preparedStatement.executeQuery();
             while(rs.next()){
-                Employee supervisor=new Employee();
-                supervisor.setId(rs.getInt("pk_id_user"));
+                employee=employeeFactory.getEmployee();
+                employee.setId(rs.getInt("pk_id_user"));
                 String fullName=rs.getString("name_user")+" "+rs.getString("last_name");
-                supervisor.setName(fullName);
-                supervisor.setStatus(rs.getInt("status_user"));
-                supervisors.add(supervisor);
+                employee.setName(fullName);
+                employee.setStatus(rs.getInt("status_user"));
+                supervisors.add(employee);
             }
         }catch (SQLException e){
             System.out.println("ERROR in sql statement on method EmployeeRead.getAllSupervisors error: "+e);
@@ -86,7 +98,7 @@ public class EmployeeRead implements IEmployeeRead {
             rs=preparedStatement.executeQuery();
             while(rs.next()){
                 if(rs.getInt(7)==2) {
-                    Employee employee = new Employee();
+                    employee=employeeFactory.getEmployee();
                     employee.setId(rs.getInt(1));
                     String fullName = rs.getString(2) + " " + rs.getString(3);
                     employee.setName(fullName);

@@ -1,7 +1,9 @@
 package WorkGroupManagement.Controllers;
 
 import UserManagement.Models.Abstracts.AEmployee;
+import UserManagement.Models.Abstracts.IEmployeeFactory;
 import UserManagement.Models.Abstracts.IEmployeeRead;
+import UserManagement.Models.Implementations.EmployeeFactory;
 import UserManagement.Models.Implementations.EmployeeRead;
 import WorkGroupManagement.Models.Abstracts.IWorkGroupUpdate;
 import WorkGroupManagement.Models.Implementations.WorkGroupData;
@@ -52,24 +54,19 @@ public class AddMembersController implements Initializable {
         employeeList.addListener(tableSelector);
         btnAdd.setDisable(true);
 
-       /* txtSearch.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                btnSearch.setDisable(false);
-            }
-        });*/
 
     }
 
 
 
     public void initializeTable(){
+        IEmployeeFactory employeeFactory = new EmployeeFactory();
         columnID.setCellValueFactory(new PropertyValueFactory<>("id"));
         columnName.setCellValueFactory(new PropertyValueFactory<>("name"));
         columnEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
         columnStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
         employeeList = FXCollections.observableArrayList();
-        IEmployeeRead employeeRead= new EmployeeRead();
+        IEmployeeRead employeeRead= new EmployeeRead(employeeFactory.getEmployee(),employeeFactory);
         employeeRead.getJustEmployeesType(employeeList);
         table.setItems(employeeList);
     }

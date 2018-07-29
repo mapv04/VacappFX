@@ -89,8 +89,8 @@ foreign key (fk_leader_id) references Usuario(pk_id_user));
 
 
 insert into workgroup(workgroup_name, fk_leader_id,leader_name,created_date, workgroup_status) values
-('WorkGroup 1',3,'Oscar Gonzalez','2016-02-02',1),
-('WorkGroup 2',4,'Fernando Garcia','2017-05-01',1);
+('WorkGroup 1',4,'Oscar Gonzalez','2016-02-02',1),
+('WorkGroup 2',5,'Fernando Garcia','2017-05-01',1);
 
 
 create table workgroup_data(
@@ -102,10 +102,8 @@ foreign key (fk_workgroup_id) references workgroup(pk_workgroup_id),
 foreign key (fk_usuario_id) references usuario(pk_id_user));
 
 insert into workgroup_data(fk_workgroup_id, fk_usuario_id,employee_name,added_date) values
-(1,5,'Alfredo Ibarra','2016-03-03'),
-(1,6,'Gustavo Segura','2016-03-03'),
-(1,7,'Eduardo Ramirez','2016-03-03'),
-(2,8,'Ruben Ochoa','2017-05-02'),
-(2,9,'Ivan Martinez','2017-05-02'),
-(2,10,'Gerardo Contreras','2017-05-02'),
-(2,11,'Erika Preciado','2017-05-02');
+(1,6,'Alfredo Ibarra','2016-03-03'),
+(1,7,'Gustavo Segura','2016-03-03'),
+(1,8,'Eduardo Ramirez','2016-03-03'),
+(2,9,'Ruben Ochoa','2017-05-02'),
+(2,10,'Ivan Martinez','2017-05-02');

@@ -8,4 +8,5 @@ public interface IWorkGroupRead {
     void getWorkgroupData(List<AWorkGroupData> groupDataList, int groupID);
     String getGroupName(int groupID);
     boolean ifGroupExist(String name);
+    boolean isLeader(int id);
 }

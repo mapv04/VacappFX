@@ -60,4 +60,18 @@ public class WorkGroupUpdate implements IWorkGroupUpdate {
         }
     }
 
+    @Override
+    public void changeLeader(int id, String name, int groupID) {
+        try {
+            String sql = "update workgroup set fk_leader_id=?, leader_name=? where pk_workgroup_id=? ;";
+            preparedStatement = conn.prepareStatement(sql);
+            preparedStatement.setInt(1, id);
+            preparedStatement.setString(2, name);
+            preparedStatement.setInt(3,groupID);
+            preparedStatement.executeUpdate();
+        }catch (SQLException e){
+            System.out.println("ERROR in sql statement in method WorkGroupUpdate.changeLeader error: "+e);
+        }
+    }
+
 }

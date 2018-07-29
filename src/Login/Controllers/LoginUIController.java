@@ -2,6 +2,7 @@ package Login.Controllers;
 
 
 import Login.Models.Implementations.*;
+import UserManagement.Controllers.AdminUIController;
 import VacationManagementEmployee.Controllers.EmployeeUIController;
 import VacationManagementSupervisor.Controllers.SupervisorUIController;
 import javafx.event.ActionEvent;
@@ -91,6 +92,7 @@ public class LoginUIController implements Initializable {
                     } else {
                         switch (userData.getType()) {//this send the user to the screen that he belongs
                             case 0:
+                                AdminUIController.setUserID(userData.getId());
                                 fxml = FXMLLoader.load(getClass().getResource("/UserManagement/Views/AdminUI.fxml"));
                                 scene = new Scene(fxml);
                                 stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

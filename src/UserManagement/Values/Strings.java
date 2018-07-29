@@ -9,9 +9,10 @@ public class Strings {
     public static final String desactivateUser="Are you sure you want to desactivate this employee?";
     public static final String activateWorkGroup="Are you sure you want to activate this work group";
     public static final String desactivateGroup="Are you sure you want to desactivate this work group";
-    public static final String modifyAdmin="You cannot modify data from an administrator";
+    public static final String modifyAdmin="You cannot modify your own data";
     public static final String emptyField="You cannot left empty fields";
     public static final String containsDigit="You cannot enter digits on the fields";
     public static final String logout="Are you sure you want to logout?";
+    public static final String isLeader="This employee is a team leader, first you need to remove him from the work group";
 
 }

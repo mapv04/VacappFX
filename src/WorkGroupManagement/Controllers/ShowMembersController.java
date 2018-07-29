@@ -1,9 +1,13 @@
 package WorkGroupManagement.Controllers;
 
+import UserManagement.Models.Abstracts.IEmployeeFactory;
+import UserManagement.Models.Implementations.EmployeeFactory;
 import WorkGroupManagement.Models.Abstracts.AWorkGroupData;
 import WorkGroupManagement.Models.Abstracts.IWorkGroupDelete;
+import WorkGroupManagement.Models.Abstracts.IWorkGroupFactory;
 import WorkGroupManagement.Models.Abstracts.IWorkGroupRead;
 import WorkGroupManagement.Models.Implementations.WorkGroupDelete;
+import WorkGroupManagement.Models.Implementations.WorkGroupFactory;
 import WorkGroupManagement.Models.Implementations.WorkGroupRead;
 import WorkGroupManagement.Values.Strings;
 import javafx.collections.FXCollections;
@@ -51,7 +55,10 @@ public class ShowMembersController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        IWorkGroupRead workGroupRead= new WorkGroupRead();
+        IWorkGroupFactory workGroupFactory= new WorkGroupFactory();
+        IEmployeeFactory employeeFactory= new EmployeeFactory();
+        IWorkGroupRead workGroupRead= new WorkGroupRead(workGroupFactory.getWorkGroup(),employeeFactory.getEmployee(),
+                                                        workGroupFactory,employeeFactory,workGroupFactory.getWorkGroupData());
         labelName.setText(workGroupRead.getGroupName(groupID));
 
         initializeTable();
@@ -63,12 +70,15 @@ public class ShowMembersController implements Initializable {
 
 
     public void initializeTable() {
+        IWorkGroupFactory workGroupFactory= new WorkGroupFactory();
+        IEmployeeFactory employeeFactory= new EmployeeFactory();
         columnID.setCellValueFactory(new PropertyValueFactory<>("employeeID"));
         columnName.setCellValueFactory(new PropertyValueFactory<>("employeeName"));
         columnStatus.setCellValueFactory(new PropertyValueFactory<>("employeeStatus"));
         columnDateAdded.setCellValueFactory(new PropertyValueFactory<>("addedDate"));
         groupDataList = FXCollections.observableArrayList();
-        IWorkGroupRead workGroupRead = new WorkGroupRead();
+        IWorkGroupRead workGroupRead = new WorkGroupRead(workGroupFactory.getWorkGroup(),employeeFactory.getEmployee(),
+                                                        workGroupFactory,employeeFactory,workGroupFactory.getWorkGroupData());
         workGroupRead.getWorkgroupData(groupDataList,this.groupID);
         table.setItems(groupDataList);
     }
