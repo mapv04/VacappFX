@@ -12,7 +12,7 @@
    <children>
       <Pane fx:id="content_area" prefHeight="498.0" prefWidth="372.0">
          <children>
-            <TextField fx:id="txtUser" layoutX="92.0" layoutY="180.0" prefHeight="25.0" prefWidth="190.0" promptText="User" />
+            <TextField fx:id="txtUser" layoutX="92.0" layoutY="180.0" prefHeight="25.0" prefWidth="190.0" promptText="Username" />
             <Button fx:id="btnRegister" layoutX="130.0" layoutY="327.0" mnemonicParsing="false" onAction="#btnRegisterAction" prefHeight="25.0" prefWidth="113.0" text="Register" />
             <Button fx:id="btnLogin" layoutX="91.0" layoutY="262.0" mnemonicParsing="false" onAction="#btnLoginAction" prefHeight="25.0" prefWidth="190.0" text="Login">
                <font>

@@ -12,7 +12,7 @@ public class EmployeeRecover implements IEmployeeRecover {
 
     @Override
     public Void changePassword(String user, String password, int question, String response) {
-        String sql="update usuario set password_user='"+password+"' where name_user = '"+user+"';";
+        String sql="update usuario set password_user='"+password+"' where username = '"+user+"';";
 
         try {
             preparedStatement = conn.prepareStatement(sql);
