@@ -2,7 +2,22 @@ package Login.Models.Implementations;
 
 import Login.Models.Abstracts.AEmployee;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 public class Employee extends AEmployee {
+
+   public Employee(ResultSet rs) throws SQLException {
+       super.setId(rs.getInt(1));
+       super.setName(rs.getString(2));
+       super.setLastName(rs.getString(3));
+       super.setUsername(rs.getString(4));
+       super.setEmail(rs.getString(5));
+       super.setPassword(rs.getString(6));
+       super.setType(rs.getInt(7));
+       super.setStatus(rs.getInt(8));
+   }
+
     @Override
     public int getId() {
         return super.getId();

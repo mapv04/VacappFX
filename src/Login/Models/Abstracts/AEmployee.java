@@ -12,6 +12,8 @@ public abstract class AEmployee {
     private int type;
     private int status;
 
+
+
     public int getId() {
         return id;
     }

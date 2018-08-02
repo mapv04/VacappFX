@@ -29,13 +29,13 @@
 
 package com.mysql.cj.exceptions;
 
-import java.net.BindException;
-
 import com.mysql.cj.Messages;
 import com.mysql.cj.conf.PropertyDefinitions;
 import com.mysql.cj.conf.PropertySet;
 import com.mysql.cj.protocol.ServerSession;
 import com.mysql.cj.util.Util;
+
+import java.net.BindException;
 
 public class ExceptionFactory {
 

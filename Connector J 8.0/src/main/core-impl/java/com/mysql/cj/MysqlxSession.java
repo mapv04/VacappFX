@@ -29,31 +29,23 @@
 
 package com.mysql.cj;
 
-import java.io.IOException;
-import java.util.List;
-import java.util.concurrent.CompletableFuture;
-import java.util.function.BiFunction;
-import java.util.function.Function;
-import java.util.function.Supplier;
-
 import com.mysql.cj.conf.HostInfo;
 import com.mysql.cj.conf.PropertySet;
 import com.mysql.cj.exceptions.CJCommunicationsException;
 import com.mysql.cj.protocol.ColumnDefinition;
 import com.mysql.cj.protocol.ResultListener;
 import com.mysql.cj.protocol.ResultStreamer;
-import com.mysql.cj.protocol.x.ResultCreatingResultListener;
-import com.mysql.cj.protocol.x.StatementExecuteOk;
-import com.mysql.cj.protocol.x.StatementExecuteOkBuilder;
-import com.mysql.cj.protocol.x.XMessageBuilder;
-import com.mysql.cj.protocol.x.XProtocol;
+import com.mysql.cj.protocol.x.*;
 import com.mysql.cj.result.RowList;
 import com.mysql.cj.util.StringUtils;
-import com.mysql.cj.xdevapi.FindParams;
-import com.mysql.cj.xdevapi.SqlDataResult;
-import com.mysql.cj.xdevapi.SqlResult;
-import com.mysql.cj.xdevapi.SqlResultImpl;
-import com.mysql.cj.xdevapi.SqlUpdateResult;
+import com.mysql.cj.xdevapi.*;
+
+import java.io.IOException;
+import java.util.List;
+import java.util.concurrent.CompletableFuture;
+import java.util.function.BiFunction;
+import java.util.function.Function;
+import java.util.function.Supplier;
 
 public class MysqlxSession extends CoreSession {
 

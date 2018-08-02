@@ -54,21 +54,14 @@ public class EmployeeSearch implements IEmployeeSearch {
     @Override
     public Employee searchEmployeeID(int employeeID) {
         rs = null;
-        Employee employee = new Employee();
+        Employee employee = null;
         String sqlQuery = "SELECT * FROM usuario WHERE pk_id_user = ?";
         try{
             preparedStatement = conn.prepareStatement(sqlQuery);
             preparedStatement.setInt(1,employeeID);
             rs = preparedStatement.executeQuery();
             if(rs.next()){
-                employee.setId(rs.getInt(1));
-                employee.setName(rs.getString(2));
-                employee.setLastName(rs.getString(3));
-                employee.setUsername(rs.getString(4));
-                employee.setEmail(rs.getString(5));
-                employee.setPassword(rs.getString(6));
-                employee.setType(rs.getInt(7));
-                employee.setStatus(rs.getInt(8));
+                employee = new Employee(rs);
             }
             else {
                 System.out.println("ERROR empty set method EmployeeSearch.searchEmployeeID");
