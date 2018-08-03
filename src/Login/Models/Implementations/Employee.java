@@ -18,6 +18,9 @@ public class Employee extends AEmployee {
        super.setStatus(rs.getInt(8));
    }
 
+   public Employee(){
+   }
+
     @Override
     public int getId() {
         return super.getId();
