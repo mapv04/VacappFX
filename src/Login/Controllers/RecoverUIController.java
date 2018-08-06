@@ -1,9 +1,9 @@
 package Login.Controllers;
 
+import Login.Models.Abstracts.AEmployee;
 import Login.Models.Abstracts.IEmployeeFactory;
 import Login.Models.Abstracts.IEmployeeRecover;
 import Login.Models.Abstracts.IEmployeeSearch;
-import Login.Models.Implementations.Employee;
 import Login.Models.Implementations.EmployeeFactory;
 import Login.Models.Implementations.EmployeeRecover;
 import Login.Models.Implementations.EmployeeSearch;
@@ -50,7 +50,8 @@ public class RecoverUIController implements Initializable {
 
     @FXML
     private void btnRecover(ActionEvent event) throws IOException, SQLException {
-        Employee employee = new Employee();
+        IEmployeeFactory employeeFactory = new EmployeeFactory();
+        AEmployee employee = employeeFactory.getEmployee();
         String stringEmployee = txtUser.getText().toString();
         String stringPassword = txtPassword.getText().toString();
         String stringResponse = txtResponse.getText().toString();
@@ -111,7 +112,6 @@ public class RecoverUIController implements Initializable {
             alert.show();
         }
         if (pass == 4) {
-            IEmployeeFactory employeeFactory = new EmployeeFactory();
             IEmployeeSearch searchObject = new EmployeeSearch(employeeFactory.getEmployee(),employeeFactory);
             IEmployeeRecover employeeRecover = new EmployeeRecover();
             if (searchObject.searchEmployeeExists(employee) && searchObject.searchEmployeeValidateAnswer(employee)) {
