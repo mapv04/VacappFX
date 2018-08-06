@@ -1,6 +1,7 @@
 package Login.Models.Implementations;
 
 import Database.DatabaseConnection;
+import Login.Models.Abstracts.AEmployee;
 import Login.Models.Abstracts.IEmployeeCreate;
 
 import java.sql.Connection;
@@ -14,7 +15,7 @@ public class EmployeeCreate implements IEmployeeCreate {
 
 
     @Override
-    public void addNewEmployee(Employee employee)   {
+    public void addNewEmployee(AEmployee employee)   {
         try {
             String sql = "insert into usuario(name_user, last_name, username, email, password_user, type_user, status_user ,question, answer) "
                     + "values ('"

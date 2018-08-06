@@ -1,7 +1,9 @@
 package VacationManagementEmployee.Controllers;
 
 
-import Login.Models.Implementations.Employee;
+import Login.Models.Abstracts.AEmployee;
+import Login.Models.Abstracts.IEmployeeFactory;
+import Login.Models.Implementations.EmployeeFactory;
 import Login.Models.Implementations.EmployeeSearch;
 import VacationManagementEmployee.Models.Abstracts.*;
 import VacationManagementEmployee.Models.Implemetations.*;
@@ -247,14 +249,15 @@ public class EmployeeUIController   {
 
 
     private void loadEmployeeInfo(){
+        IEmployeeFactory mEmployeeFactory= new EmployeeFactory();
         IVacEmployeeFactory employeeFactory = new VacEmployeeFactory();
         IVacRequestFactory requestFactory = new VacRequestFactory();
         IVacRequestSearch vacRequestSearch = new VacRequestSearch(requestFactory.getVacRequestList(),
                                                                     requestFactory.getVacRequest(),
                                                                     requestFactory);
         IVacEmployeeSearch vacEmployeeSearch = new VacEmployeeSearch(employeeFactory.getVacEmployee());
-        EmployeeSearch employeeSearch = new EmployeeSearch();
-        Employee employee = employeeSearch.searchEmployeeID(employeeID);
+        EmployeeSearch employeeSearch = new EmployeeSearch(mEmployeeFactory.getEmployee(),mEmployeeFactory);
+        AEmployee employee = employeeSearch.searchEmployeeID(employeeID);
         AVacEmployee vacEmployee = vacEmployeeSearch.searchVacEmployeeData(employeeID);
         AVacRequest vacRequest = vacRequestSearch.searchLatestRequest(employeeID);
 

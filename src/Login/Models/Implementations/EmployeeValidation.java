@@ -15,16 +15,19 @@ public class EmployeeValidation implements IEmployeeValidation {
     private AEmployee employee;
     private IEmployeeFactory employeeFactory;
 
+    public EmployeeValidation(AEmployee employee, IEmployeeFactory employeeFactory){
+        this.employee=employee;
+        this.employeeFactory=employeeFactory;
+    }
+
     @Override
-    public Employee employeeExist(String user) {
+    public AEmployee employeeExist(String user) {
         String sql="select * from usuario where username =?;";
         try {
             preparedStatement = conn.prepareStatement(sql);
             preparedStatement.setString(1, user);
             rs = preparedStatement.executeQuery();
             while(rs.first()){
-                //Employee employee;
-                //employee = new Employee(rs);
                 employee=employeeFactory.getEmployee();
                 employee.setId(rs.getInt("pk_id_user"));
                 employee.setName(rs.getString("name_user"));
@@ -34,7 +37,7 @@ public class EmployeeValidation implements IEmployeeValidation {
                 employee.setPassword(rs.getString("password_user"));
                 employee.setStatus(rs.getInt("status_user"));
                 employee.setType(rs.getInt("type_user"));
-                return (Employee) employee;
+                return  employee;
             }
         }catch (SQLException e){
             System.out.println("ERROR in sql statement in method EmployeeValidation.employeeExist error: "+e);

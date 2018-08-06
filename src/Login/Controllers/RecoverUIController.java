@@ -1,6 +1,10 @@
 package Login.Controllers;
 
+import Login.Models.Abstracts.IEmployeeFactory;
+import Login.Models.Abstracts.IEmployeeRecover;
+import Login.Models.Abstracts.IEmployeeSearch;
 import Login.Models.Implementations.Employee;
+import Login.Models.Implementations.EmployeeFactory;
 import Login.Models.Implementations.EmployeeRecover;
 import Login.Models.Implementations.EmployeeSearch;
 import javafx.event.ActionEvent;
@@ -107,8 +111,9 @@ public class RecoverUIController implements Initializable {
             alert.show();
         }
         if (pass == 4) {
-            EmployeeSearch searchObject = new EmployeeSearch();
-            EmployeeRecover employeeRecover = new EmployeeRecover();
+            IEmployeeFactory employeeFactory = new EmployeeFactory();
+            IEmployeeSearch searchObject = new EmployeeSearch(employeeFactory.getEmployee(),employeeFactory);
+            IEmployeeRecover employeeRecover = new EmployeeRecover();
             if (searchObject.searchEmployeeExists(employee) && searchObject.searchEmployeeValidateAnswer(employee)) {
                 employeeRecover.changePassword(stringEmployee,stringPassword,intQuestion,stringResponse);
                 //objectcreate.addNewEmployee(employee);

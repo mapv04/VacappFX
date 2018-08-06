@@ -1,7 +1,13 @@
 package Login.Controllers;
 
 
-import Login.Models.Implementations.*;
+import Login.Models.Abstracts.AEmployee;
+import Login.Models.Abstracts.IEmployeeFactory;
+import Login.Models.Abstracts.IEmployeeSearch;
+import Login.Models.Abstracts.IEmployeeValidation;
+import Login.Models.Implementations.EmployeeFactory;
+import Login.Models.Implementations.EmployeeSearch;
+import Login.Models.Implementations.EmployeeValidation;
 import UserManagement.Controllers.AdminUIController;
 import VacationManagementEmployee.Controllers.EmployeeUIController;
 import VacationManagementSupervisor.Controllers.SupervisorUIController;
@@ -48,8 +54,9 @@ public class LoginUIController implements Initializable {
     Scene scene;
     Parent fxml;
     Stage stage;
-    EmployeeSearch employeeSearch = new EmployeeSearch();
-    EmployeeValidation employeeValidation = new EmployeeValidation();
+    IEmployeeFactory employeeFactory = new EmployeeFactory();
+    IEmployeeSearch employeeSearch = new EmployeeSearch(employeeFactory.getEmployee(),employeeFactory);
+    IEmployeeValidation employeeValidation = new EmployeeValidation(employeeFactory.getEmployee(),employeeFactory);
 
     @FXML
     private void btnLoginAction(ActionEvent event) throws SQLException, IOException {
@@ -61,11 +68,11 @@ public class LoginUIController implements Initializable {
             alert.setHeaderText("Employee or password incorrect");
             alert.show();
         } else {
-            Employee userData = employeeValidation.employeeExist(user);
+            AEmployee userData = employeeValidation.employeeExist(user);
             if (userData == null) {
                 alert.setTitle("Error Login");
                 alert.setHeaderText("The user doesn't exist");
-
+                alert.setContentText("");
                 alert.show();
             } else {
                 if (userData.getStatus() != 1) {
@@ -111,7 +118,7 @@ public class LoginUIController implements Initializable {
                                 break;
 
                             case 2:
-                                employeeSearch = new EmployeeSearch();
+                                //employeeSearch = new EmployeeSearch();
                                 EmployeeUIController.setEmployeeID(employeeSearch.searchEmployeeUserName(user));
                                 fxml = FXMLLoader.load(getClass().getResource("/VacationManagementEmployee/Views/EmployeeUI.fxml"));
                                 scene = new Scene(fxml);

@@ -17,8 +17,15 @@ public class EmployeeSearch implements IEmployeeSearch {
     private AEmployee employee;
     private IEmployeeFactory employeeFactory;
 
+    public EmployeeSearch (AEmployee employee, IEmployeeFactory employeeFactory ){
+
+        this.employee=employee;
+        this.employeeFactory=employeeFactory;
+    }
+
+
     @Override
-    public boolean searchEmployeeExists(Employee employee) throws SQLException {
+    public boolean searchEmployeeExists(AEmployee employee) throws SQLException {
         rs = null;
         String sql = "select username, email from usuario where username='" + employee.getUsername() + "' or email='"
                 + employee.getEmail() + "';";
@@ -28,7 +35,7 @@ public class EmployeeSearch implements IEmployeeSearch {
     }
 
     @Override
-    public boolean searchEmployeeValidateAnswer(Employee employee) throws SQLException {
+    public boolean searchEmployeeValidateAnswer(AEmployee employee) throws SQLException {
         rs = null;
         String sql = "select question,answer from usuario where " +
                 "username ='"+ employee.getUsername() +
@@ -57,16 +64,14 @@ public class EmployeeSearch implements IEmployeeSearch {
     }
 
     @Override
-    public Employee searchEmployeeID(int employeeID) {
+    public AEmployee searchEmployeeID(int employeeID) {
         rs = null;
-        //Employee employee = null;
         String sqlQuery = "SELECT * FROM usuario WHERE pk_id_user = ?";
         try{
             preparedStatement = conn.prepareStatement(sqlQuery);
             preparedStatement.setInt(1,employeeID);
             rs = preparedStatement.executeQuery();
             if(rs.next()){
-                //employee = new Employee(rs);
                 employee=employeeFactory.getEmployee();
                 employee.setId(rs.getInt("pk_id_user"));
                 employee.setName(rs.getString("name_user"));
@@ -83,6 +88,6 @@ public class EmployeeSearch implements IEmployeeSearch {
         }catch(SQLException e){
             System.out.println("ERROR in sql statement method EmployeeSearch.searchEmployeeID error: " + e);
         }
-        return (Employee) employee;
+        return  employee;
     }
 }

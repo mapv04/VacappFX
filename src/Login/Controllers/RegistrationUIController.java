@@ -1,7 +1,11 @@
 package Login.Controllers;
 
-import Login.Models.Implementations.Employee;
+import Login.Models.Abstracts.AEmployee;
+import Login.Models.Abstracts.IEmployeeCreate;
+import Login.Models.Abstracts.IEmployeeFactory;
+import Login.Models.Abstracts.IEmployeeSearch;
 import Login.Models.Implementations.EmployeeCreate;
+import Login.Models.Implementations.EmployeeFactory;
 import Login.Models.Implementations.EmployeeSearch;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -14,12 +18,10 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
-import java.sql.SQLException;
 import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -39,7 +41,6 @@ public class RegistrationUIController implements Initializable {
     @FXML private PasswordField password;
     @FXML private ChoiceBox comboType;
     @FXML private ChoiceBox comboQuestion;
-    @FXML private Pane content_area;
     Alert alert = new Alert(Alert.AlertType.ERROR);
     Parent fxml;
     Stage stage;
@@ -56,8 +57,9 @@ public class RegistrationUIController implements Initializable {
 
 
     @FXML
-    private void btnRegisterUser(ActionEvent event) throws SQLException, IOException {//this method add the new employee
-        Employee employee = new Employee();
+    private void btnRegisterUser(ActionEvent event) throws Exception {//this method add the new employee
+        IEmployeeFactory employeeFactory= new EmployeeFactory();
+        AEmployee employee = employeeFactory.getEmployee();
 
         int pass = 0;
 
@@ -165,8 +167,8 @@ public class RegistrationUIController implements Initializable {
         }
 
         if (pass == 8) {
-            EmployeeSearch searchObject = new EmployeeSearch();
-            EmployeeCreate objectcreate = new EmployeeCreate();
+            IEmployeeSearch searchObject = new EmployeeSearch(employeeFactory.getEmployee(),employeeFactory);
+            IEmployeeCreate objectcreate = new EmployeeCreate();
             if (!searchObject.searchEmployeeExists(employee)) {
                 objectcreate.addNewEmployee(employee);
                 fxml = FXMLLoader.load(getClass().getResource("/Login/Views/LoginUI.fxml"));

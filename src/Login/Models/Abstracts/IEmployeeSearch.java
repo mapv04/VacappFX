@@ -1,13 +1,11 @@
 package Login.Models.Abstracts;
 
-import Login.Models.Implementations.Employee;
-
 import java.sql.SQLException;
 
 public interface IEmployeeSearch {
-    boolean searchEmployeeExists(Employee employee) throws SQLException;
-    boolean searchEmployeeValidateAnswer(Employee employee) throws SQLException;
+    boolean searchEmployeeExists(AEmployee employee) throws SQLException;
+    boolean searchEmployeeValidateAnswer(AEmployee employee) throws SQLException;
     int searchEmployeeUserName(String user);
-    Employee searchEmployeeID(int employeeID);
+    AEmployee searchEmployeeID(int employeeID);
 
 }

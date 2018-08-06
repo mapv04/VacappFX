@@ -11,7 +11,7 @@ public class EmployeeRecover implements IEmployeeRecover {
     private static PreparedStatement preparedStatement;
 
     @Override
-    public Void changePassword(String user, String password, int question, String response) {
+    public void changePassword(String user, String password, int question, String response) {
         String sql="update usuario set password_user='"+password+"' where username = '"+user+"';";
 
         try {
@@ -20,6 +20,5 @@ public class EmployeeRecover implements IEmployeeRecover {
         }catch (SQLException e){
             System.out.println("ERROR in sql statement on methos EmployeeUpdate.modifyEmployee error: "+e);
         }
-        return null;
     }
 }
