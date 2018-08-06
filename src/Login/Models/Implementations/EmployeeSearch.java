@@ -1,7 +1,10 @@
 package Login.Models.Implementations;
 
 import Database.DatabaseConnection;
+import Login.Models.Abstracts.AEmployee;
+import Login.Models.Abstracts.IEmployeeFactory;
 import Login.Models.Abstracts.IEmployeeSearch;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -11,6 +14,8 @@ public class EmployeeSearch implements IEmployeeSearch {
     private static ResultSet rs;
     private static Connection conn = DatabaseConnection.getInstance().getConnection();
     private static PreparedStatement preparedStatement;
+    private AEmployee employee;
+    private IEmployeeFactory employeeFactory;
 
     @Override
     public boolean searchEmployeeExists(Employee employee) throws SQLException {
@@ -54,14 +59,23 @@ public class EmployeeSearch implements IEmployeeSearch {
     @Override
     public Employee searchEmployeeID(int employeeID) {
         rs = null;
-        Employee employee = null;
+        //Employee employee = null;
         String sqlQuery = "SELECT * FROM usuario WHERE pk_id_user = ?";
         try{
             preparedStatement = conn.prepareStatement(sqlQuery);
             preparedStatement.setInt(1,employeeID);
             rs = preparedStatement.executeQuery();
             if(rs.next()){
-                employee = new Employee(rs);
+                //employee = new Employee(rs);
+                employee=employeeFactory.getEmployee();
+                employee.setId(rs.getInt("pk_id_user"));
+                employee.setName(rs.getString("name_user"));
+                employee.setLastName(rs.getString("last_name"));
+                employee.setUsername(rs.getString("username"));
+                employee.setEmail(rs.getString(5));
+                employee.setPassword(rs.getString("password_user"));
+                employee.setStatus(rs.getInt("status_user"));
+                employee.setType(rs.getInt("type_user"));
             }
             else {
                 System.out.println("ERROR empty set method EmployeeSearch.searchEmployeeID");
@@ -69,6 +83,6 @@ public class EmployeeSearch implements IEmployeeSearch {
         }catch(SQLException e){
             System.out.println("ERROR in sql statement method EmployeeSearch.searchEmployeeID error: " + e);
         }
-        return employee;
+        return (Employee) employee;
     }
 }

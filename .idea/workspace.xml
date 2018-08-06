@@ -2,9 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7b429817-2956-4fa8-b12e-f9fe4525f7ef" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/src/Login/Models/Abstracts/IEmployeeFactory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Login/Models/Implementations/EmployeeFactory.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Login/Controllers/RegistrationUIController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Login/Controllers/RegistrationUIController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Login/Models/Implementations/Employee.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Login/Models/Implementations/Employee.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Login/Models/Implementations/EmployeeSearch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Login/Models/Implementations/EmployeeSearch.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Login/Models/Implementations/EmployeeValidation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Login/Models/Implementations/EmployeeValidation.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -22,38 +24,83 @@
       <file leaf-file-name="EmployeeSearch.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Login/Models/Implementations/EmployeeSearch.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="425">
-              <caret line="63" column="40" lean-forward="true" selection-start-line="63" selection-start-column="40" selection-end-line="63" selection-end-column="42" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="RegistrationUIController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Login/Controllers/RegistrationUIController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="142">
-              <caret line="60" lean-forward="true" selection-start-line="60" selection-end-line="60" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Employee.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/Login/Models/Implementations/Employee.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="15" column="42" lean-forward="true" selection-start-line="15" selection-start-column="42" selection-end-line="15" selection-end-column="42" />
+            <state relative-caret-position="510">
+              <caret line="77" column="57" lean-forward="true" selection-start-line="69" selection-start-column="16" selection-end-line="77" selection-end-column="57" />
               <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="method#searchEmployeeExists#0;class#EmployeeSearch#0" />
+                <element signature="method#searchEmployeeValidateAnswer#0;class#EmployeeSearch#0" />
+                <element signature="method#searchEmployeeUserName#0;class#EmployeeSearch#0" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AEmployee.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Login/Models/Abstracts/AEmployee.java">
+      <file leaf-file-name="EmployeeValidation.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/Login/Models/Implementations/EmployeeValidation.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="935">
-              <caret line="95" selection-start-line="95" selection-end-line="95" />
+            <state relative-caret-position="170">
+              <caret line="15" column="37" selection-start-line="15" selection-start-column="37" selection-end-line="15" selection-end-column="37" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Employee.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Login/Models/Implementations/Employee.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="221">
+              <caret line="16" column="35" lean-forward="true" selection-start-line="16" selection-start-column="35" selection-end-line="16" selection-end-column="35" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#161#162#0" expanded="true" />
+                <element signature="e#197#198#0" expanded="true" />
+                <element signature="e#244#245#0" expanded="true" />
+                <element signature="e#275#276#0" expanded="true" />
+                <element signature="e#320#321#0" expanded="true" />
+                <element signature="e#358#359#0" expanded="true" />
+                <element signature="e#412#413#0" expanded="true" />
+                <element signature="e#447#448#0" expanded="true" />
+                <element signature="e#496#497#0" expanded="true" />
+                <element signature="e#538#539#0" expanded="true" />
+                <element signature="e#600#601#0" expanded="true" />
+                <element signature="e#643#644#0" expanded="true" />
+                <element signature="e#692#693#0" expanded="true" />
+                <element signature="e#734#735#0" expanded="true" />
+                <element signature="e#796#797#0" expanded="true" />
+                <element signature="e#839#840#0" expanded="true" />
+                <element signature="e#885#886#0" expanded="true" />
+                <element signature="e#924#925#0" expanded="true" />
+                <element signature="e#980#981#0" expanded="true" />
+                <element signature="e#1017#1018#0" expanded="true" />
+                <element signature="e#1066#1067#0" expanded="true" />
+                <element signature="e#1108#1109#0" expanded="true" />
+                <element signature="e#1170#1171#0" expanded="true" />
+                <element signature="e#1213#1214#0" expanded="true" />
+                <element signature="e#1262#1263#0" expanded="true" />
+                <element signature="e#1304#1305#0" expanded="true" />
+                <element signature="e#1366#1367#0" expanded="true" />
+                <element signature="e#1409#1410#0" expanded="true" />
+                <element signature="e#1455#1456#0" expanded="true" />
+                <element signature="e#1497#1498#0" expanded="true" />
+                <element signature="e#1556#1557#0" expanded="true" />
+                <element signature="e#1599#1600#0" expanded="true" />
+                <element signature="e#1641#1642#0" expanded="true" />
+                <element signature="e#1679#1680#0" expanded="true" />
+                <element signature="e#1730#1731#0" expanded="true" />
+                <element signature="e#1765#1766#0" expanded="true" />
+                <element signature="e#1809#1810#0" expanded="true" />
+                <element signature="e#1849#1850#0" expanded="true" />
+                <element signature="e#1904#1905#0" expanded="true" />
+                <element signature="e#1943#1944#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="EmployeeRead.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/UserManagement/Models/Implementations/EmployeeRead.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="493">
+              <caret line="38" column="36" lean-forward="true" selection-start-line="38" selection-start-column="36" selection-end-line="38" selection-end-column="36" />
             </state>
           </provider>
         </entry>
@@ -71,7 +118,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>Label5</find>
       <find>Label6</find>
       <find>labelStatus</find>
       <find>employee</find>
@@ -101,6 +147,7 @@
       <find>Factory</find>
       <find>IVacRequestFactory</find>
       <find>getVacEmployee</find>
+      <find>factory</find>
     </findStrings>
     <dirStrings>
       <dir>C:\wpa\VacappFX\src\Login\Controllers</dir>
@@ -113,7 +160,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/VacationManagementEmployee/Models/Interfaces/IVacEmployeeGenerateReq.java" />
         <option value="$PROJECT_DIR$/src/VacationManagementEmployee/Models/Implemetations/VacEmployeeGenerateReq.java" />
         <option value="$PROJECT_DIR$/src/VacationManagementEmployee/Models/Interfaces/IVacEmployeeReport.java" />
         <option value="$PROJECT_DIR$/src/VacationManagementEmployee/Models/Interfaces/IVacEmployeeSearch.java" />
@@ -141,7 +187,6 @@
         <option value="$PROJECT_DIR$/src/Login/Models/EmployeeSearch.java" />
         <option value="$PROJECT_DIR$/src/Login/Models/Abstracts/IEmployeeValidation.java" />
         <option value="$PROJECT_DIR$/src/Login/Models/Abstracts/IEmployeeCreate.java" />
-        <option value="$PROJECT_DIR$/src/Login/Models/Implementations/EmployeeValidation.java" />
         <option value="$PROJECT_DIR$/src/Login/Views/RegistrationUI.fxml" />
         <option value="$PROJECT_DIR$/src/UserManagement/Models/Abstracts/AEmployee.java" />
         <option value="$PROJECT_DIR$/src/UserManagement/Models/Implementations/Employee.java" />
@@ -158,16 +203,18 @@
         <option value="$PROJECT_DIR$/src/VacationManagementSupervisor/Controllers/SupervisorUIController.java" />
         <option value="$PROJECT_DIR$/src/VacationManagementEmployee/Controllers/EmployeeUIController.java" />
         <option value="$PROJECT_DIR$/src/VacationManagementSupervisor/Models/Implementations/VacRequestSearch.java" />
-        <option value="$PROJECT_DIR$/src/Login/Models/Abstracts/IEmployeeFactory.java" />
         <option value="$PROJECT_DIR$/src/VacationManagementEmployee/Models/Abstracts/IVacEmployeeFactory.java" />
         <option value="$PROJECT_DIR$/src/Login/Models/Abstracts/AEmployee.java" />
         <option value="$PROJECT_DIR$/src/Login/Controllers/RegistrationUIController.java" />
+        <option value="$PROJECT_DIR$/src/Login/Models/Abstracts/IEmployeeFactory.java" />
+        <option value="$PROJECT_DIR$/src/Login/Models/Implementations/EmployeeFactory.java" />
         <option value="$PROJECT_DIR$/src/Login/Models/Implementations/Employee.java" />
         <option value="$PROJECT_DIR$/src/Login/Models/Implementations/EmployeeSearch.java" />
+        <option value="$PROJECT_DIR$/src/Login/Models/Implementations/EmployeeValidation.java" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="-7" />
     <option name="width" value="697" />
     <option name="height" value="735" />
@@ -196,6 +243,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
       <pane id="PackagesPane">
         <subPane>
           <expand>
@@ -237,33 +285,32 @@
             <path>
               <item name="VacappFX" type="58d84e3e:PackageViewProjectNode" />
               <item name="VacappFX-master" type="616d4139:PackageViewModuleNode" />
-              <item name="VacationManagementEmployee" type="1f31426a:PackageElementNode" />
+              <item name="UserManagement" type="1f31426a:PackageElementNode" />
             </path>
             <path>
               <item name="VacappFX" type="58d84e3e:PackageViewProjectNode" />
               <item name="VacappFX-master" type="616d4139:PackageViewModuleNode" />
-              <item name="VacationManagementEmployee" type="1f31426a:PackageElementNode" />
+              <item name="UserManagement" type="1f31426a:PackageElementNode" />
               <item name="Models" type="1f31426a:PackageElementNode" />
             </path>
             <path>
               <item name="VacappFX" type="58d84e3e:PackageViewProjectNode" />
               <item name="VacappFX-master" type="616d4139:PackageViewModuleNode" />
-              <item name="VacationManagementEmployee" type="1f31426a:PackageElementNode" />
+              <item name="UserManagement" type="1f31426a:PackageElementNode" />
               <item name="Models" type="1f31426a:PackageElementNode" />
               <item name="Abstracts" type="1f31426a:PackageElementNode" />
             </path>
             <path>
               <item name="VacappFX" type="58d84e3e:PackageViewProjectNode" />
               <item name="VacappFX-master" type="616d4139:PackageViewModuleNode" />
-              <item name="VacationManagementEmployee" type="1f31426a:PackageElementNode" />
+              <item name="UserManagement" type="1f31426a:PackageElementNode" />
               <item name="Models" type="1f31426a:PackageElementNode" />
-              <item name="Implemetations" type="1f31426a:PackageElementNode" />
+              <item name="Implementations" type="1f31426a:PackageElementNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="AndroidView" />
     </panes>
   </component>
@@ -387,7 +434,7 @@
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info id="Capture Tool" order="6" />
       <window_info id="Designer" order="3" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24011713" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24011713" />
       <window_info id="Learn" order="7" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -406,14 +453,14 @@
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Capture Analysis" order="4" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49947917" weight="0.33079433" />
+      <window_info anchor="bottom" id="Version Control" order="9" show_stripe_button="false" />
       <window_info anchor="right" id="Theme Preview" order="5" />
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.17395833" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Version Control" order="9" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49947917" weight="0.33079433" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
       <window_info id="UI Designer" order="4" />
@@ -441,31 +488,10 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="4" />
+      <option name="time" value="5" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/UserManagement/Models/Implementations/EmployeeRead.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/UserManagement/Models/Implementations/EmployeeDelete.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="17" column="24" lean-forward="true" selection-start-line="17" selection-start-column="24" selection-end-line="17" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/UserManagement/Controllers/AdminUIController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="417">
-          <caret line="176" column="31" selection-start-line="176" selection-start-column="31" selection-end-line="176" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/UserManagement/Models/Abstracts/IEmployeeUpdate.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
@@ -520,13 +546,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/UserManagement/Models/Implementations/Employee.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Login/Models/Abstracts/IEmployeeCreate.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
@@ -545,13 +564,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
           <caret line="10" column="32" selection-start-line="10" selection-start-column="32" selection-end-line="10" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Login/Models/Implementations/EmployeeValidation.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="14" column="48" selection-start-line="14" selection-start-column="48" selection-end-line="14" selection-end-column="48" />
         </state>
       </provider>
     </entry>
@@ -674,13 +686,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/UserManagement/Models/Abstracts/IEmployeeFactory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="25" lean-forward="true" selection-start-line="2" selection-start-column="25" selection-end-line="2" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/VacationManagementSupervisor/Models/Abstracts/AVacRequest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
@@ -727,26 +732,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3">
           <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
-          <folding>
-            <element signature="method#getFileOutputStream#0;class#VacEmployeeFactory#0" />
-            <element signature="method#getParagraph1#0;class#VacEmployeeFactory#0" />
-            <element signature="method#getFileO#0;class#VacEmployeeFactory#0" />
-          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Login/Models/Abstracts/IEmployeeFactory.java" />
     <entry file="file://$PROJECT_DIR$/src/VacationManagementEmployee/Models/Abstracts/IVacEmployeeFactory.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
           <caret line="12" column="22" selection-start-line="12" selection-start-column="22" selection-end-line="12" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Login/Controllers/RegistrationUIController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="142">
-          <caret line="60" lean-forward="true" selection-start-line="60" selection-end-line="60" />
         </state>
       </provider>
     </entry>
@@ -757,20 +749,126 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Login/Models/Implementations/EmployeeSearch.java">
+    <entry file="file://$PROJECT_DIR$/src/Login/Controllers/RegistrationUIController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="63" column="40" lean-forward="true" selection-start-line="63" selection-start-column="40" selection-end-line="63" selection-end-column="42" />
+        <state relative-caret-position="612">
+          <caret line="60" selection-start-line="60" selection-end-line="60" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/UserManagement/Models/Abstracts/IEmployeeFactory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="33" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Login/Models/Abstracts/IEmployeeFactory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="28" selection-start-line="3" selection-start-column="28" selection-end-line="3" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/UserManagement/Models/Implementations/EmployeeFactory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Login/Models/Implementations/EmployeeFactory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="30" lean-forward="true" selection-start-line="8" selection-start-column="30" selection-end-line="8" selection-end-column="30" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#237#238#0" expanded="true" />
+            <element signature="e#264#265#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/UserManagement/Models/Implementations/Employee.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Login/Models/Implementations/Employee.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="42" lean-forward="true" selection-start-line="15" selection-start-column="42" selection-end-line="15" selection-end-column="42" />
+        <state relative-caret-position="221">
+          <caret line="16" column="35" lean-forward="true" selection-start-line="16" selection-start-column="35" selection-end-line="16" selection-end-column="35" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#161#162#0" expanded="true" />
+            <element signature="e#197#198#0" expanded="true" />
+            <element signature="e#244#245#0" expanded="true" />
+            <element signature="e#275#276#0" expanded="true" />
+            <element signature="e#320#321#0" expanded="true" />
+            <element signature="e#358#359#0" expanded="true" />
+            <element signature="e#412#413#0" expanded="true" />
+            <element signature="e#447#448#0" expanded="true" />
+            <element signature="e#496#497#0" expanded="true" />
+            <element signature="e#538#539#0" expanded="true" />
+            <element signature="e#600#601#0" expanded="true" />
+            <element signature="e#643#644#0" expanded="true" />
+            <element signature="e#692#693#0" expanded="true" />
+            <element signature="e#734#735#0" expanded="true" />
+            <element signature="e#796#797#0" expanded="true" />
+            <element signature="e#839#840#0" expanded="true" />
+            <element signature="e#885#886#0" expanded="true" />
+            <element signature="e#924#925#0" expanded="true" />
+            <element signature="e#980#981#0" expanded="true" />
+            <element signature="e#1017#1018#0" expanded="true" />
+            <element signature="e#1066#1067#0" expanded="true" />
+            <element signature="e#1108#1109#0" expanded="true" />
+            <element signature="e#1170#1171#0" expanded="true" />
+            <element signature="e#1213#1214#0" expanded="true" />
+            <element signature="e#1262#1263#0" expanded="true" />
+            <element signature="e#1304#1305#0" expanded="true" />
+            <element signature="e#1366#1367#0" expanded="true" />
+            <element signature="e#1409#1410#0" expanded="true" />
+            <element signature="e#1455#1456#0" expanded="true" />
+            <element signature="e#1497#1498#0" expanded="true" />
+            <element signature="e#1556#1557#0" expanded="true" />
+            <element signature="e#1599#1600#0" expanded="true" />
+            <element signature="e#1641#1642#0" expanded="true" />
+            <element signature="e#1679#1680#0" expanded="true" />
+            <element signature="e#1730#1731#0" expanded="true" />
+            <element signature="e#1765#1766#0" expanded="true" />
+            <element signature="e#1809#1810#0" expanded="true" />
+            <element signature="e#1849#1850#0" expanded="true" />
+            <element signature="e#1904#1905#0" expanded="true" />
+            <element signature="e#1943#1944#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/UserManagement/Models/Implementations/EmployeeRead.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="493">
+          <caret line="38" column="36" lean-forward="true" selection-start-line="38" selection-start-column="36" selection-end-line="38" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Login/Models/Implementations/EmployeeSearch.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="510">
+          <caret line="77" column="57" lean-forward="true" selection-start-line="69" selection-start-column="16" selection-end-line="77" selection-end-column="57" />
+          <folding>
+            <element signature="method#searchEmployeeExists#0;class#EmployeeSearch#0" />
+            <element signature="method#searchEmployeeValidateAnswer#0;class#EmployeeSearch#0" />
+            <element signature="method#searchEmployeeUserName#0;class#EmployeeSearch#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Login/Models/Implementations/EmployeeValidation.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="15" column="37" selection-start-line="15" selection-start-column="37" selection-end-line="15" selection-end-column="37" />
         </state>
       </provider>
     </entry>

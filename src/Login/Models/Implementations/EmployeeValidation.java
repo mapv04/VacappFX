@@ -1,6 +1,8 @@
 package Login.Models.Implementations;
 
 import Database.DatabaseConnection;
+import Login.Models.Abstracts.AEmployee;
+import Login.Models.Abstracts.IEmployeeFactory;
 import Login.Models.Abstracts.IEmployeeValidation;
 
 import java.sql.*;
@@ -10,6 +12,8 @@ public class EmployeeValidation implements IEmployeeValidation {
     private static Connection conn = DatabaseConnection.getInstance().getConnection();
     private static PreparedStatement preparedStatement;
     private static Statement st;
+    private AEmployee employee;
+    private IEmployeeFactory employeeFactory;
 
     @Override
     public Employee employeeExist(String user) {
@@ -19,15 +23,18 @@ public class EmployeeValidation implements IEmployeeValidation {
             preparedStatement.setString(1, user);
             rs = preparedStatement.executeQuery();
             while(rs.first()){
-                Employee employee= new Employee();
-                employee.setId(rs.getInt(1));
-                employee.setName(rs.getString(2));
-                employee.setLastName(rs.getString(3));
-                employee.setUsername(rs.getString(4));
-                employee.setPassword(rs.getString(6));
-                employee.setType(rs.getInt(7));
-                employee.setStatus(rs.getInt(8));
-                return employee;
+                //Employee employee;
+                //employee = new Employee(rs);
+                employee=employeeFactory.getEmployee();
+                employee.setId(rs.getInt("pk_id_user"));
+                employee.setName(rs.getString("name_user"));
+                employee.setLastName(rs.getString("last_name"));
+                employee.setUsername(rs.getString("username"));
+                employee.setEmail(rs.getString(5));
+                employee.setPassword(rs.getString("password_user"));
+                employee.setStatus(rs.getInt("status_user"));
+                employee.setType(rs.getInt("type_user"));
+                return (Employee) employee;
             }
         }catch (SQLException e){
             System.out.println("ERROR in sql statement in method EmployeeValidation.employeeExist error: "+e);
